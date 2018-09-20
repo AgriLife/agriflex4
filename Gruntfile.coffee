@@ -10,7 +10,7 @@ module.exports = (grunt) ->
       options:
         map: true
         processors: [
-          require('autoprefixer')(browsers: ['last 2 versions','ie >= 9'])
+          require('autoprefixer')(browsers: ['last 2 versions','ie > 9'])
         ]
     sass:
       pkg:
@@ -28,7 +28,6 @@ module.exports = (grunt) ->
           precision: 2
         files:
           'style.css': 'scss/style.scss'
-          sourcemap: true
     jsvalidate:
       options:
         globals:
@@ -40,13 +39,12 @@ module.exports = (grunt) ->
         files:
           src: [
             'js/*.js',
-            'bower_components/foundation/js/vendor/fastclick.js',
-            'bower_components/foundation/js/foundation/foundation?(.topbar).js',
-            'bower_components/modernizr/modernizr.js',
+            'node_modules/foundation-sites/js/vendor/fastclick.js',
+            'node_modules/foundation-sites/js/foundation/foundation?(.topbar).js',
+            'node_modules/foundation-sites/js/vendor/modernizr.js',
             'bower_components/jquery/{dist,sizzle}/**/*.js',
             'bower_components/jquery-placeholder/*.js',
-            'bower_components/jquery.cookie/jquery.cookie.js',
-            'bower_components/respond/{cross-domain,dest}/*.js'
+            'bower_components/jquery.cookie/jquery.cookie.js'
           ]
     sasslint:
       options:
