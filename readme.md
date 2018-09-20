@@ -38,3 +38,7 @@
 * Ruby Gems: http://rubygems.org/
 * Compass: http://compass-style.org/
 * Bower: http://bower.io/
+
+## To Do
+1. Add style guide page
+2. Figure out what to do about theme variations and their styles

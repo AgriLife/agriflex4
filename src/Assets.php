@@ -31,28 +31,21 @@ class Assets {
 	public function register_public_scripts() {
 
 		wp_register_script( 'fastclick',
-			AF_THEME_DIRURL . '/bower_components/foundation/js/vendor/fastclick.js',
+			AF_THEME_DIRURL . '/node_modules/foundation-sites/js/vendor/fastclick.js',
 			false,
 			true
 		);
 
 		wp_register_script( 'foundation',
-			AF_THEME_DIRURL . '/bower_components/foundation/js/foundation/foundation.js',
+			AF_THEME_DIRURL . '/node_modules/foundation-sites/js/foundation/foundation.js',
 			array( 'jquery' ),
 			false,
 			true
 		);
 
 		wp_register_script( 'foundation-topbar',
-			AF_THEME_DIRURL . '/bower_components/foundation/js/foundation/foundation.topbar.js',
+			AF_THEME_DIRURL . '/node_modules/foundation-sites/js/foundation/foundation.topbar.js',
 			array( 'foundation' ),
-			false,
-			true
-		);
-
-		wp_register_script( 'modernizr',
-			AF_THEME_DIRURL . '/bower_components/modernizr/modernizr.js',
-			array( 'jquery' ),
 			false,
 			true
 		);
@@ -77,7 +70,6 @@ class Assets {
 		wp_enqueue_script( 'foundation' );
 		wp_enqueue_script( 'foundation-topbar' );
 		wp_enqueue_script( 'agriflex-public' );
-        wp_enqueue_script( 'modernizr' );
 
 	}
 
@@ -90,7 +82,7 @@ class Assets {
 
 		wp_register_style(
 			'default-styles',
-			AF_THEME_DIRURL . '/css/default.css',
+			AF_THEME_DIRURL . 'style.css',
 			array(),
 			'',
 			'screen'

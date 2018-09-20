@@ -15,17 +15,19 @@ module.exports = (grunt) ->
     sass:
       pkg:
         options:
+          loadPath: 'node_modules/foundation-sites/scss'
           sourcemap: 'none'
           style: 'compressed'
           precision: 2
         files:
-          'style.css': 'style.scss'
+          'style.css': 'scss/style.scss'
       dev:
         options:
+          loadPath: 'node_modules/foundation-sites/scss'
           style: 'expanded'
           precision: 2
         files:
-          'style.css': 'style.scss'
+          'style.css': 'scss/style.scss'
           sourcemap: true
     jsvalidate:
       options:
@@ -44,31 +46,25 @@ module.exports = (grunt) ->
             'bower_components/jquery/{dist,sizzle}/**/*.js',
             'bower_components/jquery-placeholder/*.js',
             'bower_components/jquery.cookie/jquery.cookie.js',
-            'bower_components/respond/{cross-domain,dest}/*.js',
-            'bower_components/html5shiv/dist/html5shiv.js'
+            'bower_components/respond/{cross-domain,dest}/*.js'
           ]
     sasslint:
       options:
         configFile: '.sass-lint.yaml'
-      target: ['css/src/**/*.s+(a|c)ss']
+      target: ['scss/**/*.s+(a|c)ss']
     compress:
       main:
         options:
           archive: 'agriflex4.zip'
         files: [
           {src: ['src/*.php']},
-          {src: ['css/*.css']},
           {src: ['style.css']},
           {src: ['img/**']},
           {src: ['js/public.min.js']},
           {src: ['bower_components/fastclick/lib/fastclick.js']},
-          {src: ['bower_components/foundation/{css,js}/**']},
+          {src: ['node_modules/foundation/{css,js}/**']},
           {src: ['bower_components/modernizr/modernizr.js']},
-          {src: ['bower_components/jquery/{dist,sizzle}/**/*.js']},
-          {src: ['bower_components/jquery-placeholder/*.js']},
-          {src: ['bower_components/jquery.cookie/jquery.cookie.js']},
-          {src: ['bower_components/respond/{cross-domain,dest}/*.js']},
-          {src: ['bower_components/html5shiv/dist/html5shiv.js']},
+          {src: ['node_modules/jquery/{dist,sizzle}/**/*.js']},
           {src: ['vendor/**']},
           {src: ['functions.php']},
           {src: ['README.md']},
