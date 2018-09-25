@@ -1,5 +1,7 @@
 <?php
 
+namespace AgriFlex;
+
 /**
  * Loads required theme assets
  * @package AgriFlex4
@@ -30,22 +32,51 @@ class Assets {
 	 */
 	public function register_public_scripts() {
 
-		wp_register_script( 'fastclick',
-			AF_THEME_DIRURL . '/node_modules/foundation-sites/js/vendor/fastclick.js',
-			false,
-			true
-		);
-
-		wp_register_script( 'foundation',
-			AF_THEME_DIRURL . '/node_modules/foundation-sites/js/foundation/foundation.js',
+		wp_register_script( 'what-input',
+			AF_THEME_DIRURL . '/node_modules/what-input/dist/what-input.min.js',
 			array( 'jquery' ),
 			false,
 			true
 		);
 
-		wp_register_script( 'foundation-topbar',
-			AF_THEME_DIRURL . '/node_modules/foundation-sites/js/foundation/foundation.topbar.js',
+		wp_register_script( 'foundation',
+			AF_THEME_DIRURL . '/node_modules/foundation-sites/dist/js/plugins/foundation.core.min.js',
+			array( 'jquery' ),
+			false,
+			true
+		);
+
+		wp_register_script( 'foundation-util-triggers',
+			AF_THEME_DIRURL . '/node_modules/foundation-sites/dist/js/plugins/foundation.util.triggers.min.js',
 			array( 'foundation' ),
+			false,
+			true
+		);
+
+		wp_register_script( 'foundation-util-mediaQuery',
+			AF_THEME_DIRURL . '/node_modules/foundation-sites/dist/js/plugins/foundation.util.mediaQuery.min.js',
+			array( 'foundation-util-triggers' ),
+			false,
+			true
+		);
+
+		wp_register_script( 'foundation-util-motion',
+			AF_THEME_DIRURL . '/node_modules/foundation-sites/dist/js/plugins/foundation.util.motion.min.js',
+			array( 'foundation-util-mediaQuery' ),
+			false,
+			true
+		);
+
+		wp_register_script( 'foundation-responsiveMenu',
+			AF_THEME_DIRURL . '/node_modules/foundation-sites/dist/js/plugins/foundation.responsiveMenu.min.js',
+			array( 'foundation-util-mediaQuery' ),
+			false,
+			true
+		);
+
+		wp_register_script( 'foundation-responsiveToggle',
+			AF_THEME_DIRURL . '/node_modules/foundation-sites/dist/js/plugins/foundation.responsiveToggle.min.js',
+			array( 'foundation-responsiveMenu' ),
 			false,
 			true
 		);
@@ -66,9 +97,11 @@ class Assets {
 	 */
 	public function enqueue_public_scripts() {
 
-    wp_enqueue_script( 'fastclick' );
 		wp_enqueue_script( 'foundation' );
-		wp_enqueue_script( 'foundation-topbar' );
+		wp_enqueue_script( 'foundation-dropdownmenu' );
+		wp_enqueue_script( 'foundation-util-keyboard' );
+		wp_enqueue_script( 'foundation-util-box' );
+		wp_enqueue_script( 'foundation-util-nest' );
 		wp_enqueue_script( 'agriflex-public' );
 
 	}
@@ -82,7 +115,7 @@ class Assets {
 
 		wp_register_style(
 			'default-styles',
-			AF_THEME_DIRURL . 'style.css',
+			AF_THEME_DIRURL . '/css/default.css',
 			array(),
 			'',
 			'screen'

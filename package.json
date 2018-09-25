@@ -11,6 +11,7 @@
     "email": "first-call@tamu.edu"
   },
   "dependencies": {
+    "autoprefixer": "^9.1.5",
     "curlrequest": "^1.0.1",
     "foundation-sites": "^6.5.0",
     "grunt": "^1.0.3",

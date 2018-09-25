@@ -1,0 +1,94 @@
+
+
+.agency-bar {
+	$nav-item-width: 167;
+	$nav-item-height: 42;
+	$nav-first-item-width: 164;
+	$nav-first-item-offest: 97;
+
+	@include grid-row();
+	background-color: $gray-agency-bar;
+	max-width: 100%;
+	height: 42px;
+	display: block;
+
+	.agency-wrap {
+		width: $grid-row-width;
+		position: relative;
+	}
+
+	ul {
+		position: absolute;
+		left: 0;
+		margin: 0;
+
+		li {
+			position: absolute;
+
+			a {
+				height: 42px;
+				background: url("../img/agency-nav.png");
+				text-indent: -9999em;
+				display: block;
+				position: absolute;
+			}
+
+			&.tfs-item a {
+				width: #{$nav-first-item-width}px;
+				z-index: 5;
+				&:hover {
+					background-position: -1px * $nav-item-width 0;
+				}
+			}
+
+			&.tvmdl-item {
+				left: 125px;
+				z-index: 4;
+				a {
+					width: 167px;
+					background-position: 0 $nav-item-height * -1px;
+					&:hover {
+						background-position: -1px * $nav-item-width $nav-item-height * -1px;
+					}
+				}
+			}
+
+			&.ext-item {
+				left: 256px;
+				z-index: 3;
+				a {
+					width: 167px;
+					background-position: 0 $nav-item-height * -2px;
+					&:hover {
+						background-position: -1px * $nav-item-width $nav-item-height * -2px;
+					}
+				}
+			}
+
+			&.res-item {
+				left: 385px;
+				z-index: 2;
+				a {
+					width: 167px;
+					background-position: 0 $nav-item-height * -3px;
+					&:hover {
+						background-position: -1px * $nav-item-width $nav-item-height * -3px;
+					}
+				}
+			}
+
+			&.college-item {
+				left: 513px;
+				z-index: 1;
+				a {
+					width: 167px;
+					background-position: 0 $nav-item-height * -4px;
+					&:hover {
+						background-position: -1px * $nav-item-width $nav-item-height * -4px;
+					}
+				}
+			}
+
+		}
+	}
+}

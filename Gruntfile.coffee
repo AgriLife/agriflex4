@@ -20,14 +20,14 @@ module.exports = (grunt) ->
           style: 'compressed'
           precision: 2
         files:
-          'style.css': 'scss/style.scss'
+          'css/default.css': 'css/src/default.scss'
       dev:
         options:
           loadPath: 'node_modules/foundation-sites/scss'
           style: 'expanded'
           precision: 2
         files:
-          'style.css': 'scss/style.scss'
+          'css/default.css': 'css/src/default.scss'
     jsvalidate:
       options:
         globals:
@@ -39,7 +39,6 @@ module.exports = (grunt) ->
         files:
           src: [
             'js/*.js',
-            'node_modules/foundation-sites/js/vendor/fastclick.js',
             'node_modules/foundation-sites/js/foundation/foundation?(.topbar).js',
             'node_modules/foundation-sites/js/vendor/modernizr.js',
             'bower_components/jquery/{dist,sizzle}/**/*.js',
@@ -59,7 +58,6 @@ module.exports = (grunt) ->
           {src: ['style.css']},
           {src: ['img/**']},
           {src: ['js/public.min.js']},
-          {src: ['bower_components/fastclick/lib/fastclick.js']},
           {src: ['node_modules/foundation/{css,js}/**']},
           {src: ['bower_components/modernizr/modernizr.js']},
           {src: ['node_modules/jquery/{dist,sizzle}/**/*.js']},
