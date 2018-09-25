@@ -33,14 +33,17 @@ class Navigation {
 
 	public function custom_nav_walker( $nav_output, $nav, $args ) {
 
-		$args['menu_class'] = $args['menu_class'] . ' dropdown menu';
+		$args['menu_class'] = $args['menu_class'] . ' dropdown';
 		$args['walker'] = new \AgriFlex\CustomNavigationWalker;
+		$args['items_wrap'] = '<ul id="%s" class="%s" data-dropdown-menu>%s</ul>';
 
-		$title = '<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium"><button class="menu-icon" type="button" data-toggle="example-menu"></button><div class="title-bar-title">Menu</div></div>';
+		$nav_menu = wp_nav_menu( $args );
 
-		$nav = sprintf( '%s<div class="top-bar"><section class="top-bar-left">%s %s</section></div>',
-			$title,
-			wp_nav_menu( $args ),
+		$small_menu_button = '<div class="title-bar" data-responsive-toggle="nav-menu-primary" data-hide-for="medium"><button class="menu-icon" type="button" data-toggle="nav-menu-primary"></button><div class="title-bar-title">Menu</div></div>';
+
+		$nav = sprintf( '%s<div class="top-bar" id="nav-menu-primary"><section class="top-bar-left">%s %s</section></div>',
+			$small_menu_button,
+			$nav_menu,
 			apply_filters( 'agriflex_nav_elements', '' )
 		);
 

@@ -1,0 +1,16 @@
+.site-inner .wrap {
+	@include xy-grid-container;
+}
+
+.content-sidebar-wrap {
+	@include xy-grid;
+
+	.content {
+		@include xy-cell(8);
+	}
+
+	.sidebar {
+		@include xy-cell(4);
+
+	}
+}
