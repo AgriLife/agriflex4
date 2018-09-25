@@ -2,7 +2,7 @@
 /**
  * AgriFlex4
  * @package      AgriFlex4
- * @since        1.0.0
+ * @since        0.1.0
  * @copyright    Copyright (c) 2018, Texas A&M AgriLife
  * @author       Zachary K. Watkins
  * @license      GPL-2.0+
@@ -39,7 +39,7 @@ class AgriFlex {
 
 	/**
 	 * Initialize the various classes
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @return void
 	 */
 	public function init() {
@@ -60,7 +60,7 @@ class AgriFlex {
 
 	/**
 	 * Autoloads any classes called within the theme
-	 * @since 1.0
+	 * @since 0.1.0
 	 * @param  string $classname The name of the class
 	 * @return void
 	 */

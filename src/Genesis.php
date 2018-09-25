@@ -5,7 +5,7 @@ namespace AgriFlex;
 /**
  * Sets up Genesis Framework to our needs
  * @package AgriFlex3
- * @since 1.0.0
+ * @since 0.1.0
  */
 class Genesis {
 
@@ -59,7 +59,7 @@ class Genesis {
 
 	/**
 	 * Adds the responsive viewport meta tag
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @return void
 	 */
 	private function add_responsive_viewport() {
@@ -70,7 +70,7 @@ class Genesis {
 
 	/**
 	 * Adds the responsive viewport meta tag
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @return void
 	 */
 	private function add_accessibility() {
@@ -90,7 +90,7 @@ class Genesis {
 	 * Ensure primary navigation menu works with skip link
 	 *
 	 * @param $nav_output The raw menu HTML
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @return string
 	*/
 	public function primary_nav_id( $nav_output, $nav, $args ) {
@@ -115,7 +115,7 @@ class Genesis {
 
 	/**
 	 * Removes any stylesheet Genesis may try to load
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @return void
 	 */
 	private function remove_stylesheet() {
@@ -126,7 +126,7 @@ class Genesis {
 
 	/**
 	 * Forces IE out of compatibility mode
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @return void
 	 */
 	public function fix_compatibility_mode() {
@@ -137,7 +137,7 @@ class Genesis {
 
 	/**
 	 * Changes the Genesis default favicon location
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @param string $favicon_url The default favicon location
 	 * @return string
 	 */
@@ -149,7 +149,7 @@ class Genesis {
 
 	/**
 	 * Adds structural wraps to the specified elements
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @return void
 	 */
 	private function add_structural_wraps() {
@@ -169,7 +169,7 @@ class Genesis {
 
 	/**
 	 * Remove unneeded user profile fields
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @return void
 	 */
 	public function remove_profile_fields() {
@@ -187,7 +187,7 @@ class Genesis {
 
 	/**
 	 * Removes any layouts that we don't need
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @return void
 	 */
 	private function remove_genesis_layouts() {
@@ -200,7 +200,7 @@ class Genesis {
 
 	/**
 	 * Removes any default sidebars that we don't need
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @return void
 	 */
 	private function remove_genesis_sidebars() {
@@ -211,7 +211,7 @@ class Genesis {
 
 	/**
 	 * Cleans up the default comments text
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @param  array $args The default arguments
 	 * @return array       The new arguments
 	 */
@@ -226,7 +226,7 @@ class Genesis {
 
 	/**
 	 * Moves the Genesis in-post SEO box to a lower position
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @author Bill Erickson
 	 * @return void
 	 */
@@ -244,7 +244,7 @@ class Genesis {
 
 	/**
 	 * Moves the Genesis in-post layout box to a lower postion
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @return void
 	 */
 	public function move_inpost_layout_box() {
