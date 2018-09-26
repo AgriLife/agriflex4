@@ -33,9 +33,9 @@ class Navigation {
 
 	public function custom_nav_walker( $nav_output, $nav, $args ) {
 
-		$args['menu_class'] = $args['menu_class'] . ' dropdown';
+		$args['menu_class'] = $args['menu_class'] . ' vertical medium-horizontal';
 		$args['walker'] = new \AgriFlex\CustomNavigationWalker;
-		$args['items_wrap'] = '<ul id="%s" class="%s" data-dropdown-menu>%s</ul>';
+		$args['items_wrap'] = '<ul id="%s" class="%s" data-responsive-menu="accordion medium-dropdown">%s</ul>';
 
 		$nav_menu = wp_nav_menu( $args );
 
@@ -48,7 +48,7 @@ class Navigation {
 		);
 
 		$nav_markup_open = genesis_markup( array(
-				'html5' => '<div><nav class="nav-primary" role="navigation">',
+				'html5' => '<nav class="nav-primary" role="navigation">',
 				'xhtml' => '<div id="nav">',
 				'context' => 'nav-primary',
 				'echo' => false,
@@ -57,7 +57,7 @@ class Navigation {
 		$nav_markup_open .= genesis_structural_wrap( 'menu-primary', 'open', 0 );
 
 		$nav_markup_close = genesis_structural_wrap( 'menu-primary', 'close', 0 );
-		$nav_markup_close .= genesis_html5() ? '</nav></div>' : '</div>';
+		$nav_markup_close .= genesis_html5() ? '</nav>' : '</div>';
 
 		$nav_output = $nav_markup_open . $nav . $nav_markup_close;
 

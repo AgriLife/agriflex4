@@ -1,3 +1,11 @@
-.genesis-skip-link {
-	@include element-invisible;
+.top-bar {
+	a,
+	a:hover {
+		color: $white;
+	}
+
+	.sub-menu a:hover,
+	.is-accordion-submenu-parent[aria-expanded="true"] > a {
+		background-color: $dark-grey;
+	}
 }

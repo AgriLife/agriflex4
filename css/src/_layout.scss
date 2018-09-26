@@ -1,16 +1,33 @@
-.site-inner .wrap {
-	@include xy-grid-container;
+
+.site-container {
+	padding: 0 12px;
 }
 
-.content-sidebar-wrap {
-	@include xy-grid;
-
-	.content {
-		@include xy-cell(8);
+@include breakpoint(medium up) {
+	.site-container {
+		padding: 0;
 	}
 
-	.sidebar {
-		@include xy-cell(4);
+	.site-header,
+	.nav-primary,
+	.site-inner .wrap,
+	.site-footer {
+		@include xy-grid-container(1200px, 0);
+	}
 
+	.content-sidebar-wrap {
+		@include xy-grid;
+
+		.content {
+	    @include xy-cell-base();
+	    @include xy-cell-static(8, $gutter-type: padding, $gutters: 2rem);
+	    margin-top: 2%;
+		}
+
+		.sidebar {
+	    @include xy-cell-base();
+	    @include xy-cell-static(4, $gutter-type: padding, $gutters: 2rem);
+	    margin-top: 2%;
+		}
 	}
 }

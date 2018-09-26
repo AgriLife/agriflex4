@@ -1,5 +1,19 @@
-
+/* Colors
+--------------------------------------------- */
+$white: #fefefe;
+$dark-grey: #222;
 
 /* Agency Bar
 --------------------------------------------- */
 $gray-agency-bar: #5E564E;
+
+/* Navigation
+--------------------------------------------- */
+$topbar-padding: 0;
+$topbar-background: #500000;
+$topbar-submenu-background: #5E564E;
+$dropdown-menu-item-background-active: $dark-grey;
+$dropdownmenu-arrow-color: $white;
+$dropdownmenu-border: none;
+$accordion-menu-item-background-active: $dark-grey;
+$accordionmenu-arrow-color: $white;
