@@ -13,6 +13,9 @@ class RequiredDOM
     public function __construct()
     {
 
+        // Setup Foundation
+        add_filter( 'language_attributes', array( $this, 'add_no_js_class_to_html_tag' ), 10, 2 );
+
         // Add bar of AgriLife agencies
         $this->add_agency_bar();
 
@@ -38,6 +41,18 @@ class RequiredDOM
         // Alter header tags for SEO
         add_filter( 'genesis_seo_title', array($this, 'alter_title_tag'), 10, 3 );
         add_filter( 'genesis_seo_description', array($this, 'alter_description_tag'), 10, 3 );
+
+    }
+
+    public function add_no_js_class_to_html_tag( $output, $doctype ) {
+
+        if ( 'html' !== $doctype ) {
+            return $output;
+        }
+
+        $output .= ' class="no-js"';
+
+        return $output;
 
     }
 
