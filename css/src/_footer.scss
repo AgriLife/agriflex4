@@ -1,0 +1,60 @@
+.site-footer {
+	background-color: $footer-background;
+	color: $footer-text;
+	// @include adjust-font-size-to(10px);
+	line-height: 2.4em;
+	padding: 30px 0;
+	font: {
+		family: $footer-font-family;
+		weight: $footer-font-weight;
+	}
+	text-align: center;
+
+	a {
+		color: $footer-text;
+		text-decoration: none;
+	}
+
+	ul {
+		margin-left: 0;
+		font: {
+			family: $footer-font-family;
+			weight: $footer-font-weight;
+		}
+
+		li {
+			list-style-type: none;
+		}
+	}
+
+	.footer-tamus {
+		border: 2px solid $footer-text;
+	}
+
+	@include breakpoint(medium up) {
+		text-align: left;
+
+		.wrap {
+			@include xy-grid;
+		}
+
+		.footer-container {
+	    @include xy-cell-base();
+	    @include xy-cell-static(10, $gutter-type: padding, $gutters: 2rem);
+		}
+
+		.footer-container-tamus {
+	    @include xy-cell-base();
+	    @include xy-cell-static(2, $gutter-type: padding, $gutters: 2rem);
+	    text-align: right;
+		}
+
+		.req-links li {
+			display: inline-block;
+			font-size: 0.8em;
+			margin: .2em 1em .2em 0;
+		}
+
+	}
+
+}

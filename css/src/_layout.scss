@@ -1,10 +1,17 @@
 
-.site-container {
-	padding: 0 12px;
+.site-header,
+.site-inner {
+	padding: 0 1rem;
+}
+
+.site-header,
+.nav-primary {
+	clear: both;
 }
 
 @include breakpoint(medium up) {
-	.site-container {
+	.site-header,
+	.site-inner {
 		padding: 0;
 	}
 

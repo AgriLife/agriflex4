@@ -1,12 +1,12 @@
 .top-bar {
 	a,
 	a:hover {
-		color: $white;
+		color: $nav-item-color;
 	}
 
 	.sub-menu a:hover,
 	.is-accordion-submenu-parent[aria-expanded="true"] > a {
-		background-color: $dark-grey;
+		background-color: $gray-darker;
 	}
 }
 

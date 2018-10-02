@@ -252,23 +252,20 @@ class RequiredDOM
     public static function render_required_links()
     {
 
-        $output = '
-            <div class="footer-container">
-                <ul class="req-links">
-			        <li><a href="http://agrilife.org/required-links/compact/">Compact with Texans</a></li>
-			        <li><a href="http://agrilife.org/required-links/privacy/">Privacy and Security</a></li>
-			        <li><a href="http://itaccessibility.tamu.edu/" target="_blank">Accessibility Policy</a></li>
-			        <li><a href="http://publishingext.dir.texas.gov/portal/internal/resources/DocumentLibrary/State%20Website%20Linking%20and%20Privacy%20Policy.pdf" target="_blank">State Link Policy</a></li>
-			        <li><a href="http://www.tsl.state.tx.us/trail" target="_blank">Statewide Search</a></li>
-			        <li><a href="http://veterans.tamu.edu/" target="_blank">Veterans Benefits</a></li>
-			        <li><a href="https://fch.tamu.edu/programs/military-programs/" target="_blank">Military Families</a></li>
-			        <li><a href="https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=19681" target="_blank">Risk, Fraud &amp; Misconduct Hotline</a></li>
-			        <li><a href="https://gov.texas.gov/organization/hsgd" target="_blank">Texas Homeland Security</a></li>
-			        <li><a href="http://veterans.portal.texas.gov/">Texas Veteran&apos;s Portal</a></li>
-			        <li><a href="http://agrilifeas.tamu.edu/hr/diversity/equal-opportunity-educational-programs/" target="_blank">Equal Opportunity</a></li>
-			        <li class="last"><a href="http://agrilife.org/required-links/orpi/">Open Records/Public Information</a></li>
-		        </ul>
-            </div>';
+        $output = '<div class="footer-container"><ul class="req-links">
+                <li><a href="http://agrilife.org/required-links/compact/">Compact with Texans</a></li>
+                <li><a href="http://agrilife.org/required-links/privacy/">Privacy and Security</a></li>
+                <li><a href="http://itaccessibility.tamu.edu/" target="_blank">Accessibility Policy</a></li>
+                <li><a href="http://publishingext.dir.texas.gov/portal/internal/resources/DocumentLibrary/State%20Website%20Linking%20and%20Privacy%20Policy.pdf" target="_blank">State Link Policy</a></li>
+                <li><a href="http://www.tsl.state.tx.us/trail" target="_blank">Statewide Search</a></li>
+                <li><a href="http://veterans.tamu.edu/" target="_blank">Veterans Benefits</a></li>
+                <li><a href="https://fch.tamu.edu/programs/military-programs/" target="_blank">Military Families</a></li>
+                <li><a href="https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=19681" target="_blank">Risk, Fraud &amp; Misconduct Hotline</a></li>
+                <li><a href="https://gov.texas.gov/organization/hsgd" target="_blank">Texas Homeland Security</a></li>
+                <li><a href="http://veterans.portal.texas.gov/">Texas Veteran&apos;s Portal</a></li>
+                <li><a href="http://agrilifeas.tamu.edu/hr/diversity/equal-opportunity-educational-programs/" target="_blank">Equal Opportunity</a></li>
+                <li class="last"><a href="http://agrilife.org/required-links/orpi/">Open Records/Public Information</a></li>
+            </ul></div>';
 
         echo $output;
 
@@ -282,10 +279,7 @@ class RequiredDOM
     public static function render_tamus_logo()
     {
 
-        $output = '
-            <div class="footer-container-tamus">
-                <a href="http://tamus.edu/" title="Texas A&amp;M University System"><img class="footer-tamus" src="'.AF_THEME_DIRURL.'/img/footer-tamus-maroon.png" alt="Texas A&amp;M University System Member" /></a>
-            </div>';
+        $output = '<div class="footer-container-tamus"><a href="http://tamus.edu/" title="Texas A&amp;M University System"><img class="footer-tamus" src="'.AF_THEME_DIRURL.'/img/footer-tamus-maroon.png" alt="Texas A&amp;M University System Member" /></a></div>';
 
         echo $output;
 

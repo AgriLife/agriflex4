@@ -1,19 +1,50 @@
+/* Typography
+--------------------------------------------- */
+// $base-font-size: 16px;
+
 /* Colors
 --------------------------------------------- */
-$white: #fefefe;
-$dark-grey: #222;
+$white: #F8F8F8; // Because sometimes white isn't always white
+$whiter: #FEFEFE;
+$gray-darker: #222;
+$gray-dark: #333;
+$gray-medium: #5E564E;
+$gray-light: #717074;
+$gray-lighter: #D6D6D6;
+$gray-lightest: #F7F7F9;
 
 /* Agency Bar
 --------------------------------------------- */
-$gray-agency-bar: #5E564E;
+$agency-bar-background: #5E564E;
+$agency-bar-height: 42px;
+$agency-item-width: 167px;
+$agency-item-height: $agency-bar-height;
+$agency-first-item-width: 164px;
+$agency-first-item-offest: 97px;
+
+/* Header
+--------------------------------------------- */
+$site-title: $gray-light;
+$site-title-font-weight: 500;
+$site-title-font-size: 2.75rem;
+$site-title-font-family: "minion-pro", sans-serif;
+$site-description: $gray-dark;
 
 /* Navigation
 --------------------------------------------- */
 $topbar-padding: 0;
 $topbar-background: #500000;
 $topbar-submenu-background: #5E564E;
-$dropdown-menu-item-background-active: $dark-grey;
+$dropdown-menu-item-background-active: $gray-darker;
 $dropdownmenu-arrow-color: $white;
 $dropdownmenu-border: none;
-$accordion-menu-item-background-active: $dark-grey;
+$accordion-menu-item-background-active: $gray-darker;
 $accordionmenu-arrow-color: $white;
+$nav-item-color: $whiter;
+
+/* Footer
+--------------------------------------------- */
+$footer-background: #717074;
+$footer-text: #F8F8F8;
+$footer-font-family: "Verdana",clean,sans-serif;
+$footer-font-weight: 400;

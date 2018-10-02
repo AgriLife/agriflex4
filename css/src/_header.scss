@@ -1,0 +1,88 @@
+.site-header {
+	text-align: center;
+
+	.title-area {
+		font-weight: 700;
+		padding: 16px 0;
+	}
+
+	.site-title {
+		font: {
+			weight: $site-title-font-weight;
+			size: $site-title-font-size;
+			family: $site-title-font-family;
+			style: normal;
+		}
+		line-height: 1.4;
+		color: #222;
+		margin-bottom: 0.5rem;
+		margin-top: 0.2rem;
+		text-rendering: optimizelegibility;
+	}
+
+	.site-description {
+		color: $site-description;
+		font-weight: 300;
+		line-height: 1;
+		margin-bottom: 0;
+	}
+
+	@include breakpoint(small only) {
+		.header-widget-area {
+			@include element-invisible;
+		}
+	}
+
+	@include breakpoint(medium up) {
+		text-align: left;
+		position: relative;
+
+		.wrap {
+			padding: 16px 1em;
+		}
+
+		.header-widget-area {
+			display: block;
+			position: absolute;
+			right: 0;
+			top: 0;
+			padding: 0;
+		}
+
+		.search-form {
+			max-height: none;
+			margin: 0;
+
+			fieldset {
+				position: relative;
+				border: 0;
+				padding: 0;
+				margin: 0;
+			}
+
+			input[type="search"] {
+				width: 180px;
+				border: 1px solid #D5D6DA;
+				padding: 0.1em .3em;
+				background: #FFF url("../img/search-college.png") no-repeat 150px 45%;
+			}
+
+			input[type="submit"] {
+				@include element-invisible;
+			}
+
+			.search-submit {
+				background: none;
+				padding: 0.78em 1em;
+				border: 0;
+				border-left: 1px solid #808080;
+				color: #808080;
+				width: auto;
+
+				.icon-search:before {
+					content: "\73";
+				}
+			}
+		}
+	}
+}

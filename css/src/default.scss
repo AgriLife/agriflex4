@@ -60,7 +60,10 @@
 // @include foundation-flex-classes;
 
 // @include foundation-prototype-classes;
+@import 'mixins';
 @import 'accessibility';
-@import 'agency-header';
-@import 'navigation';
 @import 'layout';
+@import 'agency-header';
+@import 'header';
+@import 'navigation';
+@import 'footer';
