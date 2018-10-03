@@ -36,7 +36,7 @@ class RequiredDOM
         //$this->render_header_social();
 
         //* Reposition the breadcrumbs
-        $this->move_genesis_breadcrumbs();
+        // $this->move_genesis_breadcrumbs();
 
         // Alter header tags for SEO
         add_filter( 'genesis_seo_title', array($this, 'alter_title_tag'), 10, 3 );
@@ -154,6 +154,7 @@ class RequiredDOM
         add_action('genesis_site_description', array($this, 'unit_title'), 1);
 
     }
+
     public function unit_title()
     {
         $wrap = 'div';
@@ -230,15 +231,13 @@ class RequiredDOM
     public function render_agency_bar()
     {
 
-        $output = '
-          <div class="agency-bar">
+        $output = '<div class="agency-bar">
             <div class="agency-wrap">
                 <ul>
 		            <li class="tfs-item"><a href="http://texasforestservice.tamu.edu/"><span>Texas A&amp;M Forest Service</span></a></li><li class="tvmdl-item"><a href="http://tvmdl.tamu.edu/"><span>Texas A&amp;M Veterinary Medical Diagnostics Laboratory</span></a></li><li class="ext-item"><a href="http://agrilifeextension.tamu.edu/"><span>Texas A&amp;M AgriLife Extension Service</span></a></li><li class="res-item"><a href="http://agriliferesearch.tamu.edu/"><span>Texas A&amp;M AgriLife Research</span></a></li><li class="college-item"><a href="http://aglifesciences.tamu.edu/"><span>Texas A&amp;M College of Agrculture and Life Sciences</span></a></li>
 		        </ul>
 		    </div>
-		  </div>
-		  ';
+		  </div>';
 
         echo $output;
 

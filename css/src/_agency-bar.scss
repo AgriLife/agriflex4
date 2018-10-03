@@ -1,14 +1,12 @@
 .agency-bar {
-
 	display: none;
 
 	@include breakpoint(medium up) {
 
-		@include grid-row();
+		display: block;
 		background-color: $agency-bar-background;
 		max-width: 100%;
 		height: $agency-bar-height;
-		display: block;
 
 		.agency-wrap {
 			width: $grid-row-width;
@@ -22,6 +20,7 @@
 
 			li {
 				position: absolute;
+				list-style-type: none;
 
 				a {
 					height: $agency-bar-height;
@@ -35,7 +34,7 @@
 					width: $agency-first-item-width;
 					z-index: 5;
 					&:hover {
-						background-position: -#{$agency-item-width} 0;
+						background-position: -$agency-item-width 0;
 					}
 				}
 
@@ -44,9 +43,9 @@
 					z-index: 4;
 					a {
 						width: 167px;
-						background-position: 0 -#{$agency-item-height};
+						background-position: 0 (-$agency-item-height);
 						&:hover {
-							background-position: -#{$agency-item-width} -#{$agency-item-height};
+							background-position: (-$agency-item-width) (-$agency-item-height);
 						}
 					}
 				}
@@ -56,9 +55,9 @@
 					z-index: 3;
 					a {
 						width: 167px;
-						background-position: 0 -#{$agency-item-height} * 2;
+						background-position: 0 ($agency-item-height * -2);
 						&:hover {
-							background-position: -#{$agency-item-width} -#{$agency-item-height} * 2;
+							background-position: (-$agency-item-width) ($agency-item-height * -2);
 						}
 					}
 				}
@@ -68,9 +67,9 @@
 					z-index: 2;
 					a {
 						width: 167px;
-						background-position: 0 -#{$agency-item-height} * 3;
+						background-position: 0 ($agency-item-height * -3);
 						&:hover {
-							background-position: -#{$agency-item-width} -#{$agency-item-height} * 3;
+							background-position: (-$agency-item-width) ($agency-item-height * -3);
 						}
 					}
 				}
@@ -80,9 +79,9 @@
 					z-index: 1;
 					a {
 						width: 167px;
-						background-position: 0 -#{$agency-item-height} * 4;
+						background-position: 0 ($agency-item-height * -4);
 						&:hover {
-							background-position: -#{$agency-item-width} -#{$agency-item-height} * 4;
+							background-position: (-$agency-item-width) ($agency-item-height * -4);
 						}
 					}
 				}

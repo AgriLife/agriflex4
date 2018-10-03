@@ -12,6 +12,12 @@ $gray-medium: #5E564E;
 $gray-light: #717074;
 $gray-lighter: #D6D6D6;
 $gray-lightest: #F7F7F9;
+$primary-color: #500000;
+
+/* Global
+--------------------------------------------- */
+$anchor-color: $primary-color;
+$anchor-color-hover: scale-color($anchor-color, $lightness: -14%);
 
 /* Agency Bar
 --------------------------------------------- */
@@ -29,6 +35,7 @@ $site-title-font-weight: 500;
 $site-title-font-size: 2.75rem;
 $site-title-font-family: "minion-pro", sans-serif;
 $site-description: $gray-dark;
+$search-widget-height: $agency-bar-height - 2px;
 
 /* Navigation
 --------------------------------------------- */
@@ -36,11 +43,13 @@ $topbar-padding: 0;
 $topbar-background: #500000;
 $topbar-submenu-background: #5E564E;
 $dropdown-menu-item-background-active: $gray-darker;
-$dropdownmenu-arrow-color: $white;
+$dropdownmenu-arrow-color: $whiter;
 $dropdownmenu-border: none;
 $accordion-menu-item-background-active: $gray-darker;
-$accordionmenu-arrow-color: $white;
+$accordionmenu-arrow-color: $whiter;
 $nav-item-color: $whiter;
+$dropdown-menu-item-color-active: $whiter;
+$menu-item-background-active: $gray-darker;
 
 /* Footer
 --------------------------------------------- */

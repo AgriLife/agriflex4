@@ -41,17 +41,15 @@
 			padding: 16px 1em;
 		}
 
-		.header-widget-area {
+		.widget_search {
 			display: block;
 			position: absolute;
 			right: 0;
-			top: 0;
+			top: (1px - $agency-bar-height);
 			padding: 0;
 		}
 
 		.search-form {
-			max-height: none;
-			margin: 0;
 
 			fieldset {
 				position: relative;
@@ -61,27 +59,16 @@
 			}
 
 			input[type="search"] {
+				box-sizing: border-box;
 				width: 180px;
+				height: $search-widget-height;
 				border: 1px solid #D5D6DA;
 				padding: 0.1em .3em;
-				background: #FFF url("../img/search-college.png") no-repeat 150px 45%;
+				background: #FFF url("../img/search.png") no-repeat 150px 45%;
 			}
 
 			input[type="submit"] {
 				@include element-invisible;
-			}
-
-			.search-submit {
-				background: none;
-				padding: 0.78em 1em;
-				border: 0;
-				border-left: 1px solid #808080;
-				color: #808080;
-				width: auto;
-
-				.icon-search:before {
-					content: "\73";
-				}
 			}
 		}
 	}
