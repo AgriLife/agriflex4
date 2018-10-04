@@ -17,13 +17,10 @@ class RequiredDOM
         add_filter( 'language_attributes', array( $this, 'add_no_js_class_to_html_tag' ), 10, 2 );
 
         // Add bar of AgriLife agencies
-        $this->add_agency_bar();
+        add_action('genesis_before', array($this, 'render_agency_bar'));
 
         // Remove default Genesis footer
-        $this->remove_genesis_footer();
-
-        // Add required links to footer
-        //$this->build_footer_content();
+        remove_action('genesis_footer', 'genesis_do_footer');
 
         add_action('genesis_before', array($this, 'build_footer_content'));
 
@@ -53,18 +50,6 @@ class RequiredDOM
         $output .= ' class="no-js"';
 
         return $output;
-
-    }
-
-    /**
-     * Add agency bar to top of page
-     * @since 1.0
-     * @return void
-     */
-    private function add_agency_bar()
-    {
-
-        add_action('genesis_before', array($this, 'render_agency_bar'));
 
     }
 
@@ -173,18 +158,6 @@ class RequiredDOM
 
         add_action('genesis_footer', array($this, 'render_required_links'));
         add_action('genesis_footer', array($this, 'render_tamus_logo'));
-
-    }
-
-    /**
-     * Remove default Genesis footer
-     * @since 1.0
-     * @return void
-     */
-    private function remove_genesis_footer()
-    {
-
-        remove_action('genesis_footer', 'genesis_do_footer');
 
     }
 
