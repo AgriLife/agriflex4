@@ -12,8 +12,9 @@
 
 @include breakpoint(medium up) {
 
-	.title-bar {
-		display: none;
+	.title-bar,
+	.menu-search-container {
+		@include element-invisible;
 	}
 
 }

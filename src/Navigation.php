@@ -9,14 +9,8 @@ class Navigation {
 		// // Use a custom walker for the primary nav
 		add_filter( 'genesis_do_nav', array( $this, 'custom_nav_walker' ), 10, 3 );
 
-		// // Add custom 'has-dropdown' class to parent menu items
-		// add_filter( 'wp_nav_menu_objects', array( $this, 'custom_parent_class' ) );
-
-		// // Add custom 'active' class when needed
-		// add_filter( 'nav_menu_css_class', array( $this, 'custom_active_class' ), 10, 2 );
-
-		// // Add search to the nav bar
-		// add_filter( 'agriflex_nav_elements', array( $this, 'display_search' ) );
+		// Add search to the nav bar
+		add_filter( 'agriflex_nav_elements', array( $this, 'display_search' ) );
 
     // Remove span tags from nav link elements
     add_filter( 'wp_nav_menu_args', array( $this, 'custom_nav_attributes' ) );
@@ -65,43 +59,9 @@ class Navigation {
 
 	}
 
-	public function custom_parent_class( $items ) {
-
-		$parents = array();
-		foreach ( $items as $item ) {
-			if ( $item->menu_item_parent && $item->menu_item_parent > 0 ) {
-				$parents[] = $item->menu_item_parent;
-			}
-		}
-
-		foreach ( $items as $item ) {
-			if ( in_array( $item->ID, $parents ) ) {
-				$item->classes[] = 'has-dropdown';
-			}
-		}
-
-		return $items;
-	}
-
-	public function custom_active_class($classes, $item){
-
-		$active_classes = array(
-			'current-menu-ancestor',
-			'current-menu-parent',
-			'current-menu-item',
-		);
-
-     if( count( array_intersect( $classes, $active_classes ) ) > 0 ){
-             $classes[] = 'active ';
-     }
-
-     return $classes;
-
-	}
-
 	public function display_search() {
 
-		$output = sprintf( '<ul class="menu-search-container"><div class="search"><li>%s</li></div></ul>',
+		$output = sprintf( '<div class="menu-search-container">%s</div>',
 			get_search_form( false )
 		);
 		return $output;

@@ -28,9 +28,11 @@
 	}
 
 	@include breakpoint(small only) {
+
 		.header-widget-area {
 			@include element-invisible;
 		}
+
 	}
 
 	@include breakpoint(medium up) {
