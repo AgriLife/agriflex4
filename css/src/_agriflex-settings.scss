@@ -2,6 +2,10 @@
 --------------------------------------------- */
 // $base-font-size: 16px;
 
+/* Breakpoints
+--------------------------------------------- */
+$break-xlarge: map-get($breakpoints, xlarge);
+
 /* Colors
 --------------------------------------------- */
 $white: #F8F8F8; // Because sometimes white isn't always white

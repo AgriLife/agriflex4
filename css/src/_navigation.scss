@@ -20,5 +20,5 @@
 }
 
 .no-js ul[data-responsive-menu] ul {
-  display: none;
+  @include element-invisible;
 }

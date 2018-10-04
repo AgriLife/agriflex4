@@ -1,9 +1,10 @@
 .agency-bar {
-	display: none;
+
+	@include breakpoint(small only) {
+		@include element-invisible;
+	}
 
 	@include breakpoint(medium up) {
-
-		display: block;
 		background-color: $agency-bar-background;
 		max-width: 100%;
 		height: $agency-bar-height;

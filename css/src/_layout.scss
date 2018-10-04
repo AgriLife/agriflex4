@@ -43,7 +43,7 @@
 	.nav-primary,
 	.site-inner .wrap,
 	.site-footer {
-		@include xy-grid-container(1200px, 0);
+		@include xy-grid-container($break-xlarge, 0);
 	}
 
 	.content-sidebar-wrap,
