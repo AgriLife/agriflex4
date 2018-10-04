@@ -74,4 +74,10 @@
 			}
 		}
 	}
+
+	@include breakpoint($break-xlarge down){
+		.widget_search {
+			right: 1px;
+		}
+	}
 }
