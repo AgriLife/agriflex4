@@ -54,21 +54,60 @@ module.exports = (grunt) ->
         options:
           archive: 'agriflex4.zip'
         files: [
-          {src: ['src/*.php']},
           {src: ['style.css']},
-          {src: ['img/**']},
-          {src: ['js/public.min.js']},
-          {src: ['node_modules/foundation/{css,js}/**']},
-          {src: ['bower_components/modernizr/modernizr.js']},
-          {src: ['node_modules/jquery/{dist,sizzle}/**/*.js']},
-          {src: ['vendor/**']},
-          {src: ['functions.php']},
-          {src: ['README.md']},
           {src: ['rtl.css']},
-          {src: ['screenshot.png']},
+          {src: ['css/*.css']},
+          {src: ['js/*.js']},
+          {src: ['img/**']},
+          {src: ['src/*.php']},
+          {src: ['functions.php']},
           {src: ['search.php']},
-          {src: ['style.css']}
+          {src: ['README.md']},
+          {src: ['screenshot.png']},
+          {src: ['vendor/**']}
         ]
+    concat:
+      dist:
+        options:
+          stripBanners: true
+          separator: '\n'
+          process: (src, filepath) ->
+            return src.replace(/\n\/\/# sourceMappingURL=[^\n]+\n?/g, '')
+        src: [
+          'node_modules/what-input/dist/what-input.min.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.core.min.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.util.triggers.min.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.util.mediaQuery.min.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.util.keyboard.min.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.util.nest.min.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.util.box.min.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.util.motion.min.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.dropdownMenu.min.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.drilldown.min.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.accordionMenu.min.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.responsiveMenu.min.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.responsiveToggle.min.js'
+        ]
+        dest: 'js/foundation.concat.js'
+      dev:
+        options:
+          sourceMap: true
+        src: [
+          'node_modules/what-input/dist/what-input.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.core.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.util.triggers.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.util.mediaQuery.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.util.keyboard.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.util.nest.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.util.box.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.util.motion.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.dropdownMenu.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.drilldown.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.accordionMenu.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.responsiveMenu.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.responsiveToggle.js'
+        ]
+        dest: 'js/foundation.concat.js'
     gh_release:
       options:
         token: process.env.RELEASE_KEY
@@ -90,13 +129,14 @@ module.exports = (grunt) ->
   @loadNpmTasks 'grunt-jsvalidate'
   @loadNpmTasks 'grunt-contrib-watch'
   @loadNpmTasks 'grunt-contrib-compress'
+  @loadNpmTasks 'grunt-contrib-concat'
   @loadNpmTasks 'grunt-gh-release'
   @loadNpmTasks 'grunt-sass-lint'
   @loadNpmTasks 'grunt-postcss'
 
-  @registerTask 'default', ['sass:pkg']
-  @registerTask 'develop', ['sasslint', 'sass:dev', 'jsvalidate']
-  @registerTask 'package', ['sass:pkg', 'jsvalidate']
+  @registerTask 'default', ['sass:pkg', 'concat:dist']
+  @registerTask 'develop', ['sasslint', 'sass:dev', 'concat:dev', 'jsvalidate']
+  @registerTask 'package', ['sass:pkg', 'concat:dist', 'jsvalidate']
   @registerTask 'release', ['compress', 'setreleasemsg', 'gh_release']
   @registerTask 'setreleasemsg', 'Set release message as range of commits', ->
     done = @async()

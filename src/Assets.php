@@ -32,93 +32,9 @@ class Assets {
 	 */
 	public function register_public_scripts() {
 
-		wp_register_script( 'what-input',
-			AF_THEME_DIRURL . '/node_modules/what-input/dist/what-input.min.js',
-			array( 'jquery' ),
-			false,
-			true
-		);
-
 		wp_register_script( 'foundation',
-			AF_THEME_DIRURL . '/node_modules/foundation-sites/dist/js/plugins/foundation.core.min.js',
+			AF_THEME_DIRURL . '/js/foundation.concat.js',
 			array( 'jquery' ),
-			false,
-			true
-		);
-
-		wp_register_script( 'foundation-util-triggers',
-			AF_THEME_DIRURL . '/node_modules/foundation-sites/dist/js/plugins/foundation.util.triggers.min.js',
-			array( 'foundation' ),
-			false,
-			true
-		);
-
-		wp_register_script( 'foundation-util-mediaQuery',
-			AF_THEME_DIRURL . '/node_modules/foundation-sites/dist/js/plugins/foundation.util.mediaQuery.min.js',
-			array( 'foundation-util-triggers' ),
-			false,
-			true
-		);
-
-		wp_register_script( 'foundation-util-keyboard',
-			AF_THEME_DIRURL . '/node_modules/foundation-sites/dist/js/plugins/foundation.util.keyboard.min.js',
-			array( 'foundation-util-triggers' ),
-			false,
-			true
-		);
-
-		wp_register_script( 'foundation-util-nest',
-			AF_THEME_DIRURL . '/node_modules/foundation-sites/dist/js/plugins/foundation.util.nest.min.js',
-			array( 'foundation-util-triggers' ),
-			false,
-			true
-		);
-
-		wp_register_script( 'foundation-util-box',
-			AF_THEME_DIRURL . '/node_modules/foundation-sites/dist/js/plugins/foundation.util.box.min.js',
-			array( 'foundation-util-triggers' ),
-			false,
-			true
-		);
-
-		wp_register_script( 'foundation-util-motion',
-			AF_THEME_DIRURL . '/node_modules/foundation-sites/dist/js/plugins/foundation.util.motion.min.js',
-			array( 'foundation-util-mediaQuery' ),
-			false,
-			true
-		);
-
-		wp_register_script( 'foundation-dropdownMenu',
-			AF_THEME_DIRURL . '/node_modules/foundation-sites/dist/js/plugins/foundation.dropdownMenu.min.js',
-			array( 'foundation-util-mediaQuery' ),
-			false,
-			true
-		);
-
-		wp_register_script( 'foundation-drilldown',
-			AF_THEME_DIRURL . '/node_modules/foundation-sites/dist/js/plugins/foundation.drilldown.min.js',
-			array( 'foundation-dropdownMenu' ),
-			false,
-			true
-		);
-
-		wp_register_script( 'foundation-accordionMenu',
-			AF_THEME_DIRURL . '/node_modules/foundation-sites/dist/js/plugins/foundation.accordionMenu.min.js',
-			array( 'foundation-drilldown' ),
-			false,
-			true
-		);
-
-		wp_register_script( 'foundation-responsiveMenu',
-			AF_THEME_DIRURL . '/node_modules/foundation-sites/dist/js/plugins/foundation.responsiveMenu.min.js',
-			array( 'foundation-accordionMenu' ),
-			false,
-			true
-		);
-
-		wp_register_script( 'foundation-responsiveToggle',
-			AF_THEME_DIRURL . '/node_modules/foundation-sites/dist/js/plugins/foundation.responsiveToggle.min.js',
-			array( 'foundation-responsiveMenu' ),
 			false,
 			true
 		);
@@ -139,17 +55,7 @@ class Assets {
 	 */
 	public function enqueue_public_scripts() {
 
-		wp_enqueue_script( 'what-input' );
 		wp_enqueue_script( 'foundation' );
-		wp_enqueue_script( 'foundation-util-triggers' );
-		wp_enqueue_script( 'foundation-util-keyboard' );
-		wp_enqueue_script( 'foundation-util-nest' );
-		wp_enqueue_script( 'foundation-util-box' );
-		wp_enqueue_script( 'foundation-util-mediaQuery' );
-		wp_enqueue_script( 'foundation-util-motion' );
-		wp_enqueue_script( 'foundation-dropdownMenu' );
-		wp_enqueue_script( 'foundation-responsiveMenu' );
-		wp_enqueue_script( 'foundation-responsiveToggle' );
 		wp_enqueue_script( 'agriflex-public' );
 
 	}
