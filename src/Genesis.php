@@ -41,6 +41,9 @@ class Genesis {
 		// Remove unneeded sidebars
 		$this->remove_genesis_sidebars();
 
+		// Remove site description
+		remove_action( 'genesis_site_description', 'genesis_seo_site_description' );
+
 		// Move Genesis in-post SEO box to a lower position
 		remove_action( 'admin_menu', 'genesis_add_inpost_seo_box' );
 		add_action( 'admin_menu', array( $this, 'move_inpost_seo_box' ) );
@@ -143,7 +146,7 @@ class Genesis {
 	 */
 	public function add_favicon( $favicon_url ) {
 
-		return AF_THEME_DIRURL . '/img/favicon.ico';
+		return AF_THEME_DIRURL . '/images/favicon.ico';
 
 	}
 
@@ -265,13 +268,7 @@ class Genesis {
 		if ( ! is_super_admin() )
 			remove_meta_box( 'genesis-theme-settings-version', $_genesis_theme_settings_pagehook, 'main' );
 
-		//remove_meta_box( 'genesis-theme-settings-feeds',      $_genesis_theme_settings_pagehook, 'main' );
-		//remove_meta_box( 'genesis-theme-settings-header',     $_genesis_theme_settings_pagehook, 'main' );
 		remove_meta_box( 'genesis-theme-settings-nav',        $_genesis_theme_settings_pagehook, 'main' );
-		//remove_meta_box( 'genesis-theme-settings-breadcrumb', $_genesis_theme_settings_pagehook, 'main' );
-		//remove_meta_box( 'genesis-theme-settings-comments',   $_genesis_theme_settings_pagehook, 'main' );
-		//remove_meta_box( 'genesis-theme-settings-posts',      $_genesis_theme_settings_pagehook, 'main' );
-		//remove_meta_box( 'genesis-theme-settings-blogpage',   $_genesis_theme_settings_pagehook, 'main' );
 		remove_meta_box( 'genesis-theme-settings-scripts',    $_genesis_theme_settings_pagehook, 'main' );
 
 	}
