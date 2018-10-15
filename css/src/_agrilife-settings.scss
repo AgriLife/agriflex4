@@ -1,0 +1,63 @@
+/* Typography
+--------------------------------------------- */
+// $base-font-size: 16px;
+
+/* Breakpoints
+--------------------------------------------- */
+$break-xlarge: map-get($breakpoints, xlarge);
+
+/* Colors
+--------------------------------------------- */
+$white: #F8F8F8; // Because sometimes white isn't always white
+$whiter: #FEFEFE;
+$gray-darker: #222;
+$gray-dark: #333;
+$gray-medium: #5E564E;
+$gray-light: #717074;
+$gray-lighter: #D6D6D6;
+$gray-lightest: #F7F7F9;
+$primary-color: #500000;
+
+/* Global
+--------------------------------------------- */
+$anchor-color: $primary-color;
+$anchor-color-hover: scale-color($anchor-color, $lightness: -14%);
+
+/* Header
+--------------------------------------------- */
+$site-title: $gray-light;
+$site-title-font-weight: 500;
+$site-title-font-size: 2.75rem;
+$site-title-font-family: "minion-pro", sans-serif;
+$site-description: $gray-dark;
+
+/* Navigation
+--------------------------------------------- */
+$topbar-padding: 0;
+$topbar-background: $whiter;
+$topbar-submenu-background: $whiter;
+$topbar-input-width: auto;
+$dropdown-menu-item-background-active: $white;
+$dropdownmenu-arrow-color: $gray-darker;
+$dropdownmenu-border: none;
+$accordion-menu-item-background-active: $white;
+$accordionmenu-arrow-color: $gray-darker;
+$nav-item-color: $gray-darker;
+$dropdown-menu-item-color-active: $gray-darker;
+$menu-item-color-active: $gray-darker;
+$menu-item-background-active: $white;
+
+/* Title Bar
+--------------------------------------------- */
+$titlebar-background: transparent;
+$titlebar-color: $gray-darker;
+$titlebar-padding: 0.5rem;
+$titlebar-icon-color: $gray-darker;
+$titlebar-icon-color-hover: $gray-darker;
+
+/* Footer
+--------------------------------------------- */
+$footer-background: #717074;
+$footer-text: #F8F8F8;
+$footer-font-family: "Verdana",clean,sans-serif;
+$footer-font-weight: 400;

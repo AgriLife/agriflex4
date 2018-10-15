@@ -9,9 +9,6 @@ class Navigation {
 		// // Use a custom walker for the primary nav
 		add_filter( 'genesis_do_nav', array( $this, 'custom_nav_walker' ), 10, 3 );
 
-		// Add search to the nav bar
-		add_filter( 'agriflex_nav_elements', array( $this, 'display_search' ) );
-
     // Remove span tags from nav link elements
     add_filter( 'wp_nav_menu_args', array( $this, 'custom_nav_attributes' ) );
 
@@ -33,12 +30,10 @@ class Navigation {
 
 		$nav_menu = wp_nav_menu( $args );
 
-		$small_menu_button = '<div class="title-bar" data-responsive-toggle="nav-menu-primary" data-hide-for="medium"><button class="menu-icon" type="button" data-toggle="nav-menu-primary"></button><div class="title-bar-title">Menu</div></div>';
+		$before_nav = apply_filters('af4_before_nav', '<div class="title-bar title-bar-navigation" data-responsive-toggle="nav-menu-primary" data-hide-for="medium"><button class="menu-icon" type="button" data-toggle="nav-menu-primary"></button><div class="title-bar-title">Menu</div></div>');
 
-		$nav = sprintf( '%s<div class="top-bar" id="nav-menu-primary"><section class="top-bar-left">%s %s</section></div>',
-			$small_menu_button,
-			$nav_menu,
-			apply_filters( 'agriflex_nav_elements', '' )
+		$nav = sprintf( '<div class="top-bar" id="nav-menu-primary"><section class="top-bar-left">%s</section></div>',
+			$nav_menu
 		);
 
 		$nav_markup_open = genesis_markup( array(
@@ -53,18 +48,15 @@ class Navigation {
 		$nav_markup_close = genesis_structural_wrap( 'menu-primary', 'close', 0 );
 		$nav_markup_close .= genesis_html5() ? '</nav>' : '</div>';
 
-		$nav_output = $nav_markup_open . $nav . $nav_markup_close;
+		$nav_output = $before_nav . $nav_markup_open . $nav . $nav_markup_close;
 
 		return $nav_output;
 
 	}
 
-	public function display_search() {
+	public static function get_instance() {
 
-		$output = sprintf( '<div class="menu-search-container">%s</div>',
-			get_search_form( false )
-		);
-		return $output;
+		return null == self::$instance ? new self : self::$instance;
 
 	}
 

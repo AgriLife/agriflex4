@@ -1,13 +1,5 @@
-.top-bar {
-	a,
-	a:hover {
-		color: $nav-item-color;
-	}
-
-	.sub-menu a:hover,
-	.is-accordion-submenu-parent[aria-expanded="true"] > a {
-		background-color: $gray-darker;
-	}
+.menu a:hover {
+	@include menu-state-active;
 }
 
 @include breakpoint(medium up) {

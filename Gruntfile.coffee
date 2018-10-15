@@ -21,6 +21,7 @@ module.exports = (grunt) ->
           precision: 2
         files:
           'css/default.css': 'css/src/default.scss'
+          'css/agrilife.css': 'css/src/agrilife.scss'
       dev:
         options:
           loadPath: 'node_modules/foundation-sites/scss'
@@ -28,6 +29,7 @@ module.exports = (grunt) ->
           precision: 2
         files:
           'css/default.css': 'css/src/default.scss'
+          'css/agrilife.css': 'css/src/agrilife.scss'
     jsvalidate:
       options:
         globals:

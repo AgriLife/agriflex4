@@ -71,7 +71,7 @@ class Assets {
 			'default-styles',
 			AF_THEME_DIRURL . '/css/default.css',
 			array(),
-			'',
+			filemtime(AF_THEME_DIRPATH . '/css/default.css'),
 			'screen'
 		);
 
@@ -89,34 +89,34 @@ class Assets {
 
 	}
 
-    /**
-     * Add the correct Typekit
-     * @since 1.0
-     * @todo Replace with async js and deal with FOUC
-     * @todo Pass in variable (TBD) to select correct kit
-     * @return string
-     */
-    public function add_typekit() {
+  /**
+   * Add the correct Typekit
+   * @since 1.0
+   * @todo Replace with async js and deal with FOUC
+   * @todo Pass in variable (TBD) to select correct kit
+   * @return string
+   */
+  public function add_typekit() {
 
-        if(defined('AG_EXT_DIRNAME') || defined('AG_EXTUNIT_DIRNAME') ) {
-            // For Extension
-            $key = 'xox0blb';
-        } elseif (defined('AG_COL_DIRNAME') ) {
-            // For College
-            $key = 'bbz1kzh';
-        } else {
-            // For Default Agriflex3
-            $key = 'mtx5vmp';
-        }
-
-        if( !is_admin() ) :
-            ?>
-            <script type="text/javascript" src="//use.typekit.net/<?php echo $key; ?>.js"></script>
-            <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-            <?php
-        endif;
-
+    if(defined('AG_EXT_DIRNAME') || defined('AG_EXTUNIT_DIRNAME') ) {
+      // For Extension
+      $key = 'xox0blb';
+    } elseif (defined('AG_COL_DIRNAME') ) {
+      // For College
+      $key = 'bbz1kzh';
+    } else {
+      // For Default Agriflex3
+      $key = 'mtx5vmp';
     }
+
+    if( !is_admin() ) :
+      ?>
+      <script type="text/javascript" src="//use.typekit.net/<?php echo $key; ?>.js"></script>
+      <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+      <?php
+    endif;
+
+  }
 
 
 }

@@ -1,0 +1,76 @@
+.site-header {
+	text-align: center;
+
+	.title-area {
+		font-weight: 700;
+	}
+
+	.site-title {
+		font: {
+			weight: $site-title-font-weight;
+			family: $site-title-font-family;
+			style: normal;
+		}
+		color: #222;
+		text-rendering: optimizelegibility;
+	}
+
+	.title-bar-search {
+		text-align: right;
+		border-right: 1px solid $gray-darker;
+
+		.title-bar-title {
+			@include element-invisible;
+		}
+	}
+
+	@include breakpoint(small only) {
+
+	}
+
+	@include breakpoint(medium up) {
+		text-align: left;
+		position: relative;
+
+		> .wrap {
+			padding: 1rem 0;
+		}
+
+		.search-form {
+			text-align: right;
+
+			fieldset {
+				position: relative;
+				border: 0;
+				padding: 0;
+				margin: 0;
+			}
+
+			input[type="search"] {
+				display: inline-block;
+				box-sizing: border-box;
+				width: calc(100% - 38px);
+				height: 32px;
+				border: 1px solid #D5D6DA;
+				border-width: 0 0 1px;
+				padding: 0.1em .3em;
+				margin-bottom: 0;
+				box-shadow: none;
+				font-style: italic;
+			}
+
+			input[type="submit"] {
+				display: inline-block;
+				box-sizing: border-box;
+				width: 32px;
+				height: 32px;
+				margin-left: 6px;
+				padding: 0;
+				text-indent: 1000rem;
+				border: 0 none;
+				background: transparent url("../images/search-agrilife.png") no-repeat;
+				background-size: contain;
+			}
+		}
+	}
+}
