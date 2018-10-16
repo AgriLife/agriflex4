@@ -1,0 +1,7 @@
+// Fix alignment for .title-bar-right
+.title-bar-right {
+	@if $global-flexbox {
+		justify-content: flex-end;
+		align-items: right;
+	}
+}

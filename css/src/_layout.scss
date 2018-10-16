@@ -9,29 +9,6 @@
 	clear: both;
 }
 
-@include breakpoint(small only) {
-
-	.menu-search-container form {
-		@include xy-grid;
-		padding: $menu-items-padding;
-
-		input[type=search],
-		input[type=submit] {
-			@include xy-cell-base();
-			margin: 0;
-		}
-
-		input[type=search] {
-	    @include xy-cell(8, $gutter-type: margin, $gutters: 0);
-		}
-
-		input[type=submit] {
-			@include xy-cell(auto, $gutters: 1rem, $gutter-position: (left));
-		}
-	}
-
-}
-
 @include breakpoint(medium up) {
 	.site-header,
 	.site-inner {

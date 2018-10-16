@@ -30,7 +30,15 @@ class Navigation {
 
 		$nav_menu = wp_nav_menu( $args );
 
-		$before_nav = apply_filters('af4_before_nav', '<div class="title-bar title-bar-navigation" data-responsive-toggle="nav-menu-primary" data-hide-for="medium"><button class="menu-icon" type="button" data-toggle="nav-menu-primary"></button><div class="title-bar-title">Menu</div></div>');
+		$title_bars = array(
+			'wrap_open' => '<div class="title-bars title-bar-right show-for-small-only">',
+			'wrap_close' => '</div>',
+			'inside' => '<div class="title-bar title-bar-navigation" data-responsive-toggle="nav-menu-primary"><button class="menu-icon" type="button" data-toggle="nav-menu-primary"></button><div class="title-bar-title" data-toggle="nav-menu-primary">Menu</div></div>'
+		);
+
+		$title_bars['all'] = $title_bars['wrap_open'] . $title_bars['inside'] . $title_bars['wrap_close'];
+
+		$before_nav = apply_filters('af4_before_nav', $title_bars['all'], $title_bars['wrap_open'], $title_bars['wrap_close'], $title_bars['inside']);
 
 		$nav = sprintf( '<div class="top-bar" id="nav-menu-primary"><section class="top-bar-left">%s</section></div>',
 			$nav_menu

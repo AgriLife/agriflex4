@@ -5,6 +5,7 @@
 @include breakpoint(medium up) {
 
 	.title-bar,
+	.title-bars,
 	.menu-search-container {
 		@include element-invisible;
 	}

@@ -1,8 +1,27 @@
+.site-header,
+.nav-primary,
+#header-search {
+	clear: both;
+}
+
 .site-header {
 	text-align: center;
 
+	& > .wrap {
+		padding: 1rem 0;
+	}
+
+	.title-area,
+	.title-bars {
+		display: inline-block;
+		margin-bottom: 1rem;
+	}
+
 	.title-area {
+    width: 50%;
+    text-align: left;
 		font-weight: 700;
+		text-align: left;
 	}
 
 	.site-title {
@@ -13,18 +32,72 @@
 		}
 		color: #222;
 		text-rendering: optimizelegibility;
+
+		img {
+			max-height: 46px;
+		}
 	}
 
-	.title-bar-search {
-		text-align: right;
-		border-right: 1px solid $gray-darker;
+	.title-bars {
+    width: 50%;
+    text-align: right;
+  }
 
-		.title-bar-title {
-			@include element-invisible;
+	.title-bar {
+		display: inline-block!important;
+
+		&.title-bar-search {
+			border-right: 1px solid $gray-darker;
+
+			.search-icon {
+				display: inline-block;
+				vertical-align: middle;
+				cursor: pointer;
+				position: relative;
+				width: 26px;
+				height: 26px;
+				background: transparent url("../images/search-agrilife.png") no-repeat;
+				background-size: contain;
+			}
+
+			.title-bar-title {
+				@include element-invisible;
+			}
+		}
+
+		&.title-bar-navigation {
+			.menu-icon {
+				@include hamburger($color: $titlebar-icon-color, $color-hover: $titlebar-icon-color-hover, $weight: 3px, $width: 30px, $height: 20px);
+				margin: 0;
+			}
+
+			.title-bar-title {
+				padding-left: $titlebar-icon-spacing;
+				cursor: pointer;
+			}
 		}
 	}
 
 	@include breakpoint(small only) {
+
+		#header-search form {
+			@include xy-grid;
+			padding: $menu-items-padding;
+
+			input[type=search],
+			input[type=submit] {
+				@include xy-cell-base();
+				margin: 0;
+			}
+
+			input[type=search] {
+		    @include xy-cell(8, $gutter-type: margin, $gutters: 0);
+			}
+
+			input[type=submit] {
+				@include xy-cell(auto, $gutters: 1rem, $gutter-position: (left));
+			}
+		}
 
 	}
 
