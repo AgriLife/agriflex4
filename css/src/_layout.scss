@@ -31,6 +31,10 @@
 	    @include xy-cell-base();
 	    @include xy-cell(8, $gutter-type: padding, $gutters: 2rem);
 	    margin-top: 2%;
+
+	    .full-width-content & {
+		    @include xy-cell(12, $gutter-type: padding, $gutters: 2rem);
+	    }
 		}
 
 		.sidebar {

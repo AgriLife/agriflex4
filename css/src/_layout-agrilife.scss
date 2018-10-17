@@ -22,19 +22,19 @@
 
 		.nav-primary,
 		#header-search {
-	    @include xy-cell-base();
+			@include xy-cell-base();
 		}
 
 		.title-area {
-	    @include xy-cell(2, $gutter-type: padding, $gutters: 2rem);
+			@include xy-cell(2, $gutter-type: padding, $gutters: 2rem);
 		}
 
 		.nav-primary {
-	    @include xy-cell(auto, $gutter-type: padding, $gutters: 2rem);
+			@include xy-cell(auto, $gutter-type: padding, $gutters: 2rem);
 		}
 
 		#header-search {
-	    @include xy-cell(3, $gutter-type: padding, $gutters: 2rem);
+			@include xy-cell(3, $gutter-type: padding, $gutters: 2rem);
 		}
 	}
 
@@ -43,15 +43,19 @@
 		@include xy-grid;
 
 		.content {
-	    @include xy-cell-base();
-	    @include xy-cell(8, $gutter-type: padding, $gutters: 2rem);
-	    margin-top: 2%;
+			@include xy-cell-base();
+			@include xy-cell(8, $gutter-type: padding, $gutters: 2rem);
+			margin-top: 2%;
+
+			.full-width-content & {
+				@include xy-cell(12, $gutter-type: padding, $gutters: 2rem);
+			}
 		}
 
 		.sidebar {
-	    @include xy-cell-base();
-	    @include xy-cell(4, $gutter-type: padding, $gutters: 2rem);
-	    margin-top: 2%;
+			@include xy-cell-base();
+			@include xy-cell(4, $gutter-type: padding, $gutters: 2rem);
+			margin-top: 2%;
 		}
 	}
 
@@ -59,9 +63,9 @@
 		@include xy-grid;
 
 		.content {
-	    @include xy-cell-base();
-	    @include xy-cell(12, $gutter-type: padding, $gutters: 2rem);
-	    margin-top: 2%;
+			@include xy-cell-base();
+			@include xy-cell(12, $gutter-type: padding, $gutters: 2rem);
+			margin-top: 2%;
 		}
 	}
 }
