@@ -110,63 +110,18 @@ module.exports = (grunt) ->
           'node_modules/foundation-sites/dist/js/plugins/foundation.responsiveToggle.js'
         ]
         dest: 'js/foundation.concat.js'
-    gh_release:
-      options:
-        token: process.env.RELEASE_KEY
-        owner: 'agrilife'
-        repo: '<%= pkg.name %>'
-      release:
-        tag_name: '<%= pkg.version %>'
-        target_commitish: 'master'
-        name: 'Release'
-        body: 'Release'
-        draft: false
-        prerelease: false
-        asset:
-          name: '<%= pkg.name %>.zip'
-          file: '<%= pkg.name %>.zip'
-          'Content-Type': 'application/zip'
 
   @loadNpmTasks 'grunt-contrib-sass'
   @loadNpmTasks 'grunt-jsvalidate'
   @loadNpmTasks 'grunt-contrib-watch'
   @loadNpmTasks 'grunt-contrib-compress'
   @loadNpmTasks 'grunt-contrib-concat'
-  @loadNpmTasks 'grunt-gh-release'
   @loadNpmTasks 'grunt-sass-lint'
   @loadNpmTasks 'grunt-postcss'
 
   @registerTask 'default', ['sass:pkg', 'concat:dist']
   @registerTask 'develop', ['sasslint', 'sass:dev', 'concat:dev', 'jsvalidate']
   @registerTask 'package', ['sass:pkg', 'concat:dist', 'jsvalidate']
-  @registerTask 'release', ['compress', 'setreleasemsg', 'gh_release']
-  @registerTask 'setreleasemsg', 'Set release message as range of commits', ->
-    done = @async()
-    grunt.util.spawn {
-      cmd: 'git'
-      args: [ 'tag' ]
-    }, (err, result, code) ->
-      if result.stdout isnt ''
-        matches = result.stdout.match /([^\n]+)$/
-        grunt.config.set 'lasttag', matches[1]
-        grunt.task.run 'shortlog'
-      done(err)
-      return
-    return
-  @registerTask 'shortlog', 'Set gh_release body with commit messages since last release', ->
-    done = @async()
-    releaserange = grunt.template.process '<%= lasttag %>..HEAD'
-    grunt.util.spawn {
-      cmd: 'git'
-      args: ['shortlog', releaserange, '--no-merges']
-    }, (err, result, code) ->
-      if result.stdout isnt ''
-        message = result.stdout.replace /(\n)\s\s+/g, '$1- '
-        message = message.replace /\s*\[skip ci\]/g, ''
-        grunt.config 'gh_release.release.body', message
-      done(err)
-      return
-    return
   @registerTask 'phpscan', 'Compare results of vip-scanner with known issues', ->
     done = @async()
 
