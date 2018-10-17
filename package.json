@@ -28,6 +28,9 @@
     "grunt-jsvalidate": "^0.2.2",
     "grunt-sass-lint": "^0.2.4"
   },
+  "engines": {
+    "node": "4.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/agrilife/agriflex4.git"
