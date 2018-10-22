@@ -1,7 +1,14 @@
 
 .site-header,
 .site-inner {
-	padding: 0 1rem;
+	padding: 0 $site-padding;
+}
+
+@include breakpoint(small only) {
+	.full-width-small {
+		margin-left: -$site-padding;
+		margin-right: -$site-padding;
+	}
 }
 
 @include breakpoint(medium up) {

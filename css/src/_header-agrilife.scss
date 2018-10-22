@@ -14,7 +14,10 @@
 	.title-area,
 	.title-bars {
 		display: inline-block;
-		margin-bottom: 1rem;
+
+		@include breakpoint(medium up) {
+			margin-bottom: 1rem;
+		}
 	}
 
 	.title-area {
