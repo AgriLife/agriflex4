@@ -4,13 +4,6 @@
 	padding: 0 $site-padding;
 }
 
-@include breakpoint(small only) {
-	.full-width-small {
-		margin-left: -$site-padding;
-		margin-right: -$site-padding;
-	}
-}
-
 @include breakpoint(medium up) {
 	.site-header,
 	.site-inner {
@@ -20,7 +13,8 @@
 	.agency-wrap,
 	.site-header,
 	.site-inner .wrap,
-	.site-footer {
+	.site-footer,
+	.layout-container {
 		@include xy-grid-container($break-xlarge, 0);
 	}
 

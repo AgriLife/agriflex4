@@ -3,12 +3,15 @@
 	color: $footer-text;
 	// @include adjust-font-size-to(10px);
 	line-height: 2.4em;
-	padding: 30px 0;
 	font: {
 		family: $footer-font-family;
 		weight: $footer-font-weight;
 	}
 	text-align: center;
+
+	.wrap {
+		padding: 30px 0;
+	}
 
 	a {
 		color: $footer-text;
