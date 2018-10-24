@@ -8,7 +8,7 @@
 	text-align: center;
 
 	& > .wrap {
-		padding: 1rem 0;
+		margin: 1rem 0;
 	}
 
 	.title-area,
@@ -83,9 +83,13 @@
 
 	@include breakpoint(small only) {
 
+		.nav-primary #nav-menu-primary,
+		#header-search {
+			margin: 1rem;
+		}
+
 		#header-search form {
 			@include xy-grid;
-			padding: $menu-items-padding;
 
 			input[type=search],
 			input[type=submit] {

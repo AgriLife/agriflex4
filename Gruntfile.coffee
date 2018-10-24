@@ -5,13 +5,27 @@ module.exports = (grunt) ->
       files: [
         'css/src/*.scss'
       ]
-      tasks: ['sasslint', 'sass:dev']
+      tasks: ['sasslint', 'sass:dev', 'postcss:dev']
     postcss:
-      options:
-        map: true
-        processors: [
-          require('autoprefixer')(browsers: ['last 2 versions','ie > 9'])
-        ]
+      pkg:
+        options:
+          processors: [
+            require('autoprefixer')({browsers: ['last 2 versions','ie > 9']})
+          ]
+          failOnError: true
+        files:
+          'css/agrilife.css': 'css/agrilife.css'
+          'css/default.css': 'css/default.css'
+      dev:
+        options:
+          map: true
+          processors: [
+            require('autoprefixer')({browsers: ['last 2 versions','ie > 9']})
+          ]
+          failOnError: true
+        files:
+          'css/agrilife.css': 'css/agrilife.css'
+          'css/default.css': 'css/default.css'
     sass:
       pkg:
         options:
@@ -119,9 +133,8 @@ module.exports = (grunt) ->
   @loadNpmTasks 'grunt-sass-lint'
   @loadNpmTasks 'grunt-postcss'
 
-  @registerTask 'default', ['sass:pkg', 'concat:dist']
-  @registerTask 'develop', ['sasslint', 'sass:dev', 'concat:dev', 'jsvalidate']
-  @registerTask 'package', ['sass:pkg', 'concat:dist', 'jsvalidate']
+  @registerTask 'default', ['sass:pkg', 'concat:dist', 'jsvalidate', 'postcss:pkg']
+  @registerTask 'develop', ['sasslint', 'sass:dev', 'concat:dev', 'jsvalidate', 'postcss:dev']
   @registerTask 'phpscan', 'Compare results of vip-scanner with known issues', ->
     done = @async()
 

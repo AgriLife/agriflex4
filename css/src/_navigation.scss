@@ -3,15 +3,14 @@
 }
 
 @include breakpoint(medium up) {
-
 	.title-bar,
 	.title-bars,
 	.menu-search-container {
 		@include element-invisible;
 	}
-
 }
 
-.no-js ul[data-responsive-menu] ul {
+.no-js .nav-primary,
+.no-js #header-search {
   @include element-invisible;
 }
