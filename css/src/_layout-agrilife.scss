@@ -12,7 +12,7 @@
 
 	.agency-wrap,
 	.site-header,
-	.site-inner .wrap,
+	.site-inner > .wrap,
 	.site-footer,
 	.layout-container {
 		@include xy-grid-container($break-xlarge, 0);
