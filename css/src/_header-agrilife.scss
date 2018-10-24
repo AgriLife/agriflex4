@@ -99,6 +99,7 @@
 
 			input[type=search] {
 		    @include xy-cell(8, $gutter-type: margin, $gutters: 0);
+		    border-color: $gray-light;
 			}
 
 			input[type=submit] {
