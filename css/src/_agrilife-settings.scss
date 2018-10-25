@@ -5,6 +5,7 @@
 /* Breakpoints
 --------------------------------------------- */
 $break-xlarge: map-get($breakpoints, xlarge);
+$breakpoint-classes: (small medium large xlarge xxlarge);
 
 /* Colors
 --------------------------------------------- */
