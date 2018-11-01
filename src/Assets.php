@@ -12,6 +12,9 @@ class Assets {
 	public function __construct() {
 
 		// Register global scripts used in the theme
+		add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_styles' ) );
+
+		// Register global scripts used in the theme
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_public_scripts' ) );
 
 		// Enqueue global scripts
@@ -26,8 +29,26 @@ class Assets {
 	}
 
 	/**
+	 * Registers admin styles
+	 * @since 1.0.0
+	 * @return void
+	 */
+	public function register_admin_styles() {
+
+		wp_register_style( 'agriflex-admin',
+			AF_THEME_DIRURL . '/css/admin.css',
+			array(),
+			filemtime(AF_THEME_DIRPATH . '/css/admin.css'),
+			'screen'
+		);
+
+		wp_enqueue_style( 'agriflex-admin' );
+
+	}
+
+	/**
 	 * Registers globally used scripts
-	 * @since 1.0
+	 * @since 1.0.0
 	 * @return void
 	 */
 	public function register_public_scripts() {
@@ -50,7 +71,7 @@ class Assets {
 
 	/**
 	 * Enqueues globally used scripts
-	 * @since 1.0
+	 * @since 1.0.0
 	 * @return void
 	 */
 	public function enqueue_public_scripts() {
@@ -62,13 +83,13 @@ class Assets {
 
 	/**
 	 * Registers all styles used within the theme
-	 * @since 1.0
+	 * @since 1.0.0
 	 * @return void
 	 */
 	public function register_public_styles() {
 
 		wp_register_style(
-			'default-styles',
+			'agriflex-default-styles',
 			AF_THEME_DIRURL . '/css/default.css',
 			array(),
 			filemtime(AF_THEME_DIRPATH . '/css/default.css'),
@@ -79,19 +100,19 @@ class Assets {
 
 	/**
 	 * Enqueues styles used globally
-	 * @since 1.0
+	 * @since 1.0.0
 	 * @global $wp_styles
 	 * @return void
 	 */
 	public function enqueue_public_styles() {
 
-		wp_enqueue_style( 'default-styles' );
+		wp_enqueue_style( 'agriflex-default-styles' );
 
 	}
 
   /**
    * Add the correct Typekit
-   * @since 1.0
+   * @since 1.0.0
    * @todo Replace with async js and deal with FOUC
    * @todo Pass in variable (TBD) to select correct kit
    * @return string

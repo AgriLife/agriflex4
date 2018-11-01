@@ -14,7 +14,7 @@ module.exports = (grunt) ->
           ]
           failOnError: true
         files:
-          'css/agrilife.css': 'css/agrilife.css'
+          'css/admin.css': 'css/admin.css'
           'css/default.css': 'css/default.css'
       dev:
         options:
@@ -24,7 +24,7 @@ module.exports = (grunt) ->
           ]
           failOnError: true
         files:
-          'css/agrilife.css': 'css/agrilife.css'
+          'css/admin.css': 'css/admin.css'
           'css/default.css': 'css/default.css'
     sass:
       pkg:
@@ -34,16 +34,16 @@ module.exports = (grunt) ->
           style: 'compressed'
           precision: 2
         files:
+          'css/admin.css': 'css/src/admin.scss'
           'css/default.css': 'css/src/default.scss'
-          'css/agrilife.css': 'css/src/agrilife.scss'
       dev:
         options:
           loadPath: 'node_modules/foundation-sites/scss'
           style: 'expanded'
           precision: 2
         files:
+          'css/admin.css': 'css/src/admin.scss'
           'css/default.css': 'css/src/default.scss'
-          'css/agrilife.css': 'css/src/agrilife.scss'
     jsvalidate:
       options:
         globals:
