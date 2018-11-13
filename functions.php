@@ -29,11 +29,19 @@ class AgriFlex {
 
 	private function __construct() {
 
-		add_action( 'init', array( $this, 'init' ) );
-
     add_theme_support( 'html5', array() );
 
+		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
+
+		add_action( 'init', array( $this, 'init' ) );
+
     // remove_filter( 'genesis_attr_nav-link-wrap', 'genesis_attributes_nav_link_wrap' );
+
+	}
+
+	public function after_setup_theme() {
+
+		add_theme_support( 'align-wide' );
 
 	}
 
