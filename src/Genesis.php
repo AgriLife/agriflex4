@@ -55,6 +55,10 @@ class Genesis {
 		// Remove some Genesis settings metaboxes
 		add_action( 'genesis_theme_settings_metaboxes', array( $this, 'remove_genesis_metaboxes' ) );
 
+		// Sticky Header
+		add_filter( 'genesis_attr_site-header', array( $this, 'sticky_header_container' ) );
+		add_filter( 'genesis_structural_wrap-header', array( $this, 'sticky_header' ) );
+
 		// Add Read More excerpt link
 		add_filter( 'excerpt_more', array( $this, 'agriflex_auto_excerpt_more' ) );
 
@@ -270,6 +274,32 @@ class Genesis {
 
 		remove_meta_box( 'genesis-theme-settings-nav',        $_genesis_theme_settings_pagehook, 'main' );
 		remove_meta_box( 'genesis-theme-settings-scripts',    $_genesis_theme_settings_pagehook, 'main' );
+
+	}
+
+	/**
+	 * Adds attributes for sticky navigation
+	 * @since 0.1.0
+	 * @return void
+	 */
+	public function sticky_header_container( $atts ){
+
+		$atts['data-sticky-container'] = 'true';
+
+		return $atts;
+
+	}
+
+	/**
+	 * Adds attributes for sticky navigation
+	 * @since 0.1.0
+	 * @return void
+	 */
+	public function sticky_header( $output ){
+
+		$output = preg_replace('/wrap"/', 'wrap" data-sticky data-options="stickyOn:small;marginTop:0;"', $output);
+
+		return $output;
 
 	}
 
