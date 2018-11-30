@@ -291,13 +291,26 @@ class Genesis {
 	}
 
 	/**
-	 * Adds attributes for sticky navigation
+	 * Adds attributes for sticky navigation and add wrap for header layout requirements
 	 * @since 0.1.0
 	 * @return void
 	 */
 	public function sticky_header( $output ){
 
-		$output = preg_replace('/wrap"/', 'wrap" data-sticky data-options="stickyOn:small;marginTop:0;"', $output);
+		$output = preg_replace('/<div class="wrap"/', '<div class="wrap" data-sticky data-options="stickyOn:small;marginTop:0;"><div class="layout-container"', $output);
+		$output = preg_replace('/<\/div>/', '</div></div>', $output);
+
+		return $output;
+
+	}
+
+	/**
+	 * Add close wrap to enable desired header layout
+	 * @since 0.1.0
+	 * @return void
+	 */
+
+	public function header_extra_wrap_close( $output ){
 
 		return $output;
 
