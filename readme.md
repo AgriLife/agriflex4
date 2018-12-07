@@ -23,6 +23,7 @@
 
 1. Copy this repo to the desired location.
 2. In your terminal, navigate to the plugin location 'cd /path/to/the/plugin'
+3. Build with 'npm install && grunt develop'
 
 ## Development Notes
 
