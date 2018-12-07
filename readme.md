@@ -23,12 +23,15 @@
 
 1. Copy this repo to the desired location.
 2. In your terminal, navigate to the plugin location 'cd /path/to/the/plugin'
-3. Build with 'npm install && grunt develop'
+3. Run "npm start" to finish installing dependencies and compile css
+
 
 ## Development Notes
 
-1. Run `npm start` to run the Sass compiler. It will re-run every time you save a Sass file.
-2. Release tasks can only be used by the repository's owners
+1. Run "grunt develop" to compile the css when developing the plugin.
+2. Run "grunt watch" to automatically compile the css for development purposes.
+3. Run "grunt" to compile the css when publishing the plugin.
+4. Release tasks can only be used by the repository's owners.
 
 ## Development Requirements
 

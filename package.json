@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "description": "Genesis child theme for Texas A&M AgriLife",
   "main": "functions.php",
-  "scripts": {},
+  "scripts": {
+    "start": "composer update && composer install && npm install && grunt develop"
+  },
   "author": "Zachary Watkins",
   "license": "GPL-2.0+",
   "bugs": {
