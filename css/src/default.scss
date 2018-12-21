@@ -60,6 +60,7 @@
 // @include foundation-flex-classes;
 
 // @include foundation-prototype-classes;
+
 @import 'all';
 @import 'mixins';
 @import 'accessibility';
@@ -68,3 +69,7 @@
 @import 'navigation';
 @import 'column-classes';
 @import 'footer';
+
+// For template pages
+@import 'blog';
+@import 'template-default';
