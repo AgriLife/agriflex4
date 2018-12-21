@@ -57,6 +57,7 @@ class Genesis {
 
 		// Sticky Header
 		add_filter( 'genesis_structural_wrap-header', array( $this, 'sticky_header' ) );
+		remove_action( 'wp_head', 'genesis_custom_header_style' );
 
 		// Add Read More excerpt link
 		add_filter( 'excerpt_more', array( $this, 'agriflex_auto_excerpt_more' ) );
