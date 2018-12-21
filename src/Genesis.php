@@ -56,7 +56,6 @@ class Genesis {
 		add_action( 'genesis_theme_settings_metaboxes', array( $this, 'remove_genesis_metaboxes' ) );
 
 		// Sticky Header
-		add_filter( 'genesis_attr_site-header', array( $this, 'sticky_header_container' ) );
 		add_filter( 'genesis_structural_wrap-header', array( $this, 'sticky_header' ) );
 
 		// Add Read More excerpt link
@@ -278,27 +277,14 @@ class Genesis {
 	}
 
 	/**
-	 * Adds attributes for sticky navigation
-	 * @since 0.1.0
-	 * @return void
-	 */
-	public function sticky_header_container( $atts ){
-
-		$atts['data-sticky-container'] = 'true';
-
-		return $atts;
-
-	}
-
-	/**
 	 * Adds attributes for sticky navigation and add wrap for header layout requirements
 	 * @since 0.1.0
 	 * @return void
 	 */
 	public function sticky_header( $output ){
 
-		$output = preg_replace('/<div class="wrap"/', '<div class="wrap" data-sticky data-options="stickyOn:small;marginTop:0;"><div class="layout-container"', $output);
-		$output = preg_replace('/<\/div>/', '</div></div>', $output);
+		$output = preg_replace('/<div class="wrap"/', '<div class="wrap" data-sticky-container><div class="wrap" data-sticky data-options="stickyOn:small;marginTop:0;"><div class="layout-container"', $output);
+		$output = preg_replace('/<\/div>$/', '</div></div></div>', $output);
 
 		return $output;
 
