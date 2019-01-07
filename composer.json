@@ -12,6 +12,7 @@
     "require": {
     },
   "require-dev": {
+    "wp-coding-standards/wpcs": "^1.0"
   },
     "autoload": {
         "psr-4": {
