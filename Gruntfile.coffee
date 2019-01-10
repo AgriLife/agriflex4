@@ -1,6 +1,7 @@
 module.exports = (grunt) ->
   @initConfig
     pkg: @file.readJSON('package.json')
+    release: {}
     watch:
       files: [
         'css/src/*.scss'
@@ -139,64 +140,92 @@ module.exports = (grunt) ->
 
   @registerTask 'default', ['sass:pkg', 'concat:dist', 'jsvalidate', 'postcss:pkg']
   @registerTask 'develop', ['sasslint', 'sass:dev', 'concat:dev', 'jsvalidate', 'postcss:dev']
-  @registerTask 'phpscan', 'Compare results of vip-scanner with known issues', ->
+  @registerTask 'release', ['setbranch', 'setrepofullname', 'setlasttag', 'setmsg', 'setpost', 'seturl', 'gitrelease']
+  @registerTask 'setbranch', 'Set release branch for use in the release task', ->
+    done = @async()
+    grunt.util.spawn {
+      cmd: 'git'
+      args: [ 'git', 'rev-parse', '--abbrev-ref', 'HEAD' ]
+    }, (err, result, code) ->
+      if result.stdout isnt ''
+        matches = result.stdout.match /([^\n]+)$/
+        grunt.config.release.set 'branch', matches[1]
+      done(err)
+      return
+    return
+  @registerTask 'setrepofullname', 'Set repo full name for use in the release task', ->
+    done = @async()
+    grunt.util.spawn {
+      cmd: 'git'
+      args: [ 'config', '--get', 'remote.origin.url', '|', 'sed', '"s/.*:\/\/github.com\///;s/.git$//"' ]
+    }, (err, result, code) ->
+      if result.stdout isnt ''
+        matches = result.stdout.match /([^\n]+)$/
+        grunt.config.release.set 'repofullname', matches[1]
+      done(err)
+      return
+    return
+  @registerTask 'setlasttag', 'Set release message as range of commits', ->
+    done = @async()
+    grunt.util.spawn {
+      cmd: 'git'
+      args: [ 'tag' ]
+    }, (err, result, code) ->
+      if result.stdout isnt ''
+        matches = result.stdout.match /([^\n]+)$/
+        grunt.config.release.set 'lasttag', matches[1]
+      done(err)
+      return
+    return
+  @registerTask 'setmsg', 'Set gh_release body with commit messages since last release', ->
+    done = @async()
+    releaserange = grunt.template.process '<%= lasttag %>..HEAD'
+    grunt.util.spawn {
+      cmd: 'git'
+      args: ['shortlog', releaserange, '--no-merges']
+    }, (err, result, code) ->
+      if result.stdout isnt ''
+        message = result.stdout.replace /(\n)\s\s+/g, '$1- '
+        message = message.replace /\s*\[skip ci\]/g, ''
+        grunt.config.release.set 'msg', message
+      done(err)
+      return
+    return
+  @registerTask 'setpost', 'Set post object for use in the release task', ->
     done = @async()
 
-    # Ensure strings use the same HTML characters
-    unescape_html = (str) ->
-      str.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace /&gt;/g, '>'
+    val = '\'{"tag_name": "'
+    val += grunt.config.pkg.get 'version'
+    val += '", "target_commitish": "'
+    val += grunt.config.release.get 'branch'
+    val += '", "name": "'
+    val += grunt.config.pkg.get 'version'
+    val += '", "body": "'
+    val += grunt.config.release.get 'msg'
+    val += '", "draft": false, "prerelease": false}\''
 
-    # Known issues
-    known_issues = grunt.file.readJSON('known-issues.json')
-    known_issues_string = JSON.stringify(known_issues)
-    known_issues_string = unescape_html(known_issues_string)
+    grunt.config.release.set 'post', val
 
-    # Current issues
-    current_issues = grunt.file.read('vipscan.json')
-    start = current_issues.indexOf('[{')
-    end = current_issues.lastIndexOf('}]')
-    current_issues_string = current_issues.slice(start, end) + '}]'
-    current_issues_string = unescape_html(current_issues_string)
-    current_issues_json = JSON.parse(current_issues_string)
+    return
+  @registerTask 'seturl', 'Set release url for use in the release task', ->
+    done = @async()
 
-    # New issues
-    new_issues = []
-    i = 0
-    while i < current_issues_json.length
-      issue = current_issues_json[i]
-      issue_string = JSON.stringify(issue)
-      if known_issues_string.indexOf(issue_string) < 0
-        new_issues.push(issue)
-      i++
+    val = 'https://api.github.com/repos/'
+    val += grunt.config.release.get 'repo_full_name'
+    val += '/releases?access_token=RELEASE_TOKEN'
 
-    # Display issues information
-    grunt.log.writeln('--- VIP Scanner Results ---')
-    grunt.log.writeln(known_issues.length + ' known issues.')
-    grunt.log.writeln(current_issues_json.length + ' current issues.')
-    grunt.log.writeln(new_issues.length + ' new issues:')
-    grunt.log.writeln '------------------'
-    i = 0
-    while i < new_issues.length
-      obj = new_issues[i]
+    grunt.config.release.set 'url', val
 
-      for key,value of obj
-        if value != ''
-          if Array.isArray(value)
-            value = value.join(' ')
-            grunt.log.writeln(key + ': ' + value)
-          else if typeof value == 'object'
-            grunt.log.writeln(key + ':')
-            for key2,value2 of value
-              grunt.log.writeln('>> Line ' + key2 + ': ' + value2)
-          else
-            grunt.log.writeln(key + ': ' + value)
-
-      grunt.log.writeln '------------------'
-      i++
-
-    grunt.log.writeln 'All new issues as JSON: '
-    grunt.log.writeln JSON.stringify(new_issues)
-
+    return
+  @registerTask 'gitrelease', 'Create a Github release', ->
+    done = @async()
+    releaserange = grunt.template.process '<%= lasttag %>..HEAD'
+    grunt.util.spawn {
+      cmd: 'curl'
+      args: ['--data', grunt.config.release.get 'post', '--no-merges', grunt.config.release.get 'url']
+    }, (err, result, code) ->
+      done(err)
+      return
     return
 
   @event.on 'watch', (action, filepath) =>
