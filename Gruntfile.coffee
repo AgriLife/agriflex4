@@ -147,15 +147,16 @@ module.exports = (grunt) ->
   @registerTask 'default', ['sass:pkg', 'concat:dist', 'jsvalidate', 'postcss:pkg']
   @registerTask 'develop', ['sasslint', 'sass:dev', 'concat:dev', 'jsvalidate', 'postcss:dev']
   @registerTask 'release', ['setbranch', 'setrepofullname', 'setlasttag', 'setmsg', 'setpost', 'seturl', 'gitrelease']
+  @registerTask 'releaseatts', ['setbranch', 'setrepofullname', 'setlasttag', 'setpost', 'setmsg', 'seturl']
   @registerTask 'setbranch', 'Set release branch for use in the release task', ->
     done = @async()
     grunt.util.spawn {
       cmd: 'git'
-      args: [ 'git', 'rev-parse', '--abbrev-ref', 'HEAD' ]
+      args: [ 'rev-parse', '--abbrev-ref', 'HEAD' ]
     }, (err, result, code) ->
       if result.stdout isnt ''
         matches = result.stdout.match /([^\n]+)$/
-        grunt.config.release.set 'branch', matches[1]
+        grunt.config 'release.branch', matches[1]
       done(err)
       return
     return
@@ -163,11 +164,12 @@ module.exports = (grunt) ->
     done = @async()
     grunt.util.spawn {
       cmd: 'git'
-      args: [ 'config', '--get', 'remote.origin.url', '|', 'sed', '"s/.*:\/\/github.com\///;s/.git$//"' ]
+      args: [ 'config', '--get', 'remote.origin.url' ]
     }, (err, result, code) ->
       if result.stdout isnt ''
         matches = result.stdout.match /([^\n]+)$/
-        grunt.config.release.set 'repofullname', matches[1]
+        val = matches[1].replace /http(s)?:\/\/github.com\//
+        grunt.config 'release.repofullname', val
       done(err)
       return
     return
@@ -179,13 +181,13 @@ module.exports = (grunt) ->
     }, (err, result, code) ->
       if result.stdout isnt ''
         matches = result.stdout.match /([^\n]+)$/
-        grunt.config.release.set 'lasttag', matches[1]
+        grunt.config 'release.lasttag', matches[1]
       done(err)
       return
     return
   @registerTask 'setmsg', 'Set gh_release body with commit messages since last release', ->
     done = @async()
-    releaserange = grunt.template.process '<%= lasttag %>..HEAD'
+    releaserange = grunt.template.process '<%= release.lasttag %>..HEAD'
     grunt.util.spawn {
       cmd: 'git'
       args: ['shortlog', releaserange, '--no-merges']
@@ -193,7 +195,7 @@ module.exports = (grunt) ->
       if result.stdout isnt ''
         message = result.stdout.replace /(\n)\s\s+/g, '$1- '
         message = message.replace /\s*\[skip ci\]/g, ''
-        grunt.config.release.set 'msg', message
+        grunt.config 'release.msg', message
       done(err)
       return
     return
@@ -201,26 +203,26 @@ module.exports = (grunt) ->
     done = @async()
 
     val = '\'{"tag_name": "'
-    val += grunt.config.pkg.get 'version'
+    val += grunt.config.get 'pkg.version'
     val += '", "target_commitish": "'
-    val += grunt.config.release.get 'branch'
+    val += grunt.config.get 'release.branch'
     val += '", "name": "'
-    val += grunt.config.pkg.get 'version'
+    val += grunt.config.get 'pkg.version'
     val += '", "body": "'
-    val += grunt.config.release.get 'msg'
+    val += grunt.config.get 'release.msg'
     val += '", "draft": false, "prerelease": false}\''
 
-    grunt.config.release.set 'post', val
+    grunt.config 'release.post', val
 
     return
   @registerTask 'seturl', 'Set release url for use in the release task', ->
     done = @async()
 
     val = 'https://api.github.com/repos/'
-    val += grunt.config.release.get 'repo_full_name'
+    val += grunt.config.get 'release.repo_full_name'
     val += '/releases?access_token=RELEASE_TOKEN'
 
-    grunt.config.release.set 'url', val
+    grunt.config 'release.url', val
 
     return
   @registerTask 'gitrelease', 'Create a Github release', ->
@@ -228,7 +230,7 @@ module.exports = (grunt) ->
     releaserange = grunt.template.process '<%= lasttag %>..HEAD'
     grunt.util.spawn {
       cmd: 'curl'
-      args: ['--data', grunt.config.release.get 'post', '--no-merges', grunt.config.release.get 'url']
+      args: ['--data', grunt.config.get 'release.post', '--no-merges', grunt.config.get 'release.url']
     }, (err, result, code) ->
       done(err)
       return
