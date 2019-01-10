@@ -1,7 +1,7 @@
 module.exports = (grunt) ->
   @initConfig
     pkg: @file.readJSON('package.json')
-    release: {}
+    release:
     watch:
       files: [
         'css/src/*.scss'
