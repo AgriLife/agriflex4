@@ -1,6 +1,13 @@
 module.exports = (grunt) ->
   @initConfig
     pkg: @file.readJSON('package.json')
+    release:
+      branch: ''
+      repofullname: ''
+      lasttag: ''
+      msg: ''
+      post: ''
+      url: ''
     watch:
       files: [
         'css/src/*.scss'
@@ -195,17 +202,18 @@ module.exports = (grunt) ->
   @registerTask 'setpost', 'Set post object for use in the release task', ->
     done = @async()
 
-    val = '\'{"tag_name": "'
-    val += grunt.config.get 'pkg.version'
-    val += '", "target_commitish": "'
-    val += grunt.config.get 'release.branch'
-    val += '", "name": "'
-    val += grunt.config.get 'pkg.version'
-    val += '", "body": "'
-    val += grunt.config.get 'release.msg'
-    val += '", "draft": false, "prerelease": false}\''
+    val =
+      tag_name: grunt.config.get('pkg.version')
+      target_commitish: grunt.config.get('release.branch')
+      name: grunt.config.get('pkg.version')
+      body: grunt.config.get('release.msg')
+      draft: false
+      prerelease: false
 
-    grunt.config 'release.post', val
+    strval = JSON.stringify val
+
+    grunt.config 'release.post', "'" + strval + "'"
+    grunt.log.write grunt.config.get 'release.post'
 
     return
   @registerTask 'seturl', 'Set release url for use in the release task', ->
