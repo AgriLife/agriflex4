@@ -75,19 +75,18 @@ module.exports = (grunt) ->
     compress:
       main:
         options:
-          archive: 'agriflex4.zip'
+          archive: '<%= pkg.name %>.zip'
         files: [
           {src: ['style.css']},
-          {src: ['rtl.css']},
           {src: ['css/*.css']},
           {src: ['js/*.js']},
           {src: ['images/**']},
-          {src: ['src/*.php']},
+          {src: ['src/**']},
           {src: ['functions.php']},
           {src: ['search.php']},
-          {src: ['README.md']},
-          {src: ['screenshot.png']},
-          {src: ['vendor/**']}
+          {src: ['members-only.php']},
+          {src: ['readme.md']},
+          {src: ['vendor/autoload.php', 'vendor/composer/**']}
         ]
     concat:
       dist:
@@ -146,9 +145,8 @@ module.exports = (grunt) ->
 
   @registerTask 'default', ['sass:pkg', 'concat:dist', 'jsvalidate', 'postcss:pkg']
   @registerTask 'develop', ['sasslint', 'sass:dev', 'concat:dev', 'jsvalidate', 'postcss:dev']
-  @registerTask 'release', ['setbranch', 'setrepofullname', 'setlasttag', 'setmsg', 'setpost', 'seturl', 'gitrelease']
-  @registerTask 'releaseatts', ['setbranch', 'setrepofullname', 'setlasttag', 'setpost', 'setmsg', 'seturl']
-  @registerTask 'setbranch', 'Set release branch for use in the release task', ->
+  @registerTask 'release', ['compress', 'setreleaseatts', 'gitrelease']
+  @registerTask 'setreleaseatts', 'Set release branch for use in the release task', ->
     done = @async()
     grunt.util.spawn {
       cmd: 'git'
@@ -157,6 +155,7 @@ module.exports = (grunt) ->
       if result.stdout isnt ''
         matches = result.stdout.match /([^\n]+)$/
         grunt.config 'release.branch', matches[1]
+        grunt.task.run 'setrepofullname'
       done(err)
       return
     return
@@ -168,8 +167,10 @@ module.exports = (grunt) ->
     }, (err, result, code) ->
       if result.stdout isnt ''
         matches = result.stdout.match /([^\n]+)$/
-        val = matches[1].replace /http(s)?:\/\/github.com\//
+        val = matches[1].replace /http(s)?:\/\/github.com\//, ''
         grunt.config 'release.repofullname', val
+        grunt.log.write grunt.config.get 'release.repofullname'
+        grunt.task.run 'setlasttag'
       done(err)
       return
     return
@@ -181,13 +182,14 @@ module.exports = (grunt) ->
     }, (err, result, code) ->
       if result.stdout isnt ''
         matches = result.stdout.match /([^\n]+)$/
-        grunt.config 'release.lasttag', matches[1]
+        grunt.config 'release.lasttag', matches[1] + '..'
+      grunt.task.run 'setmsg'
       done(err)
       return
     return
   @registerTask 'setmsg', 'Set gh_release body with commit messages since last release', ->
     done = @async()
-    releaserange = grunt.template.process '<%= release.lasttag %>..HEAD'
+    releaserange = grunt.template.process '<%= release.lasttag %>HEAD'
     grunt.util.spawn {
       cmd: 'git'
       args: ['shortlog', releaserange, '--no-merges']
@@ -196,44 +198,44 @@ module.exports = (grunt) ->
         message = result.stdout.replace /(\n)\s\s+/g, '$1- '
         message = message.replace /\s*\[skip ci\]/g, ''
         grunt.config 'release.msg', message
+      grunt.task.run 'setpostandurl'
       done(err)
       return
     return
-  @registerTask 'setpost', 'Set post object for use in the release task', ->
+  @registerTask 'setpostandurl', 'Set post object and url for use in the release task', ->
     done = @async()
-
     val =
-      tag_name: grunt.config.get('pkg.version')
-      target_commitish: grunt.config.get('release.branch')
-      name: grunt.config.get('pkg.version')
-      body: grunt.config.get('release.msg')
+      tag_name: grunt.config.get 'pkg.version'
+      target_commitish: grunt.config.get 'release.branch'
+      name: grunt.config.get 'pkg.version'
+      body: grunt.config.get 'release.msg'
       draft: false
       prerelease: false
-
     strval = JSON.stringify val
-
     grunt.config 'release.post', "'" + strval + "'"
     grunt.log.write grunt.config.get 'release.post'
 
-    return
-  @registerTask 'seturl', 'Set release url for use in the release task', ->
-    done = @async()
+    grunt.config 'release.file', grunt.template.process '<%= pkg.name %>.zip'
 
-    val = 'https://api.github.com/repos/'
-    val += grunt.config.get 'release.repo_full_name'
-    val += '/releases?access_token=RELEASE_TOKEN'
+    url = 'https://api.github.com/repos/'
+    url += grunt.config.get 'release.repofullname'
+    url += '/releases?access_token='
+    url += process.env.RELEASE_TOKEN
+    url += '&name='
+    url += grunt.config.get 'release.file'
+    grunt.config 'release.url', url
 
-    grunt.config 'release.url', val
-
+    grunt.log.write grunt.config.get 'release.url'
     return
   @registerTask 'gitrelease', 'Create a Github release', ->
     done = @async()
-    releaserange = grunt.template.process '<%= lasttag %>..HEAD'
+    releaserange = grunt.template.process '<%= release.lasttag %>..HEAD'
     grunt.util.spawn {
       cmd: 'curl'
-      args: ['--data', grunt.config.get 'release.post', '--no-merges', grunt.config.get 'release.url']
+      args: ['--data', grunt.config.get 'release.post', '--no-merges', grunt.config.get 'release.url', '--header', 'Content-Type: application/zip', '--upload-file', grunt.config.get 'release.file', '-X', 'POST']
     }, (err, result, code) ->
       done(err)
+      grunt.log.write result;
       return
     return
 

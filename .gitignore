@@ -47,3 +47,4 @@ node_modules
 css/*.css*
 js/*.concat.js*
 vendor
+*.zip
