@@ -219,7 +219,7 @@ module.exports = (grunt) ->
       done(err)
       return
     return
-  @registerTask 'setpostreq', 'Set post object for use in the release task', ->
+  @registerTask 'setpostdata', 'Set post object for use in the release task', ->
     val =
       tag_name: grunt.config.get 'pkg.version'
       target_commitish: grunt.config.get 'release.branch'
@@ -247,17 +247,19 @@ module.exports = (grunt) ->
       cmd: 'curl'
       args: args
     }, (err, result, code) ->
-      grunt.log.write 'Result: ' + result + '\n'
+      grunt.log.write '\nResult: ' + result + '\n'
       grunt.log.write 'Error: ' + err + '\n'
       grunt.log.write 'Code: ' + code + '\n'
 
       if result.stdout isnt ''
-        # We need the resulting "release" ID value before we can upload the .zip file to it.
-        resultJSON = JSON.parse result.stdout
-        grunt.config 'release.id', resultJSON.id
-        grunt.task.run 'uploadreleasefile'
-      else if err
-        grunt.util.error 'Error: ' + err
+        obj = JSON.parse result.stdout
+        # Check for error from Github
+        if 'errors' of obj and obj['errors'].length > 0
+          grunt.fail.fatal 'Github Error'
+        else
+          # We need the resulting "release" ID value before we can upload the .zip file to it.
+          grunt.config 'release.id', resultJSON.id
+          grunt.task.run 'uploadreleasefile'
 
       done(err)
       return
@@ -277,12 +279,15 @@ module.exports = (grunt) ->
       cmd: 'curl'
       args: args
     }, (err, result, code) ->
-      grunt.log.write 'Result: ' + result + '\n'
+      grunt.log.write '\nResult: ' + result + '\n'
       grunt.log.write 'Error: ' + err + '\n'
       grunt.log.write 'Code: ' + code + '\n'
 
-      if err
-        grunt.util.error 'Error: ' + err
+      if result.stdout isnt ''
+        obj = JSON.parse result.stdout
+        # Check for error from Github
+        if 'errors' of obj and obj['errors'].length > 0
+          grunt.fail.fatal 'Github Error'
 
       done(err)
       return
