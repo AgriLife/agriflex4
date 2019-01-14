@@ -174,9 +174,9 @@ module.exports = (grunt) ->
       args: [ 'config', '--get', 'remote.origin.url' ]
     }, (err, result, code) ->
       if result.stdout isnt ''
-        matches = result.stdout.match /([^\n]+)$/
-        val = matches[1].replace /http(s)?:\/\/github.com\//, ''
-        grunt.config 'release.repofullname', val
+        grunt.log.writeln 'Remote origin url: ' + result
+        matches = result.stdout.match /([^\/:]+)\/([^\/.]+)(\.git)?$/
+        grunt.config 'release.repofullname', matches[1] + '/' + matches[2]
         grunt.task.run 'setlasttag'
 
       done(err)
