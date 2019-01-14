@@ -221,12 +221,12 @@ module.exports = (grunt) ->
     return
   @registerTask 'setpostdata', 'Set post object for use in the release task', ->
     val =
-      tag_name: grunt.config.get 'pkg.version'
-      target_commitish: grunt.config.get 'release.branch'
+      tag_name: 'v' + grunt.config.get 'pkg.version'
       name: grunt.template.process '<%= pkg.name %> (v<%= pkg.version %>)'
       body: grunt.config.get 'release.msg'
       draft: false
       prerelease: false
+      # target_commitish: grunt.config.get 'release.branch'
     grunt.config 'release.post', JSON.stringify val
     grunt.log.write JSON.stringify val
 
