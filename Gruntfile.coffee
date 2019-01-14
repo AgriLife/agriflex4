@@ -258,7 +258,7 @@ module.exports = (grunt) ->
           grunt.fail.fatal 'Github Error'
         else
           # We need the resulting "release" ID value before we can upload the .zip file to it.
-          grunt.config 'release.id', resultJSON.id
+          grunt.config 'release.id', obj.id
           grunt.task.run 'uploadreleasefile'
 
       done(err)
