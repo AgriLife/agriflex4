@@ -1,6 +1,6 @@
 {
   "name": "agriflex4",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Genesis child theme for Texas A&M AgriLife",
   "main": "functions.php",
   "scripts": {
@@ -32,9 +32,6 @@
     "grunt-contrib-watch": "^1.1.0",
     "grunt-jsvalidate": "^0.2.2",
     "grunt-sass-lint": "^0.2.4"
-  },
-  "engines": {
-    "node": "4.0.0"
   },
   "repository": {
     "type": "git",
