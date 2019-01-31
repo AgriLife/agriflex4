@@ -56,6 +56,7 @@ class AgriFlex {
 		$af_genesis = new \AgriFlex\Genesis;
 
 		// Enqueue our assets
+		require_once AF_THEME_DIRPATH . '/src/class-assets.php';
 		$af_assets = new \AgriFlex\Assets;
 
 		// Fix the navigation

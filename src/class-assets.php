@@ -1,44 +1,61 @@
 <?php
+/**
+ * The file that provides CSS and JS assets for the theme.
+ *
+ * @link       https://github.com/AgriLife/agriflex4/blob/master/src/class-assets.php
+ * @since      0.1.0
+ * @package    agriflex4
+ * @subpackage agriflex4/src
+ */
 
 namespace AgriFlex;
 
 /**
  * Loads required theme assets
+ *
  * @package AgriFlex4
  * @since 0.1.0
  */
 class Assets {
 
+	/**
+	 * Initialize the class
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
 	public function __construct() {
 
-		// Register global scripts used in the theme
+		// Register global scripts used in the theme.
 		add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_styles' ) );
 
-		// Register global scripts used in the theme
+		// Register global scripts used in the theme.
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_public_scripts' ) );
 
-		// Enqueue global scripts
+		// Enqueue global scripts.
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_scripts' ) );
 
-		// Register global styles used in the theme
+		// Register global styles used in the theme.
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_public_styles' ) );
 
-		// Enqueue global styles
+		// Enqueue global styles.
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_styles' ) );
 
 	}
 
 	/**
 	 * Registers admin styles
-	 * @since 1.0.0
+	 *
+	 * @since 0.1.0
 	 * @return void
 	 */
 	public function register_admin_styles() {
 
-		wp_register_style( 'agriflex-admin',
+		wp_register_style(
+			'agriflex-admin',
 			AF_THEME_DIRURL . '/css/admin.css',
 			array(),
-			filemtime(AF_THEME_DIRPATH . '/css/admin.css'),
+			filemtime( AF_THEME_DIRPATH . '/css/admin.css' ),
 			'screen'
 		);
 
@@ -48,22 +65,25 @@ class Assets {
 
 	/**
 	 * Registers globally used scripts
-	 * @since 1.0.0
+	 *
+	 * @since 0.1.0
 	 * @return void
 	 */
 	public function register_public_scripts() {
 
-		wp_register_script( 'foundation',
+		wp_register_script(
+			'foundation',
 			AF_THEME_DIRURL . '/js/foundation.concat.js',
 			array( 'jquery' ),
-			false,
+			filemtime( AF_THEME_DIRPATH . '/js/foundation.concat.js' ),
 			true
 		);
 
-		wp_register_script( 'agriflex-public',
+		wp_register_script(
+			'agriflex-public',
 			AF_THEME_DIRURL . '/js/public.min.js',
 			false,
-			false,
+			filemtime( AF_THEME_DIRPATH . '/js/public.min.js' ),
 			true
 		);
 
@@ -71,7 +91,8 @@ class Assets {
 
 	/**
 	 * Enqueues globally used scripts
-	 * @since 1.0.0
+	 *
+	 * @since 0.1.0
 	 * @return void
 	 */
 	public function enqueue_public_scripts() {
@@ -83,7 +104,8 @@ class Assets {
 
 	/**
 	 * Registers all styles used within the theme
-	 * @since 1.0.0
+	 *
+	 * @since 0.1.0
 	 * @return void
 	 */
 	public function register_public_styles() {
@@ -92,7 +114,7 @@ class Assets {
 			'agriflex-default-styles',
 			AF_THEME_DIRURL . '/css/default.css',
 			array(),
-			filemtime(AF_THEME_DIRPATH . '/css/default.css'),
+			filemtime( AF_THEME_DIRPATH . '/css/default.css' ),
 			'screen'
 		);
 
@@ -100,7 +122,8 @@ class Assets {
 
 	/**
 	 * Enqueues styles used globally
-	 * @since 1.0.0
+	 *
+	 * @since 0.1.0
 	 * @global $wp_styles
 	 * @return void
 	 */
@@ -109,35 +132,6 @@ class Assets {
 		wp_enqueue_style( 'agriflex-default-styles' );
 
 	}
-
-  /**
-   * Add the correct Typekit
-   * @since 1.0.0
-   * @todo Replace with async js and deal with FOUC
-   * @todo Pass in variable (TBD) to select correct kit
-   * @return string
-   */
-  public function add_typekit() {
-
-    if(defined('AG_EXT_DIRNAME') || defined('AG_EXTUNIT_DIRNAME') ) {
-      // For Extension
-      $key = 'xox0blb';
-    } elseif (defined('AG_COL_DIRNAME') ) {
-      // For College
-      $key = 'bbz1kzh';
-    } else {
-      // For Default Agriflex3
-      $key = 'mtx5vmp';
-    }
-
-    if( !is_admin() ) :
-      ?>
-      <script type="text/javascript" src="//use.typekit.net/<?php echo $key; ?>.js"></script>
-      <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-      <?php
-    endif;
-
-  }
 
 
 }
