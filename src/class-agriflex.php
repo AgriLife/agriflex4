@@ -1,11 +1,44 @@
 <?php
+/**
+ * The file that defines the core plugin class
+ *
+ * A class definition that includes attributes and functions used across both the
+ * public-facing side of the site and the admin area.
+ *
+ * @link       https://github.com/AgriLife/agriflex4/blob/master/src/class-agriflex.php
+ * @since      0.1.0
+ * @package    agriflex4
+ * @subpackage agriflex4/src
+ */
 
+/**
+ * The core plugin class
+ *
+ * @since 0.1.0
+ * @return void
+ */
 class AgriFlex {
 
+	/**
+	 * File name
+	 *
+	 * @var file
+	 */
 	private static $file = __FILE__;
 
+	/**
+	 * Instance
+	 *
+	 * @var instance
+	 */
 	private static $instance;
 
+	/**
+	 * Initialize the class
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
 	private function __construct() {
 
 		add_theme_support( 'html5', array() );
@@ -16,6 +49,12 @@ class AgriFlex {
 
 	}
 
+	/**
+	 * Add theme support for wide page alignment
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
 	public function after_setup_theme() {
 
 		add_theme_support( 'align-wide' );
@@ -67,6 +106,12 @@ class AgriFlex {
 
 	}
 
+	/**
+	 * Return instance of class
+	 *
+	 * @since 0.1.0
+	 * @return object.
+	 */
 	public static function get_instance() {
 
 		return null === self::$instance ? new self() : self::$instance;
