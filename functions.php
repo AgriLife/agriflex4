@@ -62,6 +62,7 @@ class AgriFlex {
 		$af_navigation = new \AgriFlex\Navigation;
 
     // Add AgriLife Required DOM Elements
+    require_once AF_THEME_DIRPATH . '/src/class-requireddom.php';
     $af_required = new \AgriFlex\RequiredDOM;
 
 	}
