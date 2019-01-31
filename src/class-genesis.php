@@ -1,71 +1,87 @@
 <?php
+/**
+ * The file that initializes Genesis features and changes for this child theme.
+ *
+ * @link       https://github.com/AgriLife/agriflex4/blob/master/src/class-genesis.php
+ * @since      0.1.0
+ * @package    agriflex4
+ * @subpackage agriflex4/src
+ */
 
 namespace AgriFlex;
 
 /**
  * Sets up Genesis Framework to our needs
+ *
  * @package AgriFlex3
  * @since 0.1.0
  */
 class Genesis {
 
+	/**
+	 * Initialize the class
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
 	public function __construct() {
 
-		// Add the responsive viewport
+		// Add the responsive viewport.
 		$this->add_responsive_viewport();
 
-		// Add the responsive viewport
+		// Add the responsive viewport.
 		$this->add_accessibility();
 
-		// Keep Genesis from loading any stylesheets
+		// Keep Genesis from loading any stylesheets.
 		$this->remove_stylesheet();
 
-		// Force IE out of compatibility mode
+		// Force IE out of compatibility mode.
 		add_action( 'genesis_meta', array( $this, 'fix_compatibility_mode' ) );
 
-		// Specify the favicon location
+		// Specify the favicon location.
 		add_filter( 'genesis_pre_load_favicon', array( $this, 'add_favicon' ) );
 
-		// Create the structural wraps
+		// Create the structural wraps.
 		$this->add_structural_wraps();
 
-		// Clean up the comment area
+		// Clean up the comment area.
 		add_filter( 'comment_form_defaults', array( $this, 'cleanup_comment_text' ) );
 
-		// Remove profile fields
+		// Remove profile fields.
 		add_action( 'admin_init', array( $this, 'remove_profile_fields' ) );
 
-		// Remove unneeded layouts
+		// Remove unneeded layouts.
 		$this->remove_genesis_layouts();
 
-		// Remove unneeded sidebars
+		// Remove unneeded sidebars.
 		$this->remove_genesis_sidebars();
 
-		// Remove site description
+		// Remove site description.
 		remove_action( 'genesis_site_description', 'genesis_seo_site_description' );
 
-		// Move Genesis in-post SEO box to a lower position
+		// Move Genesis in-post SEO box to a lower position.
 		remove_action( 'admin_menu', 'genesis_add_inpost_seo_box' );
 		add_action( 'admin_menu', array( $this, 'move_inpost_seo_box' ) );
 
-		// Move Genesis in-post layout box to a lower position
+		// Move Genesis in-post layout box to a lower position.
 		remove_action( 'admin_menu', 'genesis_add_inpost_layout_box' );
 		add_action( 'admin_menu', array( $this, 'move_inpost_layout_box' ) );
 
-		// Remove some Genesis settings metaboxes
+		// Remove some Genesis settings metaboxes.
 		add_action( 'genesis_theme_settings_metaboxes', array( $this, 'remove_genesis_metaboxes' ) );
 
-		// Sticky Header
+		// Sticky Header.
 		add_filter( 'genesis_structural_wrap-header', array( $this, 'sticky_header' ) );
 		remove_action( 'wp_head', 'genesis_custom_header_style' );
 
-		// Add Read More excerpt link
+		// Add Read More excerpt link.
 		add_filter( 'excerpt_more', array( $this, 'agriflex_auto_excerpt_more' ) );
 
 	}
 
 	/**
 	 * Adds the responsive viewport meta tag
+	 *
 	 * @since 0.1.0
 	 * @return void
 	 */
@@ -77,6 +93,7 @@ class Genesis {
 
 	/**
 	 * Adds the responsive viewport meta tag
+	 *
 	 * @since 0.1.0
 	 * @return void
 	 */
@@ -84,44 +101,15 @@ class Genesis {
 
 		add_theme_support( 'genesis-accessibility', array( 'search-form', 'skip-links' ) );
 
-		// Move skip links
-		// remove_action ( 'genesis_before_header', 'genesis_skip_links', 5 );
-		// add_action ( 'genesis_before', 'genesis_skip_links', 1 );
-
-		// Modify primary navigation
-		// add_filter( 'genesis_do_nav', array( $this, 'primary_nav_id' ), 12, 5 );
-
-	}
-
-	/**
-	 * Ensure primary navigation menu works with skip link
-	 *
-	 * @param $nav_output The raw menu HTML
-	 * @since 0.1.0
-	 * @return string
-	*/
-	public function primary_nav_id( $nav_output, $nav, $args ) {
-
-		preg_match_all('/<ul[^>]+>/', $nav_output, $uls);
-
-		foreach ($uls[0] as $value) {
-
-			if( preg_match( '/\bmenu-primary\b/', $value ) === 1 ){
-
-				$newvalue = preg_replace('/id="[^"]+"/', '/id="genesis-nav-primary"/', $value);
-				$nav_output = str_replace( $value, $newvalue, $nav_output );
-				break;
-
-			}
-
-		}
-
-		return $nav_output;
+		// Move skip links.
+		remove_action( 'genesis_before_header', 'genesis_skip_links', 5 );
+		add_action( 'genesis_before', 'genesis_skip_links', 1 );
 
 	}
 
 	/**
 	 * Removes any stylesheet Genesis may try to load
+	 *
 	 * @since 0.1.0
 	 * @return void
 	 */
@@ -133,6 +121,7 @@ class Genesis {
 
 	/**
 	 * Forces IE out of compatibility mode
+	 *
 	 * @since 0.1.0
 	 * @return void
 	 */
@@ -144,8 +133,9 @@ class Genesis {
 
 	/**
 	 * Changes the Genesis default favicon location
+	 *
 	 * @since 0.1.0
-	 * @param string $favicon_url The default favicon location
+	 * @param string $favicon_url The default favicon location.
 	 * @return string
 	 */
 	public function add_favicon( $favicon_url ) {
@@ -156,6 +146,7 @@ class Genesis {
 
 	/**
 	 * Adds structural wraps to the specified elements
+	 *
 	 * @since 0.1.0
 	 * @return void
 	 */
@@ -176,6 +167,7 @@ class Genesis {
 
 	/**
 	 * Remove unneeded user profile fields
+	 *
 	 * @since 0.1.0
 	 * @return void
 	 */
@@ -185,15 +177,16 @@ class Genesis {
 		remove_action( 'edit_user_profile', 'genesis_user_options_fields' );
 		remove_action( 'show_user_profile', 'genesis_user_archive_fields' );
 		remove_action( 'edit_user_profile', 'genesis_user_archive_fields' );
-		remove_action( 'show_user_profile', 'genesis_user_seo_fields'     );
-		remove_action( 'edit_user_profile', 'genesis_user_seo_fields'     );
-		remove_action( 'show_user_profile', 'genesis_user_layout_fields'  );
-		remove_action( 'edit_user_profile', 'genesis_user_layout_fields'  );
+		remove_action( 'show_user_profile', 'genesis_user_seo_fields' );
+		remove_action( 'edit_user_profile', 'genesis_user_seo_fields' );
+		remove_action( 'show_user_profile', 'genesis_user_layout_fields' );
+		remove_action( 'edit_user_profile', 'genesis_user_layout_fields' );
 
 	}
 
 	/**
 	 * Removes any layouts that we don't need
+	 *
 	 * @since 0.1.0
 	 * @return void
 	 */
@@ -202,12 +195,13 @@ class Genesis {
 		genesis_unregister_layout( 'sidebar-content' );
 		genesis_unregister_layout( 'content-sidebar-sidebar' );
 		genesis_unregister_layout( 'sidebar-sidebar-content' );
-  	genesis_unregister_layout( 'sidebar-content-sidebar' );
+		genesis_unregister_layout( 'sidebar-content-sidebar' );
 
 	}
 
 	/**
 	 * Removes any default sidebars that we don't need
+	 *
 	 * @since 0.1.0
 	 * @return void
 	 */
@@ -219,9 +213,10 @@ class Genesis {
 
 	/**
 	 * Cleans up the default comments text
+	 *
 	 * @since 0.1.0
-	 * @param  array $args The default arguments
-	 * @return array       The new arguments
+	 * @param array $args The default arguments.
+	 * @return array The new arguments
 	 */
 	public function cleanup_comment_text( $args ) {
 
@@ -234,58 +229,74 @@ class Genesis {
 
 	/**
 	 * Moves the Genesis in-post SEO box to a lower position
+	 *
 	 * @since 0.1.0
 	 * @author Bill Erickson
 	 * @return void
 	 */
 	public function move_inpost_seo_box() {
 
-		if ( genesis_detect_seo_plugins() )
+		if ( genesis_detect_seo_plugins() ) {
 			return;
+		}
 
 		foreach ( (array) get_post_types( array( 'public' => true ) ) as $type ) {
-			if ( post_type_supports( $type, 'genesis-seo' ) )
-				add_meta_box( 'genesis_inpost_seo_box', __( 'Theme SEO Settings', AF_THEME_TEXTDOMAIN ), 'genesis_inpost_seo_box', $type, 'normal', 'default' );
+			if ( post_type_supports( $type, 'genesis-seo' ) ) {
+				add_meta_box( 'genesis_inpost_seo_box', __( 'Theme SEO Settings', 'agriflex4' ), 'genesis_inpost_seo_box', $type, 'normal', 'default' );
+			}
 		}
 
 	}
 
 	/**
 	 * Moves the Genesis in-post layout box to a lower postion
+	 *
 	 * @since 0.1.0
 	 * @return void
 	 */
 	public function move_inpost_layout_box() {
 
-		if ( ! current_theme_supports( 'genesis-inpost-layouts' ) )
+		if ( ! current_theme_supports( 'genesis-inpost-layouts' ) ) {
 			return;
-
-		foreach ( (array) get_post_types( array( 'public' => true ) ) as $type ) {
-			if ( post_type_supports( $type, 'genesis-layouts' ) )
-				add_meta_box( 'genesis_inpost_layout_box', __( 'Layout Settings', 'genesis' ), 'genesis_inpost_layout_box', $type, 'normal', 'default' );
 		}
 
-	}
-
-	public function remove_genesis_metaboxes( $_genesis_theme_settings_pagehook ) {
-
-		if ( ! is_super_admin() )
-			remove_meta_box( 'genesis-theme-settings-version', $_genesis_theme_settings_pagehook, 'main' );
-
-		remove_meta_box( 'genesis-theme-settings-nav',        $_genesis_theme_settings_pagehook, 'main' );
-		remove_meta_box( 'genesis-theme-settings-scripts',    $_genesis_theme_settings_pagehook, 'main' );
+		foreach ( (array) get_post_types( array( 'public' => true ) ) as $type ) {
+			if ( post_type_supports( $type, 'genesis-layouts' ) ) {
+				add_meta_box( 'genesis_inpost_layout_box', __( 'Layout Settings', 'genesis' ), 'genesis_inpost_layout_box', $type, 'normal', 'default' );
+			}
+		}
 
 	}
 
 	/**
 	 * Adds attributes for sticky navigation and add wrap for header layout requirements
+	 *
 	 * @since 0.1.0
+	 * @param string $_genesis_theme_settings_pagehook The hook name for the genesis theme setting.
 	 * @return void
 	 */
-	public function sticky_header( $output ){
+	public function remove_genesis_metaboxes( $_genesis_theme_settings_pagehook ) {
 
-		$output = preg_replace('/<div class="wrap"/', '<div class="wrap" data-sticky-container><div class="wrap" data-sticky data-options="stickyOn:small;marginTop:0;"><div class="layout-container"', $output);
-		$output = preg_replace('/<\/div>$/', '</div></div></div>', $output);
+		if ( ! is_super_admin() ) {
+			remove_meta_box( 'genesis-theme-settings-version', $_genesis_theme_settings_pagehook, 'main' );
+		}
+
+		remove_meta_box( 'genesis-theme-settings-nav', $_genesis_theme_settings_pagehook, 'main' );
+		remove_meta_box( 'genesis-theme-settings-scripts', $_genesis_theme_settings_pagehook, 'main' );
+
+	}
+
+	/**
+	 * Adds attributes for sticky navigation and add wrap for header layout requirements
+	 *
+	 * @since 0.1.0
+	 * @param string $output The output of the Genesis header wrap.
+	 * @return string
+	 */
+	public function sticky_header( $output ) {
+
+		$output = preg_replace( '/<div class="wrap"/', '<div class="wrap" data-sticky-container><div class="wrap" data-sticky data-options="stickyOn:small;marginTop:0;"><div class="layout-container"', $output );
+		$output = preg_replace( '/<\/div>$/', '</div></div></div>', $output );
 
 		return $output;
 
@@ -293,11 +304,12 @@ class Genesis {
 
 	/**
 	 * Add close wrap to enable desired header layout
+	 *
 	 * @since 0.1.0
-	 * @return void
+	 * @param string $output The output of the header extra wrap close.
+	 * @return string
 	 */
-
-	public function header_extra_wrap_close( $output ){
+	public function header_extra_wrap_close( $output ) {
 
 		return $output;
 
@@ -305,12 +317,16 @@ class Genesis {
 
 	/**
 	 * Adds the Read More link to post excerpts
+	 *
+	 * @since 0.1.0
+	 * @param string $more The current "more" text.
+	 * @return string
 	 */
 	public function agriflex_auto_excerpt_more( $more ) {
 
 		return '... <span class="read-more"><a href="' . get_permalink() . '">' .
-    __( 'Read More &rarr;', AF_THEME_TEXTDOMAIN ) . '</a></span>';
+		__( 'Read More &rarr;', 'agriflex4' ) . '</a></span>';
 
-  }
+	}
 
 }

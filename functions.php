@@ -53,6 +53,7 @@ class AgriFlex {
 	public function init() {
 
 		// Get Genesis setup the way we want it
+		require_once AF_THEME_DIRPATH . '/src/class-genesis.php';
 		$af_genesis = new \AgriFlex\Genesis;
 
 		// Enqueue our assets
