@@ -23,6 +23,7 @@ module.exports = (grunt) ->
         files:
           'css/admin.css': 'css/admin.css'
           'css/default.css': 'css/default.css'
+          'css/header-nav-footer.css': 'css/header-nav-footer.css'
       dev:
         options:
           map: true
@@ -33,6 +34,7 @@ module.exports = (grunt) ->
         files:
           'css/admin.css': 'css/admin.css'
           'css/default.css': 'css/default.css'
+          'css/header-nav-footer.css': 'css/header-nav-footer.css'
     sass:
       pkg:
         options:
@@ -43,6 +45,7 @@ module.exports = (grunt) ->
         files:
           'css/admin.css': 'css/src/admin.scss'
           'css/default.css': 'css/src/default.scss'
+          'css/header-nav-footer.css': 'css/src/header-nav-footer.scss'
       dev:
         options:
           loadPath: 'node_modules/foundation-sites/scss'
@@ -51,6 +54,7 @@ module.exports = (grunt) ->
         files:
           'css/admin.css': 'css/src/admin.scss'
           'css/default.css': 'css/src/default.scss'
+          'css/header-nav-footer.css': 'css/src/header-nav-footer.scss'
     jsvalidate:
       options:
         globals:

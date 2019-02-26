@@ -118,6 +118,14 @@ class Assets {
 			'screen'
 		);
 
+		wp_register_style(
+			'agriflex-hnf-styles',
+			AF_THEME_DIRURL . '/css/header-nav-footer.css',
+			array(),
+			filemtime( AF_THEME_DIRPATH . '/css/header-nav-footer.css' ),
+			'screen'
+		);
+
 	}
 
 	/**
@@ -130,6 +138,7 @@ class Assets {
 	public function enqueue_public_styles() {
 
 		wp_enqueue_style( 'agriflex-default-styles' );
+		wp_enqueue_style( 'agriflex-hnf-styles' );
 
 	}
 
