@@ -1,25 +1,16 @@
 
-.site-header,
 .site-inner {
 	padding: 0 1rem;
 }
 
-.site-header,
-.nav-primary {
-	clear: both;
-}
-
 @include breakpoint(medium up) {
-	.site-header,
 	.site-inner {
 		padding: 0;
 	}
 
 	.agency-wrap,
-	.site-header,
-	.nav-primary,
-	.site-inner .wrap,
-	.site-footer {
+	.site-inner > .wrap,
+	.layout-container {
 		@include xy-grid-container($break-xlarge, 0);
 	}
 

@@ -77,6 +77,13 @@ class Genesis {
 		// Add Read More excerpt link.
 		add_filter( 'excerpt_more', array( $this, 'agriflex_auto_excerpt_more' ) );
 
+		// Relocate primary navigation menu.
+		remove_action( 'genesis_after_header', 'genesis_do_nav' );
+		add_action( 'genesis_header', 'genesis_do_nav' );
+
+		// Replace site title with logo.
+		add_filter( 'genesis_seo_title', array( $this, 'add_logo' ), 10, 3 );
+
 	}
 
 	/**
@@ -326,6 +333,31 @@ class Genesis {
 
 		return '... <span class="read-more"><a href="' . get_permalink() . '">' .
 		__( 'Read More &rarr;', 'agriflex4' ) . '</a></span>';
+
+	}
+
+	/**
+	 * Initialize the class
+	 *
+	 * @since 0.1.0
+	 * @param string $title Genesis SEO title html.
+	 * @param string $inside The inner HTML of the title.
+	 * @param string $wrap The tag name of the seo title wrap element.
+	 * @return string
+	 */
+	public function add_logo( $title, $inside, $wrap ) {
+
+		$logo = sprintf( '<img src="%s">', AF_THEME_DIRURL . '/images/logo-agrilife.png' );
+
+		$new_inside = sprintf(
+			'<a href="%s" title="Texas A&M AgriLife">%s</a>',
+			trailingslashit( home_url() ),
+			$logo
+		);
+
+		$title = str_replace( $inside, $new_inside, $title );
+
+		return $title;
 
 	}
 

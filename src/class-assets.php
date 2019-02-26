@@ -111,6 +111,13 @@ class Assets {
 	public function register_public_styles() {
 
 		wp_register_style(
+			'agriflex4-googlefonts',
+			'https://fonts.googleapis.com/css?family=Oswald|Monoton|Open+Sans',
+			array(),
+			'1.0.0'
+		);
+
+		wp_register_style(
 			'agriflex-default-styles',
 			AF_THEME_DIRURL . '/css/default.css',
 			array(),
@@ -137,6 +144,7 @@ class Assets {
 	 */
 	public function enqueue_public_styles() {
 
+		wp_enqueue_style( 'agriflex4-googlefonts' );
 		wp_enqueue_style( 'agriflex-default-styles' );
 		wp_enqueue_style( 'agriflex-hnf-styles' );
 

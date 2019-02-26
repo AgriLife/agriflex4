@@ -39,6 +39,11 @@ class RequiredDOM {
 		add_filter( 'genesis_seo_title', array( $this, 'alter_title_tag' ), 10, 3 );
 		add_filter( 'genesis_seo_description', array( $this, 'alter_description_tag' ), 10, 3 );
 
+		add_filter( 'af4_before_nav', array( $this, 'add_search_toggle' ), 10, 4 );
+
+		// Add search form after navigation menu.
+		add_action( 'genesis_header', array( $this, 'add_search_form' ) );
+
 	}
 
 	/**
@@ -169,6 +174,40 @@ class RequiredDOM {
 		$output = '<div class="footer-container-tamus"><a href="http://tamus.edu/" title="Texas A&amp;M University System"><img class="footer-tamus" src="' . AF_THEME_DIRURL . '/images/footer-tamus-maroon.png" alt="Texas A&amp;M University System Member" /></a></div>';
 
 		echo wp_kses_post( $output );
+
+	}
+
+	/**
+	 * Add header search and menu toggle
+	 *
+	 * @since 0.1.0
+	 * @param string $content Content of 'af4_before_nav' variable in theme.
+	 * @param string $open    Content of the element's open tag.
+	 * @param string $close   Content of the element's close tag.
+	 * @param string $inside  Content of the element's inner HTML.
+	 * @return string
+	 */
+	public function add_search_toggle( $content, $open, $close, $inside ) {
+
+		$search = '<div class="title-bar title-bar-search" data-responsive-toggle="header-search"><button class="search-icon" type="button" data-toggle="header-search"></button><div class="title-bar-title">Search</div></div>';
+
+		$content = $open . $search . $inside . $close;
+
+		return $content;
+
+	}
+
+	/**
+	 * Add header search form
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
+	public function add_search_form() {
+
+		echo '<div id="header-search">';
+		get_search_form();
+		echo '</div>';
 
 	}
 

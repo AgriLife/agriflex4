@@ -6,6 +6,7 @@
 		family: $footer-font-family;
 		weight: $footer-font-weight;
 	}
+	padding: 0 $site-padding;
 
 	.wrap {
 		padding: 30px 0;
@@ -52,6 +53,7 @@
 
 		.wrap {
 			@include xy-grid;
+			@include xy-grid-container($break-xlarge, 0);
 		}
 
 		.footer-container {
