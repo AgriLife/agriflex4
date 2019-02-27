@@ -1,13 +1,10 @@
 {
   "name": "agriflex4",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Genesis child theme for Texas A&M AgriLife",
   "main": "functions.php",
   "scripts": {
-    "start": "composer install && npm install && grunt",
-    "checkwp": "npm run configphpcs && npm run checkphp",
-    "configphpcs": "vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs && vendor/bin/phpcs --config-set ignore_errors_on_exit 1 && vendor/bin/phpcs --config-set ignore_warnings_on_exit 1",
-    "checkphp": "vendor/bin/phpcs --standard=WordPress --report=source ./*.php ./src && vendor/bin/phpcs --standard=WordPress ./*.php ./src"
+    "start": "git config core.hooksPath hooks && composer install && npm install && grunt"
   },
   "author": "Zachary Watkins",
   "license": "GPL-2.0+",
