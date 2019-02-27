@@ -74,8 +74,8 @@ module.exports = (grunt) ->
           ]
     sasslint:
       options:
-      target: ['scss/**/*.s+(a|c)ss']
         configFile: '.sass-lint.yml'
+      target: ['css/**/*.s+(a|c)ss']
     compress:
       main:
         options:
