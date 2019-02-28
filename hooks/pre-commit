@@ -1,4 +1,8 @@
 #!/bin/sh
+PATH="/usr/local/bin:$PATH"
+. $HOME/.nvm/nvm.sh
+nvm use 6
+
 #
 # Ensure the repository passes WordPress coding standards.
 #
@@ -9,3 +13,15 @@ then
 	echo "Fix the error before commit."
 	exit 1
 fi
+
+#
+# Ensure the repository passes Grunt lint tasks
+#
+grunt sasslint
+SASSLINT=$(grunt sasslint)
+if echo "$SASSLINT" | grep -q "error"; then
+	echo "Fix the error before commit."
+	exit 1
+fi
+
+exit 0
