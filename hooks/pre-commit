@@ -8,16 +8,18 @@ nvm use 6
 #
 vendor/bin/phpcs --standard=WordPress --report=source ./*.php ./src
 vendor/bin/phpcs --standard=WordPress ./*.php ./src
+
+#
+# Ensure the repository passes Grunt lint tasks
+#
+grunt sasslint
+
 if [[ $(vendor/bin/phpcs -q --standard=WordPress --report=source ./*.php ./src) ]]
 then
 	echo "Fix the error before commit."
 	exit 1
 fi
 
-#
-# Ensure the repository passes Grunt lint tasks
-#
-grunt sasslint
 SASSLINT=$(grunt sasslint)
 if echo "$SASSLINT" | grep -q "error"; then
 	echo "Fix the error before commit."
