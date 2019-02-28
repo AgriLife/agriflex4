@@ -51,6 +51,7 @@ bower.json
 .bowerrc
 config.rb
 node_modules
+vendor
 .sass-cache
 *.md
 *.txt
