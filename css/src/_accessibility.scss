@@ -10,7 +10,7 @@
 	/* Display outline on focus */
 	&:focus {
 		color: #333;
-		outline: #ccc solid 1px;
+		outline: #CCC solid 1px;
 	}
 
 	li {
@@ -24,14 +24,14 @@
 		clip: rect(0, 0, 0, 0);
 		height: 1px;
 		overflow: hidden;
-		position: absolute !important;
+		position: absolute !important; // sass-lint:disable-line no-important
 		width: 1px;
-		word-wrap: normal !important;
+		word-wrap: normal !important; // sass-lint:disable-line no-important
 
 		&:focus {
-			background: #fff;
-			box-shadow: 0 0 2px 2px rgba(0,0,0,.6);
-			clip: auto !important;
+			background: #FFF;
+			box-shadow: 0 0 2px 2px rgba(0, 0, 0, .6);
+			clip: auto !important; // sass-lint:disable-line no-important
 			color: #333;
 			display: block;
 			font-size: 1em;

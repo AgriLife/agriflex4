@@ -35,9 +35,9 @@ $primary-color: $maroon;
 
 /* Fonts
 --------------------------------------------- */
-$tungsten: 'Tungsten A', 'Tungsten B', 'Oswald', sans-serif;
-$monoton: 'Monoton', cursive;
-$opensans: 'Open Sans', sans-serif;
+$tungsten: "Tungsten A", "Tungsten B", "Oswald", sans-serif;
+$monoton: "Monoton", cursive;
+$opensans: "Open Sans", sans-serif;
 $header-font-family: $tungsten;
 $template-header-font-family: $monoton;
 $header-color-alt: lighten( $maroon, 12% );

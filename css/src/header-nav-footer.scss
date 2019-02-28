@@ -11,10 +11,10 @@
   Template:    genesis
 */
 
-@charset 'utf-8';
+@charset "utf-8";
 
-@import 'foundation';
-@import 'settings';
+@import "foundation";
+@import "settings";
 
 @include foundation-global-styles;
 // @include foundation-grid;
@@ -60,15 +60,15 @@
 
 // @include foundation-prototype-classes;
 
-@import 'all';
-@import 'mixins';
-@import 'accessibility';
-@import 'layout';
-@import 'header';
-@import 'navigation';
-@import 'column-classes';
-@import 'footer';
+@import "all";
+@import "mixins";
+@import "accessibility";
+@import "layout";
+@import "header";
+@import "navigation";
+@import "column-classes";
+@import "footer";
 
 // For template pages
-@import 'blog';
-@import 'template-default';
+@import "blog";
+@import "template-default";

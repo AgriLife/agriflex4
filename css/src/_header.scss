@@ -7,7 +7,7 @@
 }
 
 .no-js #header-search {
-  @include element-invisible;
+	@include element-invisible;
 }
 
 .site-header,
@@ -33,6 +33,7 @@
 
 	.site-title img {
 		transition: height .5s;
+		width: 168px;
 	}
 
 	.wrap.is-at-top {
@@ -50,7 +51,7 @@
 	}
 
 	.title-area {
-    width: 50%;
+		width: 50%;
 		font-weight: 700;
 		text-align: left;
 	}
@@ -63,19 +64,15 @@
 		}
 		color: #222;
 		text-rendering: optimizelegibility;
-
-		img {
-			width: 168px;
-		}
 	}
 
 	.title-bars {
-    width: 50%;
-    text-align: right;
-  }
+		width: 50%;
+		text-align: right;
+	}
 
 	.title-bar {
-		display: inline-block!important;
+		display: inline-block!important; // sass-lint:disable-line no-important
 	}
 
 	.title-bar-search {
@@ -90,7 +87,7 @@
 			height: 26px;
 			background: transparent url("../images/search-agrilife-white.png") no-repeat {
 				size: contain;
-			}
+			};
 		}
 
 		.title-bar-title {
@@ -114,8 +111,8 @@
 			}
 
 			input[type=search] {
-		    @include xy-cell(8, $gutter-type: margin, $gutters: 0);
-		    border-color: $gray-light;
+				@include xy-cell(8, $gutter-type: margin, $gutters: 0);
+				border-color: $gray-light;
 			}
 
 			input[type=submit] {
@@ -160,7 +157,7 @@
 		.layout-container {
 			@include xy-grid;
 			@include xy-grid-container($break-xlarge, 0);
-			max-width: $break-xlarge!important;
+			max-width: $break-xlarge!important; // sass-lint:disable-line no-important
 			padding: 2 * $site-padding 0 $site-padding;
 
 			#header-search {
@@ -209,7 +206,7 @@
 				border: 0 none;
 				background: transparent url("../images/search-agrilife-light.png") no-repeat {
 					size: contain;
-				}
+				};
 			}
 		}
 
