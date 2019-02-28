@@ -2,8 +2,6 @@
 #
 # Ensure the repository passes WordPress coding standards.
 #
-
-vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs
 vendor/bin/phpcs --standard=WordPress --report=source ./*.php ./src
 vendor/bin/phpcs --standard=WordPress ./*.php ./src
 if [[ $(vendor/bin/phpcs -q --standard=WordPress --report=source ./*.php ./src) ]]
