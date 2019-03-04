@@ -25,6 +25,10 @@
 	position: relative;
 	z-index: 3;
 
+	input[type="search"] {
+		color: $whiter;
+	}
+
 	.layout-container,
 	.title-area,
 	.title-bar {
