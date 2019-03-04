@@ -44,4 +44,24 @@
 			margin-top: 2%;
 		}
 	}
+
+	/* Ensure footer is always at the bottom of the window but not overlapping content. */
+	.site-container {
+		display: flex;
+		flex-direction: column;
+		height: 100vh;
+
+		.logged-in & {
+			height: calc(100vh - 32px);
+		}
+	}
+
+	.site-header,
+	.site-footer {
+		flex-shrink: 0;
+	}
+
+	.site-inner {
+		flex: 1 0 auto;
+	}
 }
