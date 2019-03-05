@@ -85,6 +85,10 @@ class AgriFlex {
 		require_once AF_THEME_DIRPATH . '/src/class-requireddom.php';
 		$af_required = new \AgriFlex\RequiredDOM();
 
+		// Make People plugin customizations.
+		require_once AF_THEME_DIRPATH . '/src/class-plugin-people.php';
+		$af_people = new \AgriFlex\People();
+
 	}
 
 	/**

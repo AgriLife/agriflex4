@@ -1,0 +1,41 @@
+.people-listing-ul {
+	line-height: 1.2;
+
+	.people-image {
+		margin: 0;
+		padding: 0 10px 10px 0;
+	}
+
+	.people-head,
+	.people-contact-details {
+		float: none;
+		width: 100%;
+	}
+
+	.people-contact-details {
+		padding-left: 0;
+	}
+
+	@include breakpoint(medium up) {
+		.people-container {
+			display: flex;
+
+			> * {
+				flex: 1 1 auto;
+			}
+		}
+
+		.people-image {
+			flex-shrink: 0;
+			width: 80px;
+		}
+
+		.people-contact-details {
+			padding-left: 20px;
+		}
+	}
+
+	.people-name {
+		font-size: 1.6rem;
+	}
+}
