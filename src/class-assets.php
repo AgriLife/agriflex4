@@ -126,10 +126,10 @@ class Assets {
 		);
 
 		wp_register_style(
-			'agriflex-hnf-styles',
-			AF_THEME_DIRURL . '/css/header-nav-footer.css',
+			'agriflex-global-styles',
+			AF_THEME_DIRURL . '/css/global.css',
 			array(),
-			filemtime( AF_THEME_DIRPATH . '/css/header-nav-footer.css' ),
+			filemtime( AF_THEME_DIRPATH . '/css/global.css' ),
 			'screen'
 		);
 
@@ -146,7 +146,7 @@ class Assets {
 
 		wp_enqueue_style( 'agriflex4-googlefonts' );
 		wp_enqueue_style( 'agriflex-default-styles' );
-		wp_enqueue_style( 'agriflex-hnf-styles' );
+		wp_enqueue_style( 'agriflex-global-styles' );
 
 	}
 
