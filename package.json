@@ -4,7 +4,8 @@
   "description": "Genesis child theme for Texas A&M AgriLife",
   "main": "functions.php",
   "scripts": {
-    "start": "git config core.hooksPath hooks && composer install && npm install && grunt"
+    "start": "git config core.hooksPath hooks && composer install && npm install && grunt",
+    "checkwp": "vendor/bin/phpcs --standard=WordPress --report=source ./*.php ./src && vendor/bin/phpcs --standard=WordPress ./*.php ./src"
   },
   "author": "Zachary Watkins",
   "license": "GPL-2.0+",
