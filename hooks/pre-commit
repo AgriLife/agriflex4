@@ -20,7 +20,7 @@ SASS=$(git diff --cached --name-only --diff-filter=AM | grep '.scss' | tr '\n' '
 node_modules/sass-lint/bin/sass-lint.js -c .sass-lint.yml '$SASS'
 grunt sasslint
 
-if [ $PHPFILES ] && [[ $(vendor/bin/phpcs -q --standard=WordPress --report=source ./*.php ./src) ]]
+if [ $PHPFILES ] && [[ $(vendor/bin/phpcs -q --standard=WordPress --report=source $PHPFILES) ]]
 then
 	echo "Fix all issues before commit."
 	exit 1
