@@ -6,17 +6,23 @@ nvm use 6
 #
 # Ensure the repository passes WordPress coding standards.
 #
-vendor/bin/phpcs --standard=WordPress --report=source ./*.php ./src
-vendor/bin/phpcs --standard=WordPress ./*.php ./src
+PHPFILES=$(git diff --cached --name-only --diff-filter=AM | grep '.php' | tr '\n' ' ')
+if [[ $PHPFILES ]]
+then
+	vendor/bin/phpcs --standard=WordPress --report=source $PHPFILES
+	vendor/bin/phpcs --standard=WordPress $PHPFILES
+fi
 
 #
 # Ensure the repository passes Grunt lint tasks
 #
+SASS=$(git diff --cached --name-only --diff-filter=AM | grep '.scss' | tr '\n' ' ')
+node_modules/sass-lint/bin/sass-lint.js -c .sass-lint.yml '$SASS'
 grunt sasslint
 
-if [[ $(vendor/bin/phpcs -q --standard=WordPress --report=source ./*.php ./src) ]]
+if [ $PHPFILES ] && [[ $(vendor/bin/phpcs -q --standard=WordPress --report=source ./*.php ./src) ]]
 then
-	echo "Fix the error before commit."
+	echo "Fix all issues before commit."
 	exit 1
 fi
 
