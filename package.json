@@ -5,7 +5,9 @@
   "main": "functions.php",
   "scripts": {
     "start": "git config core.hooksPath hooks && composer install && npm install && grunt",
-    "checkwp": "vendor/bin/phpcs --standard=WordPress --report=source ./*.php ./src && vendor/bin/phpcs --standard=WordPress ./*.php ./src"
+    "checkwp": "npm run configphpcs && npm run checkphp",
+    "configphpcs": "vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
+    "checkphp": "vendor/bin/phpcs --standard=WordPress --report=source ./*.php ./src && vendor/bin/phpcs --standard=WordPress ./*.php ./src"
   },
   "author": "Zachary Watkins",
   "license": "GPL-2.0+",
