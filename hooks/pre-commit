@@ -9,6 +9,7 @@ nvm use 6
 PHPFILES=$(git diff --cached --name-only --diff-filter=AM | grep '.php' | tr -d '\n')
 if [[ $PHPFILES ]]
 then
+	vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs
 	vendor/bin/phpcs --standard=WordPress --report=source $PHPFILES
 	vendor/bin/phpcs --standard=WordPress $PHPFILES
 fi
