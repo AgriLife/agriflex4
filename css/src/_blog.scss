@@ -1,15 +1,39 @@
 .blog {
-	h2.entry-title {
+	h2 {
+		font-size: 1.8rem;
 		clear: left;
+		margin: 0;
 	}
 
-	@include breakpoint(50rem) {
+	.entry-image-link {
+		display: block;
+		margin-bottom: 1rem;
+	}
+
+	.entry-meta {
+		margin: 0.25rem 0 0;
+	}
+
+	.entry-content {
+		margin-top: 1rem;
+
+		p {
+			margin: 0;
+		}
+	}
+
+	.post {
+		background-color: #F0F0F0;
+		padding: 1rem;
+		margin: 0 0 1rem;
+	}
+
+	@include breakpoint(medium) {
 		.post {
 			width: 46%;
 			padding: 2%;
 			margin: 2%;
 			float: left;
-			background-color: #F0F0F0;
 			position: relative;
 
 			.read-more {
@@ -17,11 +41,6 @@
 				bottom: 0;
 				right: 0;
 				margin: 10px 20px;
-			}
-
-			h2 {
-				font-size: 1.4rem;
-				margin-bottom: 1.2rem;
 			}
 		}
 	}
