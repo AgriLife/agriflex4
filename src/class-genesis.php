@@ -215,6 +215,7 @@ class Genesis {
 	private function remove_genesis_sidebars() {
 
 		unregister_sidebar( 'sidebar-alt' );
+		unregister_sidebar( 'header-right' );
 
 	}
 

@@ -1,6 +1,6 @@
 {
   "name": "agriflex4",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Genesis child theme for Texas A&M AgriLife",
   "main": "functions.php",
   "scripts": {
