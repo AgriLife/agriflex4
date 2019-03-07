@@ -1,5 +1,7 @@
-# AgriFlex4 (WordPress Theme) by AgriLife Communications
+# AgriFlex4
 [![Codeship Status for AgriLife/agriflex4/master](https://app.codeship.com/projects/084f08f0-b3b0-0136-4070-6a06c3a18961/status?branch=master)](https://app.codeship.com/projects/311058)
+
+This WordPress theme provides functionality and visual styles for AgriLife affiliated websites.
 
 ## WordPress Requirements
 
@@ -33,13 +35,14 @@ When you stage changes to this repository and initiate a commit, they must pass 
 ## Development Tasks
 
 1. Run "grunt develop" to compile the css when developing the plugin.
-3. Run "grunt watch" to automatically compile the css after saving a *.scss file.
+2. Run "grunt watch" to automatically compile the css after saving a *.scss file.
 3. Run "grunt" to compile the css when publishing the plugin.
-5. Run "npm run checkwp" to check PHP files against WordPress coding standards.
+4. Run "npm run checkwp" to check PHP files against WordPress coding standards.
 
 ## Development Requirements
 
 * Node: http://nodejs.org/
 * NPM: https://npmjs.org/
-* Ruby: http://www.ruby-lang.org/en/
+* Ruby: http://www.ruby-lang.org/en/, version >= 2.0.0p648
 * Ruby Gems: http://rubygems.org/
+* Ruby Sass: version >= 3.4.22
