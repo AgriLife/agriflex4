@@ -98,8 +98,8 @@ class Navigation {
 			)
 		);
 
-		$nav_markup_open  .= genesis_structural_wrap( 'menu-primary', 'open', 0 );
-		$nav_markup_close  = genesis_structural_wrap( 'menu-primary', 'close', 0 );
+		$nav_markup_open  .= genesis_get_structural_wrap( 'menu-primary', 'open' );
+		$nav_markup_close  = genesis_get_structural_wrap( 'menu-primary', 'close' );
 		$nav_markup_close .= genesis_html5() ? '</nav>' : '</div>';
 		$nav_output        = $before_nav . $nav_markup_open . $nav . $nav_markup_close;
 
