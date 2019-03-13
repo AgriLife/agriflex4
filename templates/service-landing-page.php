@@ -9,7 +9,7 @@
  */
 
 /**
- * Template Name: Communications - Home
+ * Template Name: Service Landing Page
  */
 remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
 remove_action( 'genesis_entry_header', 'genesis_entry_header_markup_open', 5 );
@@ -29,7 +29,7 @@ add_action( 'wp_enqueue_scripts', 'af4_service_enqueue_styles' );
  * @since 0.7.0
  * @return void
  */
-function af4_service_register_styles(){
+function af4_service_register_styles() {
 
 	wp_register_style(
 		'agriflex-service-lp-styles',
@@ -47,7 +47,7 @@ function af4_service_register_styles(){
  * @since 0.7.0
  * @return void
  */
-function af4_service_enqueue_styles(){
+function af4_service_enqueue_styles() {
 
 	wp_enqueue_style( 'agriflex-service-lp-styles' );
 
@@ -61,8 +61,8 @@ function af4_service_enqueue_styles(){
  */
 function af4_service_landing_page() {
 
-	$sections = get_field('sections');
-	$output = '<div class="service-landing">';
+	$sections = get_field( 'sections' );
+	$output   = '<div class="service-landing">';
 
 	foreach ( $sections as $section ) {
 
@@ -70,10 +70,10 @@ function af4_service_landing_page() {
 
 		// Create classes for section.
 		$section_type_class = str_replace( '_', '-', $section['acf_fc_layout'] );
-		$classes = array(
+		$classes            = array(
 			'section',
 			$section_type_class,
-			"columns-{$section['columns']}"
+			"columns-{$section['columns']}",
 		);
 
 		if ( 'none' !== $section['background_color'] ) {
@@ -90,7 +90,7 @@ function af4_service_landing_page() {
 		// Create section title.
 		$title_output = '';
 		if ( ! empty( $section['title']['text'] ) ) {
-			$title_class = '';
+			$title_class  = '';
 			$title_output = '<h2%s>%s</h2>';
 			if ( 'none' !== $section['title']['underline_color'] ) {
 				$title_class = " class=\"underline underline-{$section['title']['underline_color']}\"";
@@ -111,8 +111,8 @@ function af4_service_landing_page() {
 			$type = $section['items_group']['type'];
 			// Remove empty items.
 			$items = array();
-			foreach ($section['items_group'][$type] as $item) {
-				$filtered = array_filter($item);
+			foreach ( $section['items_group'][ $type ] as $item ) {
+				$filtered = array_filter( $item );
 				if ( ! empty( $filtered ) ) {
 					$items[] = $item;
 				}
@@ -120,7 +120,6 @@ function af4_service_landing_page() {
 
 			if ( 'card' === $type ) {
 				// Create cards items.
-
 				foreach ( $items as $key => $item ) {
 					// Image.
 					$image = '';
@@ -164,16 +163,15 @@ function af4_service_landing_page() {
 						$button
 					);
 				}
-			} else if ( 'flowchart' === $type ) {
+			} elseif ( 'flowchart' === $type ) {
 				// Create flowchart items.
-
 				foreach ( $items as $key => $item ) {
 					// Heading.
 					$heading = '';
 					$hfields = $item['heading_group'];
 					if ( ! empty( $hfields ) ) {
-						$htype = $hfields['type'];
-						$hchoice = $hfields[$htype];
+						$htype   = $hfields['type'];
+						$hchoice = $hfields[ $htype ];
 						$hinside = '';
 						if ( ! empty( $hchoice ) ) {
 							switch ( $htype ) {
@@ -199,7 +197,7 @@ function af4_service_landing_page() {
 										'tvmdl'     => 'TVMDL',
 										'forest'    => 'Forest Service',
 									);
-									$hinside = sprintf(
+									$hinside       = sprintf(
 										'<img class="logo" src="%s/images/logos/%s-%s.png" alt="%s">',
 										AF_THEME_DIRURL,
 										$hfields['logo'],
@@ -242,7 +240,7 @@ function af4_service_landing_page() {
 
 		$output .= sprintf(
 			'<div class="%s"><div class="layout-container">%s<div class="cells %s">%s</div></div></div>',
-			implode(' ', $classes),
+			implode( ' ', $classes ),
 			$title_output,
 			$section['items_group']['align'],
 			$repeater_output

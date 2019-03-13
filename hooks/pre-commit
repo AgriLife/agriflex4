@@ -18,14 +18,15 @@ else
 		phpFilesSeparator=" "
 	done
 
-	phplint=`vendor/bin/phpcs --standard=WordPress $PHPFILES`
+	phplint=`vendor/bin/phpcs --standard=WordPress $phpFilesStr`
+	echo $phpFilesStr;
 
 	# Try to fix files automatically with phpcbf
 	if [[ "$phplint" == *"FOUND"* ]]
 		then
-			vendor/bin/phpcbf --standard=WordPress $PHPFILES
-			git add $PHPFILES
-			phplint=`vendor/bin/phpcs --standard=WordPress $PHPFILES`
+			vendor/bin/phpcbf --standard=WordPress $phpFilesStr
+			git add $phpFilesStr
+			phplint=`vendor/bin/phpcs --standard=WordPress $phpFilesStr`
 	fi
 
 	echo "$phplint"
