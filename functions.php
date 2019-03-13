@@ -18,6 +18,7 @@ define( 'AF_THEME_DIRNAME', 'agriflex4' );
 define( 'AF_THEME_DIRPATH', get_stylesheet_directory() );
 define( 'AF_THEME_DIRURL', get_stylesheet_directory_uri() );
 define( 'AF_THEME_TEXTDOMAIN', 'agriflex4' );
+define( 'AF_THEME_TEMPLATE_PATH', AF_THEME_DIRPATH . '/templates' );
 
 // Autoload all classes.
 require_once AF_THEME_DIRPATH . '/src/class-agriflex.php';

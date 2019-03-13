@@ -1,0 +1,48 @@
+/// Arrow base styles
+///
+/// @param {Number} $z-index [2] - z-index value
+@mixin arrow-base ($z-index: 2) {
+	position: relative;
+
+	&::after {
+		content: "";
+		display: block;
+		width: 40px;
+		height: 40px;
+		border-style: solid;
+		border-width: 0 0 2px 2px;
+		transform: translate(-50%, 30%) rotate(-45deg);
+		position: absolute;
+		bottom: 0;
+		left: calc(50% - 2px);
+		z-index: $z-index;
+	}
+}
+
+/// Arrow color styles
+///
+/// @param {Color} $border-color [$light-blue] - CSS color value
+/// @param {Color} $bg-color [#FFF] - CSS color value
+@mixin arrow-color(
+	$border-color: $light-blue,
+	$bg-color: #FFF
+) {
+	&::after {
+		border-color: $border-color;
+		background-color: $bg-color;
+	}
+}
+
+/// Create an arrow below the current element
+///
+/// @param {Color} $border-color [$light-blue] - CSS color value
+/// @param {Color} $bg-color [#FFF] - CSS color value
+/// @param {Number} $z-index [2] - z-index value
+@mixin arrow (
+	$border-color: $light-blue,
+	$bg-color: #FFF,
+	$z-index: 2
+) {
+	@include arrow-base($z-index);
+	@include arrow-color($border-color, $bg-color);
+}

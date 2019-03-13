@@ -47,6 +47,8 @@ class AgriFlex {
 
 		add_action( 'init', array( $this, 'init' ) );
 
+		$this->register_templates();
+
 	}
 
 	/**
@@ -88,6 +90,25 @@ class AgriFlex {
 		// Make People plugin customizations.
 		require_once AF_THEME_DIRPATH . '/src/class-people.php';
 		$af_people = new \AgriFlex\People();
+
+		// Add page template custom fields.
+		if ( class_exists( 'acf' ) ) {
+			require_once AF_THEME_DIRPATH . '/fields/service-landing-page-fields.php';
+		}
+
+	}
+
+	/**
+	 * Initialize page templates
+	 *
+	 * @since 0.7.0
+	 * @return void
+	 */
+	private function register_templates() {
+
+		require_once AF_THEME_DIRPATH . '/src/class-pagetemplate.php';
+		$service = new \AgriFlex\PageTemplate( AF_THEME_TEMPLATE_PATH, 'service-landing-page.php', 'Service Landing Page' );
+		$service->register();
 
 	}
 

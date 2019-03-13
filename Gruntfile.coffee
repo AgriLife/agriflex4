@@ -24,6 +24,7 @@ module.exports = (grunt) ->
           'css/admin.css': 'css/admin.css'
           'css/default.css': 'css/default.css'
           'css/global.css': 'css/global.css'
+          'css/service-landing-page.css': 'css/service-landing-page.css'
       dev:
         options:
           map: true
@@ -35,6 +36,7 @@ module.exports = (grunt) ->
           'css/admin.css': 'css/admin.css'
           'css/default.css': 'css/default.css'
           'css/global.css': 'css/global.css'
+          'css/service-landing-page.css': 'css/service-landing-page.css'
     sass:
       pkg:
         options:
@@ -46,6 +48,7 @@ module.exports = (grunt) ->
           'css/admin.css': 'css/src/admin.scss'
           'css/default.css': 'css/src/default.scss'
           'css/global.css': 'css/src/global.scss'
+          'css/service-landing-page.css': 'css/src/service-landing-page.scss'
       dev:
         options:
           loadPath: 'node_modules/foundation-sites/scss'
@@ -55,6 +58,7 @@ module.exports = (grunt) ->
           'css/admin.css': 'css/src/admin.scss'
           'css/default.css': 'css/src/default.scss'
           'css/global.css': 'css/src/global.scss'
+          'css/service-landing-page.css': 'css/src/service-landing-page.scss'
     jsvalidate:
       options:
         globals:
@@ -65,12 +69,7 @@ module.exports = (grunt) ->
       targetName:
         files:
           src: [
-            'js/*.js',
-            'node_modules/foundation-sites/js/foundation/foundation?(.topbar).js',
-            'node_modules/foundation-sites/js/vendor/modernizr.js',
-            'bower_components/jquery/{dist,sizzle}/**/*.js',
-            'bower_components/jquery-placeholder/*.js',
-            'bower_components/jquery.cookie/jquery.cookie.js'
+            'js/*.js'
           ]
     sasslint:
       options:
@@ -86,6 +85,7 @@ module.exports = (grunt) ->
           {src: ['js/*.js']},
           {src: ['images/**']},
           {src: ['src/**']},
+          {src: ['templates/**']},
           {src: ['functions.php']},
           {src: ['search.php']},
           {src: ['members-only.php']},
