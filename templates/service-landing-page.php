@@ -17,6 +17,11 @@ remove_action( 'genesis_entry_header', 'genesis_entry_header_markup_close', 15 )
 add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_full_width_content' );
 add_action( 'genesis_after_entry', 'af4_service_landing_page' );
 
+// Conditionally show page title
+if ( false === get_field( 'heading_group' )['show_page_title'] ) {
+  remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
+}
+
 // Register styles used in the page template.
 add_action( 'wp_enqueue_scripts', 'af4_service_register_styles' );
 

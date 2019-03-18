@@ -3,11 +3,47 @@
 if( function_exists('acf_add_local_field_group') ):
 
 acf_add_local_field_group(array(
-	'key' => 'group_5c1bb37abe5ca',
+	'key' => 'group_6c1bb37abe5cb',
 	'title' => 'Service Landing Page',
 	'fields' => array(
 		array(
-			'key' => 'field_5c82929dc35e1',
+			'key' => 'field_6c8fbfba2f80c',
+			'label' => 'Heading',
+			'name' => 'heading_group',
+			'type' => 'group',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'layout' => 'block',
+			'sub_fields' => array(
+				array(
+					'key' => 'field_6c8fa0d6f1bee',
+					'label' => 'Show Page Title',
+					'name' => 'show_page_title',
+					'type' => 'true_false',
+					'instructions' => '',
+					'required' => 0,
+					'conditional_logic' => 0,
+					'wrapper' => array(
+						'width' => '',
+						'class' => '',
+						'id' => '',
+					),
+					'message' => '',
+					'default_value' => 1,
+					'ui' => 0,
+					'ui_on_text' => '',
+					'ui_off_text' => '',
+				),
+			),
+		),
+		array(
+			'key' => 'field_6c82929dc35e1',
 			'label' => 'Sections',
 			'name' => 'sections',
 			'type' => 'flexible_content',
@@ -27,7 +63,7 @@ acf_add_local_field_group(array(
 					'display' => 'block',
 					'sub_fields' => array(
 						array(
-							'key' => 'field_5c8297e1c35eb',
+							'key' => 'field_6c8297e1c35eb',
 							'label' => 'Title',
 							'name' => 'title',
 							'type' => 'group',
@@ -42,7 +78,7 @@ acf_add_local_field_group(array(
 							'layout' => 'block',
 							'sub_fields' => array(
 								array(
-									'key' => 'field_5c8297e1c35ec',
+									'key' => 'field_6c8297e1c35ec',
 									'label' => 'Text',
 									'name' => 'text',
 									'type' => 'text',
@@ -61,7 +97,7 @@ acf_add_local_field_group(array(
 									'maxlength' => '',
 								),
 								array(
-									'key' => 'field_5c8297e1c35ed',
+									'key' => 'field_6c8297e1c35ed',
 									'label' => 'Underline Color',
 									'name' => 'underline_color',
 									'type' => 'select',
@@ -70,7 +106,7 @@ acf_add_local_field_group(array(
 									'conditional_logic' => array(
 										array(
 											array(
-												'field' => 'field_5c8297e1c35ec',
+												'field' => 'field_6c8297e1c35ec',
 												'operator' => '!=empty',
 											),
 										),
@@ -98,7 +134,7 @@ acf_add_local_field_group(array(
 							),
 						),
 						array(
-							'key' => 'field_5c8297e1c35ee',
+							'key' => 'field_6c8297e1c35ee',
 							'label' => 'Background Color',
 							'name' => 'background_color',
 							'type' => 'select',
@@ -125,7 +161,7 @@ acf_add_local_field_group(array(
 							'placeholder' => '',
 						),
 						array(
-							'key' => 'field_5c8297e1c35ef',
+							'key' => 'field_6c8297e1c35ef',
 							'label' => 'Columns',
 							'name' => 'columns',
 							'type' => 'select',
@@ -153,7 +189,7 @@ acf_add_local_field_group(array(
 							'placeholder' => '',
 						),
 						array(
-							'key' => 'field_5c87c85f43675',
+							'key' => 'field_6c87c85f43675',
 							'label' => 'Items',
 							'name' => 'items_group',
 							'type' => 'group',
@@ -168,7 +204,7 @@ acf_add_local_field_group(array(
 							'layout' => 'block',
 							'sub_fields' => array(
 								array(
-									'key' => 'field_5c87c8da43676',
+									'key' => 'field_6c87c8da43676',
 									'label' => 'Alignment',
 									'name' => 'align',
 									'type' => 'select',
@@ -196,7 +232,7 @@ acf_add_local_field_group(array(
 									'placeholder' => '',
 								),
 								array(
-									'key' => 'field_5c87ce476762d',
+									'key' => 'field_6c87ce476762d',
 									'label' => 'Type',
 									'name' => 'type',
 									'type' => 'select',
@@ -223,7 +259,7 @@ acf_add_local_field_group(array(
 									'placeholder' => '',
 								),
 								array(
-									'key' => 'field_5c1bb3d180cc2',
+									'key' => 'field_6c1bb3d180cc2',
 									'label' => '',
 									'name' => 'card',
 									'type' => 'repeater',
@@ -232,7 +268,7 @@ acf_add_local_field_group(array(
 									'conditional_logic' => array(
 										array(
 											array(
-												'field' => 'field_5c87ce476762d',
+												'field' => 'field_6c87ce476762d',
 												'operator' => '==',
 												'value' => 'card',
 											),
@@ -250,7 +286,7 @@ acf_add_local_field_group(array(
 									'button_label' => 'Add Card',
 									'sub_fields' => array(
 										array(
-											'key' => 'field_5c1bb43146a76',
+											'key' => 'field_6c1bb43146a76',
 											'label' => 'Image',
 											'name' => 'image',
 											'type' => 'image',
@@ -274,7 +310,7 @@ acf_add_local_field_group(array(
 											'mime_types' => '',
 										),
 										array(
-											'key' => 'field_5c1bb45b46a77',
+											'key' => 'field_6c1bb45b46a77',
 											'label' => 'Title',
 											'name' => 'title',
 											'type' => 'text',
@@ -293,7 +329,7 @@ acf_add_local_field_group(array(
 											'maxlength' => '',
 										),
 										array(
-											'key' => 'field_5c1bb46246a78',
+											'key' => 'field_6c1bb46246a78',
 											'label' => 'Description',
 											'name' => 'description',
 											'type' => 'wysiwyg',
@@ -312,7 +348,7 @@ acf_add_local_field_group(array(
 											'delay' => 1,
 										),
 										array(
-											'key' => 'field_5c1bb4ab46a79',
+											'key' => 'field_6c1bb4ab46a79',
 											'label' => 'Button',
 											'name' => 'button',
 											'type' => 'link',
@@ -329,7 +365,7 @@ acf_add_local_field_group(array(
 									),
 								),
 								array(
-									'key' => 'field_5c1bb70f46a7d',
+									'key' => 'field_6c1bb70f46a7d',
 									'label' => '',
 									'name' => 'flowchart',
 									'type' => 'repeater',
@@ -338,7 +374,7 @@ acf_add_local_field_group(array(
 									'conditional_logic' => array(
 										array(
 											array(
-												'field' => 'field_5c87ce476762d',
+												'field' => 'field_6c87ce476762d',
 												'operator' => '==',
 												'value' => 'flowchart',
 											),
@@ -356,7 +392,7 @@ acf_add_local_field_group(array(
 									'button_label' => 'Add Flowchart Item',
 									'sub_fields' => array(
 										array(
-											'key' => 'field_5c87d3849ee2c',
+											'key' => 'field_6c87d3849ee2c',
 											'label' => 'Heading',
 											'name' => 'heading_group',
 											'type' => 'group',
@@ -371,7 +407,7 @@ acf_add_local_field_group(array(
 											'layout' => 'block',
 											'sub_fields' => array(
 												array(
-													'key' => 'field_5c87d41c9ee2e',
+													'key' => 'field_6c87d41c9ee2e',
 													'label' => 'Type',
 													'name' => 'type',
 													'type' => 'select',
@@ -399,7 +435,7 @@ acf_add_local_field_group(array(
 													'placeholder' => '',
 												),
 												array(
-													'key' => 'field_5c87d4149ee2d',
+													'key' => 'field_6c87d4149ee2d',
 													'label' => 'Text',
 													'name' => 'text',
 													'type' => 'text',
@@ -408,7 +444,7 @@ acf_add_local_field_group(array(
 													'conditional_logic' => array(
 														array(
 															array(
-																'field' => 'field_5c87d41c9ee2e',
+																'field' => 'field_6c87d41c9ee2e',
 																'operator' => '==',
 																'value' => 'text',
 															),
@@ -426,7 +462,7 @@ acf_add_local_field_group(array(
 													'maxlength' => '',
 												),
 												array(
-													'key' => 'field_5c82bd5f5c333',
+													'key' => 'field_6c82bd5f5c333',
 													'label' => 'Image',
 													'name' => 'image',
 													'type' => 'image',
@@ -435,7 +471,7 @@ acf_add_local_field_group(array(
 													'conditional_logic' => array(
 														array(
 															array(
-																'field' => 'field_5c87d41c9ee2e',
+																'field' => 'field_6c87d41c9ee2e',
 																'operator' => '==',
 																'value' => 'image',
 															),
@@ -458,7 +494,7 @@ acf_add_local_field_group(array(
 													'mime_types' => '',
 												),
 												array(
-													'key' => 'field_5c87e8f47f2b8',
+													'key' => 'field_6c87e8f47f2b8',
 													'label' => 'Logo',
 													'name' => 'logo',
 													'type' => 'select',
@@ -467,7 +503,7 @@ acf_add_local_field_group(array(
 													'conditional_logic' => array(
 														array(
 															array(
-																'field' => 'field_5c87d41c9ee2e',
+																'field' => 'field_6c87d41c9ee2e',
 																'operator' => '==',
 																'value' => 'logo',
 															),
@@ -497,7 +533,7 @@ acf_add_local_field_group(array(
 													'placeholder' => '',
 												),
 												array(
-													'key' => 'field_5c87f95ba83db',
+													'key' => 'field_6c87f95ba83db',
 													'label' => 'Logo Color',
 													'name' => 'logo_color',
 													'type' => 'select',
@@ -506,7 +542,7 @@ acf_add_local_field_group(array(
 													'conditional_logic' => array(
 														array(
 															array(
-																'field' => 'field_5c87d41c9ee2e',
+																'field' => 'field_6c87d41c9ee2e',
 																'operator' => '==',
 																'value' => 'logo',
 															),
@@ -518,11 +554,12 @@ acf_add_local_field_group(array(
 														'id' => '',
 													),
 													'choices' => array(
-														'color' => 'Color',
+														'standard' => 'Standard',
 														'white' => 'White',
+														'black' => 'Black',
 													),
 													'default_value' => array(
-														0 => 'normal',
+														0 => 'standard',
 													),
 													'allow_null' => 0,
 													'multiple' => 0,
@@ -534,7 +571,7 @@ acf_add_local_field_group(array(
 											),
 										),
 										array(
-											'key' => 'field_5c8298ccc35f9',
+											'key' => 'field_6c8298ccc35f9',
 											'label' => 'Line Color',
 											'name' => 'line_color',
 											'type' => 'select',
@@ -562,7 +599,7 @@ acf_add_local_field_group(array(
 											'placeholder' => '',
 										),
 										array(
-											'key' => 'field_5c1bbbae16db1',
+											'key' => 'field_6c1bbbae16db1',
 											'label' => 'Button',
 											'name' => 'button',
 											'type' => 'link',
@@ -581,7 +618,7 @@ acf_add_local_field_group(array(
 							),
 						),
 						array(
-							'key' => 'field_5c829b1dc35fa',
+							'key' => 'field_6c829b1dc35fa',
 							'label' => 'Arrow',
 							'name' => 'arrow_group',
 							'type' => 'group',
@@ -596,7 +633,7 @@ acf_add_local_field_group(array(
 							'layout' => 'block',
 							'sub_fields' => array(
 								array(
-									'key' => 'field_5c8297e1c35f5',
+									'key' => 'field_6c8297e1c35f5',
 									'label' => 'Show',
 									'name' => 'show',
 									'type' => 'true_false',
@@ -615,7 +652,7 @@ acf_add_local_field_group(array(
 									'ui_off_text' => '',
 								),
 								array(
-									'key' => 'field_5c829b5ec35fb',
+									'key' => 'field_6c829b5ec35fb',
 									'label' => 'Border color',
 									'name' => 'border_color',
 									'type' => 'select',
@@ -624,7 +661,7 @@ acf_add_local_field_group(array(
 									'conditional_logic' => array(
 										array(
 											array(
-												'field' => 'field_5c8297e1c35f5',
+												'field' => 'field_6c8297e1c35f5',
 												'operator' => '==',
 												'value' => '1',
 											),
