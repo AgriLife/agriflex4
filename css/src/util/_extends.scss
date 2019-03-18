@@ -1,0 +1,36 @@
+%h1 {
+	text-align: center;
+	padding: 1em 0;
+
+	&:after {
+		content: "";
+		display: block;
+		width: 4rem;
+		margin: 1.5rem auto 0;
+		border-bottom: 2px solid #B4D234;
+	}
+}
+
+%h2 {
+	text-align: center;
+	display: inline-block;
+
+	&::after {
+		content: "";
+		display: block;
+		margin: 0.4rem auto 0;
+		border-bottom: 2px solid #27A9E1;
+	}
+
+	a {
+		color: #0A0A0A;
+
+		&, &:hover {
+			text-decoration: none;
+		}
+
+		&:hover {
+			color: #500000;
+		}
+	}
+}
