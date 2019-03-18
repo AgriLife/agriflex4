@@ -1,13 +1,30 @@
-.page-template-service-landing-page .entry-content {
-	max-width: 54rem;
-	margin: 0 auto;
-	padding: {
-		left: 2rem;
-		right: 2rem;
+@import "util/extends";
+
+.page-template-service-landing-page {
+	.entry {
+		margin-top: 2%;
+		margin-bottom: 2%;
+
+		h1 {
+			@extend %h1;
+		}
+
+		h2 {
+			@extend %h2;
+		}
 	}
 
-	& > p:first-child {
-		margin-top: $paragraph-margin-bottom;
+	.entry-content {
+		max-width: 54rem;
+		margin: 0 auto;
+		padding: {
+			left: 2rem;
+			right: 2rem;
+		}
+
+		& > p:first-child {
+			margin-top: $paragraph-margin-bottom;
+		}
 	}
 }
 

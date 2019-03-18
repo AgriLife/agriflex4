@@ -11,15 +11,16 @@
 /**
  * Template Name: Service Landing Page
  */
-remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
 remove_action( 'genesis_entry_header', 'genesis_entry_header_markup_open', 5 );
 remove_action( 'genesis_entry_header', 'genesis_entry_header_markup_close', 15 );
 add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_full_width_content' );
 add_action( 'genesis_after_entry', 'af4_service_landing_page' );
 
-// Conditionally show page title
+add_filter( 'genesis_attr_entry', 'af4_genesis_attributes_entry' );
+
+// Conditionally show page title.
 if ( false === get_field( 'heading_group' )['show_page_title'] ) {
-  remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
+	remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
 }
 
 // Register styles used in the page template.
@@ -27,6 +28,20 @@ add_action( 'wp_enqueue_scripts', 'af4_service_register_styles' );
 
 // Enqueue styles used in the page template.
 add_action( 'wp_enqueue_scripts', 'af4_service_enqueue_styles' );
+
+/**
+ * Add attributes for entry element.
+ *
+ * @since 0.7.1
+ *
+ * @param array $attributes Existing attributes.
+ *
+ * @return array Amended attributes.
+ */
+function af4_genesis_attributes_entry( $attributes ) {
+	$attributes['class'] .= ' layout-container';
+	return $attributes;
+}
 
 /**
  * Register page template styles
@@ -71,10 +86,14 @@ function af4_service_landing_page() {
 
 	foreach ( $sections as $section ) {
 
-		$type = $section['acf_fc_layout'];
+		if ( array_key_exists( 'acf_fc_layout', $section ) ) {
+			$type = $section['acf_fc_layout'];
+		} else {
+			$type = '';
+		}
 
 		// Create classes for section.
-		$section_type_class = str_replace( '_', '-', $section['acf_fc_layout'] );
+		$section_type_class = str_replace( '_', '-', $type );
 		$classes            = array(
 			'section',
 			$section_type_class,
