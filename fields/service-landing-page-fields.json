@@ -551,12 +551,12 @@
                                                             "id": ""
                                                         },
                                                         "choices": {
-                                                            "standard": "Standard",
+                                                            "color": "Standard",
                                                             "white": "White",
                                                             "black": "Black"
                                                         },
                                                         "default_value": [
-                                                            "standard"
+                                                            "color"
                                                         ],
                                                         "allow_null": 0,
                                                         "multiple": 0,
