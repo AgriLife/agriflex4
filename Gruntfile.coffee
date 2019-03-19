@@ -23,7 +23,6 @@ module.exports = (grunt) ->
         files:
           'css/admin.css': 'css/admin.css'
           'css/default.css': 'css/default.css'
-          'css/global.css': 'css/global.css'
           'css/service-landing-page.css': 'css/service-landing-page.css'
       dev:
         options:
@@ -35,7 +34,6 @@ module.exports = (grunt) ->
         files:
           'css/admin.css': 'css/admin.css'
           'css/default.css': 'css/default.css'
-          'css/global.css': 'css/global.css'
           'css/service-landing-page.css': 'css/service-landing-page.css'
     sass:
       pkg:
@@ -47,7 +45,6 @@ module.exports = (grunt) ->
         files:
           'css/admin.css': 'css/src/admin.scss'
           'css/default.css': 'css/src/default.scss'
-          'css/global.css': 'css/src/global.scss'
           'css/service-landing-page.css': 'css/src/service-landing-page.scss'
       dev:
         options:
@@ -57,7 +54,6 @@ module.exports = (grunt) ->
         files:
           'css/admin.css': 'css/src/admin.scss'
           'css/default.css': 'css/src/default.scss'
-          'css/global.css': 'css/src/global.scss'
           'css/service-landing-page.css': 'css/src/service-landing-page.scss'
     jsvalidate:
       options:
