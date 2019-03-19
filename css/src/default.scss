@@ -4,6 +4,7 @@
 
 @import "foundation";
 @import "settings";
+@import "util/mixins";
 
 @include foundation-global-styles;
 // @include foundation-grid;
@@ -50,7 +51,6 @@
 // @include foundation-prototype-classes;
 
 @import "all";
-@import "util/mixins";
 @import "accessibility";
 @import "layout";
 // @import "header";
