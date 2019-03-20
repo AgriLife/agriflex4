@@ -29,11 +29,16 @@
 	}
 
 	@include breakpoint(medium) {
+		.content {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
 		.post {
-			width: 46%;
+			flex: 1 0 auto;
+			width: 29.3%;
 			padding: 2%;
 			margin: 2%;
-			float: left;
 			position: relative;
 
 			.read-more {
@@ -42,6 +47,11 @@
 				right: 0;
 				margin: 10px 20px;
 			}
+		}
+
+		&.content-sidebar .content .post {
+			width: 46%;
+			min-width: 250px;
 		}
 	}
 }
