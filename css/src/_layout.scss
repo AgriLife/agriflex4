@@ -3,6 +3,13 @@
 	padding: 0 1rem;
 }
 
+.content-sidebar-wrap,
+.sidebar-content-wrap {
+	.content {
+		margin-top: 1rem;
+	}
+}
+
 @include breakpoint(medium up) {
 	.site-inner {
 		padding: 0;
@@ -21,7 +28,6 @@
 		.content {
 			@include xy-cell-base();
 			@include xy-cell(8, $gutter-type: padding, $gutters: 2rem);
-			margin-top: 2%;
 
 			.full-width-content & {
 				@include xy-cell(12, $gutter-type: padding, $gutters: 2rem);

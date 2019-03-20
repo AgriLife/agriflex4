@@ -32,13 +32,15 @@
 		.content {
 			display: flex;
 			flex-wrap: wrap;
+			padding-left: 0;
+			padding-right: 0;
 		}
 
 		.post {
 			flex: 1 0 auto;
 			width: 29.3%;
 			padding: 2%;
-			margin: 2%;
+			margin: 1rem;
 			position: relative;
 
 			.read-more {
