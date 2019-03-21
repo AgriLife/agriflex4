@@ -1,0 +1,32 @@
+.archive-pagination {
+	ul {
+		list-style-type: none;
+		margin-left: 0;
+
+		li {
+			display: inline-block;
+			border: 1px solid $maroon;
+			border-radius: 8px;
+			padding: 6px;
+			line-height: 1;
+
+			&.pagination-omission {
+				border-color: transparent;
+			}
+
+			&.active {
+				background-color: $dark-blue;
+				border-color: $dark-blue;
+
+				a {
+					color: $whiter;
+					font-weight: bold;
+				}
+			}
+
+			a {
+				text-decoration: none;
+			}
+		}
+	}
+}
