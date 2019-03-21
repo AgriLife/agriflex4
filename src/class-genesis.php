@@ -75,7 +75,7 @@ class Genesis {
 		remove_action( 'wp_head', 'genesis_custom_header_style' );
 
 		// Add Read More excerpt link.
-		add_filter( 'excerpt_more', array( $this, 'agriflex_auto_excerpt_more' ) );
+		add_filter( 'excerpt_more', array( $this, 'agriflex_auto_excerpt_more' ), 11 );
 
 		// Relocate primary navigation menu.
 		remove_action( 'genesis_after_header', 'genesis_do_nav' );

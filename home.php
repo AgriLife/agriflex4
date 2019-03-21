@@ -14,10 +14,10 @@ remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_open', 5 );
 remove_action( 'genesis_entry_footer', 'genesis_post_meta' );
 remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_close', 15 );
 add_filter( 'genesis_post_info', 'af4_post_meta_filter' );
-add_filter( 'excerpt_more', 'af4_remove_more_link' );
+add_filter( 'excerpt_more', 'af4_remove_more_link', 12 );
 
 /**
- * Registers admin styles
+ * Modify post meta data.
  *
  * @since 0.6.4
  * @param string $post_info The post meta content using shortcodes.
@@ -29,13 +29,13 @@ function af4_post_meta_filter( $post_info ) {
 }
 
 /**
- * Registers admin styles
+ * Removes the read-more link from the excerpt.
  *
  * @since 0.6.4
  * @return string
  */
 function af4_remove_more_link() {
-	return '';
+	return '...';
 }
 
 genesis();
