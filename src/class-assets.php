@@ -30,10 +30,10 @@ class Assets {
 		add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_styles' ) );
 
 		// Register global scripts used in the theme.
-		add_action( 'wp_enqueue_scripts', array( $this, 'register_public_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_public_scripts' ), 11 );
 
 		// Enqueue global scripts.
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_scripts' ), 13 );
 
 		// Register global styles used in the theme.
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_public_styles' ) );
