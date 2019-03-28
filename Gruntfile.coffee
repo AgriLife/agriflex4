@@ -76,17 +76,15 @@ module.exports = (grunt) ->
         options:
           archive: '<%= pkg.name %>.zip'
         files: [
-          {src: ['style.css']},
           {src: ['css/*.css']},
-          {src: ['js/*.js']},
           {src: ['images/**']},
+          {src: ['js/*.js']},
           {src: ['src/**']},
           {src: ['templates/**']},
-          {src: ['functions.php']},
-          {src: ['search.php']},
-          {src: ['members-only.php']},
+          {src: ['vendor/autoload.php', 'vendor/composer/**']},
+          {src: ['*.php']},
           {src: ['readme.md']},
-          {src: ['vendor/autoload.php', 'vendor/composer/**']}
+          {src: ['style.css']}
         ]
     concat:
       dist:
