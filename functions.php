@@ -11,7 +11,6 @@
 
 // Initialize Genesis.
 require_once get_template_directory() . '/lib/init.php';
-require 'vendor/autoload.php';
 
 // Define some useful constants.
 define( 'AF_THEME_DIRNAME', 'agriflex4' );
