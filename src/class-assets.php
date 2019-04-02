@@ -36,10 +36,20 @@ class Assets {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_scripts' ), 13 );
 
 		// Register global styles used in the theme.
-		add_action( 'wp_enqueue_scripts', array( $this, 'register_public_styles' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_public_styles' ), 1 );
 
 		// Enqueue global styles.
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_styles' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_styles' ), 1 );
+
+		// Register global styles used in the theme.
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_external_styles' ), 3 );
+
+		// Enqueue global styles.
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_external_styles' ), 3 );
+
+		// Remove unneeded default assets.
+		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+		remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
 	}
 
@@ -71,6 +81,27 @@ class Assets {
 	 */
 	public function register_public_scripts() {
 
+		// Move default jquery script to the footer.
+		wp_deregister_script( 'jquery' );
+		wp_deregister_script( 'jquery-migrate' );
+
+		wp_register_script(
+			'jquery',
+			includes_url( '/js/jquery/jquery.js' ),
+			false,
+			'1.12.4',
+			true
+		);
+
+		wp_register_script(
+			'jquery-migrate',
+			includes_url( '/js/jquery/jquery-migrate.min.js' ),
+			false,
+			'1.4.1',
+			true
+		);
+
+		// Theme scripts.
 		wp_register_script(
 			'foundation',
 			AF_THEME_DIRURL . '/js/foundation.concat.js',
@@ -97,6 +128,8 @@ class Assets {
 	 */
 	public function enqueue_public_scripts() {
 
+		wp_enqueue_script( 'jquery' );
+		wp_enqueue_script( 'jquery-migrate' );
 		wp_enqueue_script( 'foundation' );
 		wp_enqueue_script( 'agriflex-public' );
 
@@ -109,13 +142,6 @@ class Assets {
 	 * @return void
 	 */
 	public function register_public_styles() {
-
-		wp_register_style(
-			'agriflex4-googlefonts',
-			'https://fonts.googleapis.com/css?family=Oswald|Monoton|Open+Sans',
-			array(),
-			'1.0.0'
-		);
 
 		wp_register_style(
 			'agriflex-default-styles',
@@ -136,8 +162,37 @@ class Assets {
 	 */
 	public function enqueue_public_styles() {
 
-		wp_enqueue_style( 'agriflex4-googlefonts' );
 		wp_enqueue_style( 'agriflex-default-styles' );
+
+	}
+
+	/**
+	 * Registers third party styles
+	 *
+	 * @since 1.0.1
+	 * @return void
+	 */
+	public function register_external_styles() {
+
+		wp_register_style(
+			'agriflex4-googlefonts',
+			'https://fonts.googleapis.com/css?family=Oswald|Monoton|Open+Sans',
+			array(),
+			'1.0.0',
+			'all'
+		);
+
+	}
+
+	/**
+	 * Enqueues third party styles
+	 *
+	 * @since 1.0.1
+	 * @return void
+	 */
+	public function enqueue_external_styles() {
+
+		wp_enqueue_style( 'agriflex4-googlefonts' );
 
 	}
 
