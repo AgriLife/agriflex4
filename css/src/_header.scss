@@ -6,10 +6,6 @@
 	}
 }
 
-.no-js #header-search {
-	@include element-invisible;
-}
-
 .site-header,
 #header-search {
 	clear: both;
@@ -100,6 +96,13 @@
 	}
 
 	@include breakpoint(small only) {
+
+		.no-js & {
+			#header-search,
+			.nav-primary {
+				@include element-invisible;
+			}
+		}
 
 		#header-search {
 			margin: 1rem;
