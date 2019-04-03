@@ -349,10 +349,15 @@ class Genesis {
 	public function add_logo( $title, $inside, $wrap ) {
 
 		$logo = sprintf( '<img src="%s">', AF_THEME_DIRURL . '/images/logo-agrilife.png' );
+		$home = home_url();
+
+		if ( ! preg_match( '/\/agrilife\.org(\/)?$/', $home ) ) {
+			$home = trailingslashit( $home );
+		}
 
 		$new_inside = sprintf(
 			'<a href="%s" title="Texas A&M AgriLife">%s</a>',
-			trailingslashit( home_url() ),
+			$home,
 			$logo
 		);
 
