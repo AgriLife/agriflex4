@@ -15,6 +15,12 @@
 	a {
 		color: $footer-text;
 		text-decoration: none;
+
+		&:focus,
+		&:hover {
+			color: $footer-link-active;
+			text-decoration: underline;
+		}
 	}
 
 	ul {
