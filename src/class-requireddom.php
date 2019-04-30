@@ -42,7 +42,7 @@ class RequiredDOM {
 		add_filter( 'af4_before_nav', array( $this, 'add_search_toggle' ), 10, 4 );
 
 		// Add search form after navigation menu.
-		add_action( 'genesis_header', array( $this, 'add_search_form' ) );
+		add_action( 'genesis_header', array( $this, 'add_header_right_widgets' ) );
 
 	}
 
@@ -198,16 +198,20 @@ class RequiredDOM {
 	}
 
 	/**
-	 * Add header search form
+	 * Add header right widget area
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.6
 	 * @return void
 	 */
-	public function add_search_form() {
+	public function add_header_right_widgets() {
 
-		echo '<div id="header-search">';
-		get_search_form();
-		echo '</div>';
+		genesis_widget_area(
+			'af4-header-right',
+			array(
+				'before' => '<div id="header-search" class="header-right-widget-area">',
+				'after'  => '</div>',
+			)
+		);
 
 	}
 

@@ -7,7 +7,7 @@
 }
 
 .site-header,
-#header-search {
+.header-right-widget-area {
 	clear: both;
 }
 
@@ -98,32 +98,32 @@
 	@include breakpoint(small only) {
 
 		.no-js & {
-			#header-search,
+			.header-right-widget-area,
 			.nav-primary {
 				@include element-invisible;
 			}
 		}
 
-		#header-search {
+		.header-right-widget-area {
 			margin: 1rem;
-		}
 
-		#header-search form {
-			@include xy-grid;
+			form {
+				@include xy-grid;
 
-			input[type=search],
-			input[type=submit] {
-				@include xy-cell-base();
-				margin: 0;
-			}
+				input[type=search],
+				input[type=submit] {
+					@include xy-cell-base();
+					margin: 0;
+				}
 
-			input[type=search] {
-				@include xy-cell(8, $gutter-type: margin, $gutters: 0);
-				border-color: $gray-light;
-			}
+				input[type=search] {
+					@include xy-cell(8, $gutter-type: margin, $gutters: 0);
+					border-color: $gray-light;
+				}
 
-			input[type=submit] {
-				@include xy-cell(auto, $gutters: 1rem, $gutter-position: (left));
+				input[type=submit] {
+					@include xy-cell(auto, $gutters: 1rem, $gutter-position: (left));
+				}
 			}
 		}
 
@@ -167,7 +167,7 @@
 			max-width: $break-xlarge!important; // sass-lint:disable-line no-important
 			padding: 2 * $site-padding 0 $site-padding;
 
-			#header-search {
+			.header-right-widget-area {
 				@include xy-cell-base();
 				@include xy-cell(3, $gutter-type: padding, $gutters: 2rem);
 			}

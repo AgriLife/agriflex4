@@ -56,6 +56,9 @@ class Genesis {
 		// Remove unneeded sidebars.
 		$this->remove_genesis_sidebars();
 
+		// Add widget areas.
+		$this->add_widget_areas();
+
 		// Remove site description.
 		remove_action( 'genesis_site_description', 'genesis_seo_site_description' );
 
@@ -216,6 +219,24 @@ class Genesis {
 
 		unregister_sidebar( 'sidebar-alt' );
 		unregister_sidebar( 'header-right' );
+
+	}
+
+	/**
+	 * Adds sidebars
+	 *
+	 * @since 1.0.6
+	 * @return void
+	 */
+	private function add_widget_areas() {
+
+		genesis_register_sidebar(
+			array(
+				'name'        => __( 'Header - Right', 'agrilife-today' ),
+				'id'          => 'af4-header-right',
+				'description' => __( 'This is the widget area for the right side of the header.', 'agrilife-today' ),
+			)
+		);
 
 	}
 
