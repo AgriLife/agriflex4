@@ -49,6 +49,12 @@
 			@include xy-cell-base();
 			@include xy-cell(auto, $gutter-type: padding, $gutters: 2rem);
 
+			> .wrap {
+				display: flex;
+				flex: 1 1 auto;
+				height: 100%;
+			}
+
 			.submenu li {
 				border-left: 2px solid $topbar-submenu-background;
 
