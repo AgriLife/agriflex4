@@ -156,16 +156,11 @@
 	@include breakpoint(medium) {
 		text-align: left;
 
-		.title-area,
-		.title-bars {
-			margin-bottom: $site-padding;
-		}
-
 		.layout-container {
 			@include xy-grid;
 			@include xy-grid-container($break-xlarge, 0);
 			max-width: $break-xlarge!important; // sass-lint:disable-line no-important
-			padding: 2 * $site-padding 0 $site-padding;
+			padding: 2 * $site-padding 0;
 
 			.header-right-widget-area {
 				@include xy-cell-base();
