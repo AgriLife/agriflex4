@@ -17,7 +17,6 @@
 	font-variant-ligatures: none;
 	letter-spacing: .1em;
 	background: $site-title-background;
-	transition: height .5s;
 	position: relative;
 	z-index: 3;
 
@@ -25,14 +24,7 @@
 		color: $whiter;
 	}
 
-	.layout-container,
-	.title-area,
-	.title-bar {
-		transition: padding .5s, margin .5s;
-	}
-
 	.site-title img {
-		transition: height .5s;
 		width: 168px;
 	}
 
