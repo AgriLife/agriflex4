@@ -30,23 +30,11 @@
 	h2 {
 		@extend %h2;
 	}
+}
 
-	.button {
-		display: inline-block;
+.button {
+	&,
+	&:hover {
 		background-color: #B4D234;
-		padding: 10px 50px;
-		text-transform: uppercase;
-		font-weight: bold;
-	}
-
-	a.button {
-		text-decoration: none;
-	}
-
-	@include breakpoint(50rem) {
-		.entry-content {
-			max-width: 50rem;
-			margin: 0 auto;
-		}
 	}
 }

@@ -35,3 +35,19 @@
 		}
 	}
 }
+
+%button {
+	display: inline-block;
+	background-color: $button-background;
+	padding: 10px 50px;
+	text-transform: uppercase;
+	font-weight: bold;
+
+	@at-root a.button {
+		text-decoration: none;
+	}
+
+	&.button-radius {
+		border-radius: $button-radius;
+	}
+}

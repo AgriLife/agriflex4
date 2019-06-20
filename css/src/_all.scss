@@ -5,3 +5,7 @@
 		align-items: right;
 	}
 }
+
+.button {
+	@extend %button;
+}
