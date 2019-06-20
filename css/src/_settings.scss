@@ -8,7 +8,7 @@ $break-medium: map-get($breakpoints, medium);
 $break-large: map-get($breakpoints, large);
 $break-xlarge: map-get($breakpoints, xlarge);
 $break-medium: map-get($breakpoints, medium);
-$breakpoint-classes: (small medium large xlarge xxlarge);
+$breakpoint-classes: (small medium);
 
 /* Colors
 --------------------------------------------- */
