@@ -9,7 +9,16 @@
 @include foundation-global-styles;
 // @include foundation-grid;
 // @include foundation-flex-grid;
-// @include foundation-xy-grid-classes;
+@include foundation-xy-grid-classes(
+	$base-grid: true,
+	$margin-grid: true,
+	$padding-grid: false,
+	$block-grid: false,
+	$collapse: true,
+	$offset: false,
+	$vertical-grid: false,
+	$frame-grid: false
+);
 @include foundation-typography;
 // @include foundation-button;
 @include foundation-forms;
