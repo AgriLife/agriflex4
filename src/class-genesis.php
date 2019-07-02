@@ -74,7 +74,7 @@ class Genesis {
 		add_action( 'genesis_theme_settings_metaboxes', array( $this, 'remove_genesis_metaboxes' ) );
 
 		// Add Foundation XY Grid Classes.
-		add_filter( 'genesis_structural_wrap-site-inner', array( $this, 'struc_class_grid_container' ) );
+		add_filter( 'genesis_structural_wrap-site-inner', array( $this, 'class_site_inner_wrap' ) );
 		add_filter( 'genesis_attr_content-sidebar-wrap', array( $this, 'class_grid_x_content' ) );
 		add_filter( 'genesis_attr_sidebar-content-wrap', array( $this, 'class_grid_x_content' ) );
 		add_filter( 'genesis_attr_content-wrap', array( $this, 'class_grid_x_content' ) );
@@ -107,9 +107,9 @@ class Genesis {
 	 * @param string $output The wrap HTML.
 	 * @return string
 	 */
-	public function struc_class_grid_container( $output ) {
+	public function class_site_inner_wrap( $output ) {
 
-		$output = str_replace( 'class="', 'class="grid-container full ', $output );
+		$output = str_replace( 'class="', 'class="grid-container ', $output );
 
 		return $output;
 
