@@ -1,9 +1,13 @@
-
 .site-inner {
 	padding: 0 1rem;
 }
 
 @include breakpoint(medium up) {
+
+	.layout-container {
+		@include xy-grid-container($break-xlarge, 0);
+	}
+
 	.site-inner {
 		padding: 0;
 
