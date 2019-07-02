@@ -25,3 +25,21 @@ ul.reset > li {
 .button {
 	@extend %button;
 }
+
+table {
+	border-collapse: collapse;
+	margin-bottom: $paragraph-margin-bottom;
+
+	&,
+	& td {
+		border: $table-border;
+	}
+
+	td {
+		padding: 0.5rem 0.75rem;
+	}
+}
+
+hr {
+	width: 100%;
+}

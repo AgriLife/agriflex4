@@ -46,3 +46,79 @@
 	@include arrow-base($z-index);
 	@include arrow-color($border-color, $bg-color);
 }
+
+/// Create brackets on opposite sides of an element
+///
+/// @param {Color} $color [$light-blue] - CSS color value
+/// @param {Number} $border-width [2px] - Width of the bracket line
+/// @param {Number} $width [10px] - Length of the bracket arms
+/// @param {String} $axis [x] - If "x" the brackets will appear on the left and right;
+///                             if "y" they will appear above and below
+/// @param {Number} $padding [rem-calc(10 20)] - Padding of the element which ensures its contents
+///                                              are far enough away from the brackets
+@mixin brackets (
+	$color: $light-blue,
+	$border-width: 2px,
+	$width: 10px,
+	$axis: x,
+	$padding: rem-calc(10 20)
+) {
+	position: relative;
+	padding: $padding;
+
+	&::before,
+	&::after {
+		flex: 0 0 auto;
+		content: "";
+		display: block;
+		position: absolute;
+		border: {
+			color: $color;
+			style: solid;
+		}
+
+		@if $axis == x {
+			top: 0;
+			height: 100%;
+			width: $width;
+		}
+		@if $axis == y {
+			left: 0;
+			height: $width;
+			width: 100%;
+		}
+	}
+
+	&::before {
+		@if $axis == x {
+			left: 0;
+			border-width: $border-width 0 $border-width $border-width;
+		}
+		@if $axis == y {
+			top: 0;
+			border-width: $border-width $border-width 0 $border-width;
+		}
+	}
+
+	&::after {
+		@if $axis == x {
+			right: 0;
+			border-width: $border-width $border-width $border-width 0;
+		}
+		@if $axis == y {
+			bottom: 0;
+			border-width: 0 $border-width $border-width $border-width;
+		}
+	}
+
+	@include breakpoint(small only) {
+		padding: $width $width * 2;
+	}
+}
+
+@mixin bracket-color ($color: $light-blue) {
+	&::before,
+	&::after {
+		border-color: $color;
+	}
+}
