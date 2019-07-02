@@ -46,9 +46,6 @@
 		}
 
 		.nav-primary {
-			@include xy-cell-base();
-			@include xy-cell(auto, $gutter-type: padding, $gutters: 2rem);
-
 			> .wrap {
 				display: flex;
 				flex: 1 1 auto;

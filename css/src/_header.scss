@@ -37,13 +37,7 @@
 		color: $site-title-color;
 	}
 
-	.title-area,
-	.title-bars {
-		display: inline-block;
-	}
-
 	.title-area {
-		width: 50%;
 		font-weight: 700;
 		text-align: left;
 	}
@@ -59,7 +53,6 @@
 	}
 
 	.title-bars {
-		width: 50%;
 		text-align: right;
 	}
 
@@ -120,7 +113,7 @@
 		}
 
 		.is-stuck {
-			.layout-container {
+			.grid-container {
 				padding: {
 					top: rem-calc(10);
 					bottom: rem-calc(10);
@@ -148,19 +141,9 @@
 	@include breakpoint(medium) {
 		text-align: left;
 
-		.layout-container {
-			@include xy-grid;
-			@include xy-grid-container($break-xlarge, 0);
-			max-width: $break-xlarge!important; // sass-lint:disable-line no-important
 			padding: 2 * $site-padding 0;
 
-			.header-right-widget-area {
-				@include xy-cell-base();
-				@include xy-cell(3, $gutter-type: padding, $gutters: 2rem);
-			}
-
-			.title-area {
-				@include xy-cell(2, $gutter-type: padding, $gutters: 2rem);
+		.grid-container {
 			}
 		}
 
@@ -209,8 +192,8 @@
 				width: 152px;
 			}
 
-			.layout-container {
 				padding: $site-padding 0;
+			.grid-container {
 			}
 		}
 

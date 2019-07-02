@@ -57,19 +57,7 @@
 	@include breakpoint(medium up) {
 		text-align: left;
 
-		.wrap {
-			@include xy-grid;
-			@include xy-grid-container($break-xlarge, 0);
-		}
-
-		.footer-container {
-			@include xy-cell-base();
-			@include xy-cell-static(10, $gutter-type: padding, $gutters: 2rem);
-		}
-
 		.footer-container-tamus {
-			@include xy-cell-base();
-			@include xy-cell-static(2, $gutter-type: padding, $gutters: 2rem);
 			text-align: right;
 		}
 

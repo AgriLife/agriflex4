@@ -39,7 +39,7 @@ add_action( 'wp_enqueue_scripts', 'af4_service_enqueue_styles' );
  * @return array Amended attributes.
  */
 function af4_genesis_attributes_entry( $attributes ) {
-	$attributes['class'] .= ' layout-container';
+	$attributes['class'] .= ' grid-container';
 	return $attributes;
 }
 
@@ -263,7 +263,7 @@ function af4_service_landing_page() {
 		}
 
 		$output .= sprintf(
-			'<div class="%s"><div class="layout-container">%s<div class="cells %s">%s</div></div></div>',
+			'<div class="%s"><div class="grid-container">%s<div class="cells %s">%s</div></div></div>',
 			implode( ' ', $classes ),
 			$title_output,
 			$section['items_group']['align'],

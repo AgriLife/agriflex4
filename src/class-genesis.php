@@ -73,6 +73,17 @@ class Genesis {
 		// Remove some Genesis settings metaboxes.
 		add_action( 'genesis_theme_settings_metaboxes', array( $this, 'remove_genesis_metaboxes' ) );
 
+		// Add Foundation XY Grid Classes.
+		add_filter( 'genesis_structural_wrap-site-inner', array( $this, 'struc_class_grid_container' ) );
+		add_filter( 'genesis_attr_content-sidebar-wrap', array( $this, 'class_grid_x_content' ) );
+		add_filter( 'genesis_attr_sidebar-content-wrap', array( $this, 'class_grid_x_content' ) );
+		add_filter( 'genesis_attr_content-wrap', array( $this, 'class_grid_x_content' ) );
+		add_filter( 'genesis_attr_title-area', array( $this, 'class_cell_title_area' ) );
+		add_filter( 'genesis_attr_nav-primary', array( $this, 'class_cell_nav_primary' ) );
+		add_filter( 'genesis_attr_content', array( $this, 'class_cell_content' ) );
+		add_filter( 'genesis_attr_sidebar-primary', array( $this, 'class_cell_sidebar' ) );
+		add_filter( 'genesis_structural_wrap-footer', array( $this, 'class_footer_wrap' ) );
+
 		// Sticky Header.
 		add_filter( 'genesis_structural_wrap-header', array( $this, 'sticky_header' ) );
 		remove_action( 'wp_head', 'genesis_custom_header_style' );
@@ -87,6 +98,108 @@ class Genesis {
 		// Replace site title with logo.
 		add_filter( 'genesis_seo_title', array( $this, 'add_logo' ), 10, 3 );
 
+	}
+
+	/**
+	 * Add grid-container class name
+	 *
+	 * @since 0.1.0
+	 * @param string $output The wrap HTML.
+	 * @return string
+	 */
+	public function struc_class_grid_container( $output ) {
+
+		$output = str_replace( 'class="', 'class="grid-container full ', $output );
+
+		return $output;
+
+	}
+
+	/**
+	 * Add header title area cell class names
+	 *
+	 * @since 0.1.0
+	 * @param array $attributes HTML attributes.
+	 * @return array
+	 */
+	public function class_grid_container( $attributes ) {
+		$attributes['class'] .= ' grid-container full';
+		return $attributes;
+	}
+
+	/**
+	 * Add grid-x class name
+	 *
+	 * @since 0.1.0
+	 * @param string $output The wrap HTML.
+	 * @return string
+	 */
+	public function class_footer_wrap( $output ) {
+
+		$output = str_replace( 'class="', 'class="grid-container full grid-x grid-padding-x ', $output );
+
+		return $output;
+	}
+
+	/**
+	 * Add grid-x class name
+	 *
+	 * @since 0.1.0
+	 * @param array $attributes HTML attributes.
+	 * @return array
+	 */
+	public function class_grid_x_content( $attributes ) {
+		$margin               = 'full-width-content' === genesis_site_layout() ? '' : ' grid-padding-x';
+		$attributes['class'] .= " grid-x$margin";
+		return $attributes;
+	}
+
+	/**
+	 * Add header title area cell class names
+	 *
+	 * @since 0.1.0
+	 * @param array $attributes HTML attributes.
+	 * @return array
+	 */
+	public function class_cell_title_area( $attributes ) {
+		$attributes['class'] .= ' cell small-6 medium-2';
+		return $attributes;
+	}
+
+	/**
+	 * Add header nav primary cell class names
+	 *
+	 * @since 0.1.0
+	 * @param array $attributes HTML attributes.
+	 * @return array
+	 */
+	public function class_cell_nav_primary( $attributes ) {
+		$attributes['class'] .= ' cell small-12 medium-auto';
+		return $attributes;
+	}
+
+	/**
+	 * Add content cell class names
+	 *
+	 * @since 0.1.0
+	 * @param array $attributes HTML attributes.
+	 * @return array
+	 */
+	public function class_cell_content( $attributes ) {
+		$attributes['class'] .= ' cell small-12 medium-auto';
+		return $attributes;
+	}
+
+	/**
+	 * Add sidebar cell class names
+	 *
+	 * @since 0.1.0
+	 * @param array $attributes HTML attributes.
+	 * @return array
+	 */
+	public function class_cell_sidebar( $attributes ) {
+		$attributes['class'] .= ' cell small-12 medium-4';
+		return $attributes;
 	}
 
 	/**
@@ -324,8 +437,8 @@ class Genesis {
 	 */
 	public function sticky_header( $output ) {
 
-		$output = preg_replace( '/<div class="wrap"/', '<div class="wrap" data-sticky-container><div class="wrap" data-sticky data-options="stickyOn:small;marginTop:0;"><div class="layout-container"', $output );
-		$output = preg_replace( '/<\/div>$/', '</div></div></div>', $output );
+		$output = preg_replace( '/<div class="wrap"/', '<div class="wrap" data-sticky-container><div class="wrap" data-sticky data-options="stickyOn:small;marginTop:0;"><div class="grid-container"><div class="grid-x grid-padding-x"', $output );
+		$output = preg_replace( '/<\/div>$/', '</div></div></div></div>', $output );
 
 		return $output;
 

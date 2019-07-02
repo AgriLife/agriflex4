@@ -13,41 +13,9 @@
 @include breakpoint(medium up) {
 	.site-inner {
 		padding: 0;
-	}
 
-	.agency-wrap,
-	.site-inner > .wrap,
-	.layout-container {
-		@include xy-grid-container($break-xlarge, 0);
-	}
-
-	.content-sidebar-wrap,
-	.sidebar-content-wrap {
-		@include xy-grid;
-
-		.content {
-			@include xy-cell-base();
-			@include xy-cell(8, $gutter-type: padding, $gutters: 2rem);
-
-			.full-width-content & {
-				@include xy-cell(12, $gutter-type: padding, $gutters: 2rem);
+		> .grid-container {
 			}
-		}
-
-		.sidebar {
-			@include xy-cell-base();
-			@include xy-cell(4, $gutter-type: padding, $gutters: 2rem);
-			margin-top: 2%;
-		}
-	}
-
-	.content-wrap {
-		@include xy-grid;
-
-		.content {
-			@include xy-cell-base();
-			@include xy-cell(12, $gutter-type: padding, $gutters: 2rem);
-			margin-top: 2%;
 		}
 	}
 
