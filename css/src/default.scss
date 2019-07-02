@@ -11,8 +11,8 @@
 // @include foundation-flex-grid;
 @include foundation-xy-grid-classes(
 	$base-grid: true,
-	$margin-grid: true,
-	$padding-grid: false,
+	$margin-grid: false,
+	$padding-grid: true,
 	$block-grid: false,
 	$collapse: true,
 	$offset: false,
