@@ -32,8 +32,8 @@
 		background: $site-title-background;
 	}
 
-	.layout-container {
-		padding: $site-padding;
+	.grid-container {
+		padding: $grid-margin-gutters / 2;
 		color: $site-title-color;
 	}
 
@@ -141,9 +141,10 @@
 	@include breakpoint(medium) {
 		text-align: left;
 
-			padding: 2 * $site-padding 0;
-
 		.grid-container {
+			padding: {
+				top: 2 * $site-padding;
+				bottom: 2 * $site-padding;
 			}
 		}
 
@@ -192,8 +193,11 @@
 				width: 152px;
 			}
 
-				padding: $site-padding 0;
 			.grid-container {
+				padding: {
+					top: $site-padding;
+					bottom: $site-padding;
+				}
 			}
 		}
 
