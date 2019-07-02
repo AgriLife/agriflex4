@@ -136,7 +136,7 @@ class Genesis {
 	 */
 	public function class_footer_wrap( $output ) {
 
-		$output = str_replace( 'class="', 'class="grid-container full grid-x grid-padding-x ', $output );
+		$output = str_replace( 'class="', 'class="grid-container grid-x grid-padding-x ', $output );
 
 		return $output;
 	}
