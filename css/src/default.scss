@@ -21,7 +21,14 @@
 );
 @include foundation-typography;
 // @include foundation-button;
-@include foundation-forms;
+@include foundation-form-text;
+@include foundation-form-checkbox;
+@include foundation-form-label;
+// @include foundation-form-helptext;
+// @include foundation-form-prepostfix;
+@include foundation-form-fieldset;
+@include foundation-form-select;
+// @include foundation-form-error;
 // @include foundation-range-input;
 // @include foundation-accordion;
 @include foundation-accordion-menu;
