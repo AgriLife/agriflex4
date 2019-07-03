@@ -5,6 +5,7 @@
 @import "foundation";
 @import "settings";
 @import "util/mixins";
+@import "util/extends";
 
 @include foundation-global-styles;
 // @include foundation-grid;
