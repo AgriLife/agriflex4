@@ -149,8 +149,7 @@ class Genesis {
 	 * @return array
 	 */
 	public function class_grid_x_content( $attributes ) {
-		$margin               = 'full-width-content' === genesis_site_layout() ? '' : ' grid-padding-x';
-		$attributes['class'] .= " grid-x$margin";
+		$attributes['class'] .= ' grid-x grid-padding-x';
 		return $attributes;
 	}
 
