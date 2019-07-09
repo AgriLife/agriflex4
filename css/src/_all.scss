@@ -43,3 +43,7 @@ table {
 hr {
 	width: 100%;
 }
+
+input[disabled] + label {
+	color: $gray-light;
+}
