@@ -1,17 +1,9 @@
 /* Default Page and Post styles */
 
 .page-template {
-	&.full-width-content .content-sidebar-wrap .content,
-	&.full-width-content .sidebar-content-wrap .content {
-		padding: 0;
-	}
 
 	.content-sidebar-wrap .content {
 		margin-top: 0;
-	}
-
-	.site-inner {
-		padding: 0;
 	}
 }
 

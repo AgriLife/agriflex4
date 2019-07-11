@@ -1,5 +1,9 @@
 .site-inner {
 	padding: 0 1rem;
+
+	> .grid-container {
+		padding-top: $grid-padding-gutters;
+	}
 }
 
 @include breakpoint(medium up) {
