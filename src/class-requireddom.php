@@ -33,7 +33,8 @@ class RequiredDOM {
 
 		// Replace default Genesis footer.
 		remove_action( 'genesis_footer', 'genesis_do_footer' );
-		add_action( 'genesis_before', array( $this, 'build_footer_content' ) );
+		add_action( 'genesis_footer', array( $this, 'render_required_links' ) );
+		add_action( 'genesis_footer', array( $this, 'render_tamus_logo' ) );
 
 		// Alter header tags for SEO.
 		add_filter( 'genesis_seo_title', array( $this, 'alter_title_tag' ), 10, 3 );
@@ -120,19 +121,6 @@ class RequiredDOM {
 		);
 
 		return $title;
-
-	}
-
-	/**
-	 * Add required links to bottom of page
-	 *
-	 * @since 1.0
-	 * @return void
-	 */
-	public function build_footer_content() {
-
-		add_action( 'genesis_footer', array( $this, 'render_required_links' ) );
-		add_action( 'genesis_footer', array( $this, 'render_tamus_logo' ) );
 
 	}
 
