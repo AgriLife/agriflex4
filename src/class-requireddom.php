@@ -34,7 +34,10 @@ class RequiredDOM {
 		// Replace default Genesis footer.
 		remove_action( 'genesis_footer', 'genesis_do_footer' );
 		add_action( 'genesis_footer', array( $this, 'render_required_links' ) );
-		add_action( 'genesis_footer', array( $this, 'render_tamus_logo' ) );
+
+		if ( ! is_plugin_active( 'af4-college/af4-college.php' ) ) {
+			add_action( 'genesis_footer', array( $this, 'render_tamus_logo' ) );
+		}
 
 		// Alter header tags for SEO.
 		add_filter( 'genesis_seo_title', array( $this, 'alter_title_tag' ), 10, 3 );
