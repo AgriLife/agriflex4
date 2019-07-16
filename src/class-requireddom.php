@@ -33,7 +33,9 @@ class RequiredDOM {
 
 		// Replace default Genesis footer.
 		remove_action( 'genesis_footer', 'genesis_do_footer' );
-		add_action( 'genesis_footer', array( $this, 'render_required_links' ) );
+		add_action( 'genesis_footer', array( $this, 'open_required_links_container' ), 8 );
+		add_action( 'genesis_footer', array( $this, 'render_required_links' ), 10 );
+		add_action( 'genesis_footer', array( $this, 'close_required_links_container' ), 12 );
 
 		if ( ! is_plugin_active( 'af4-college/af4-college.php' ) ) {
 			add_action( 'genesis_footer', array( $this, 'render_tamus_logo' ) );
@@ -128,6 +130,30 @@ class RequiredDOM {
 	}
 
 	/**
+	 * Render required links open tag
+	 *
+	 * @since 1.0
+	 * @return void
+	 */
+	public static function open_required_links_container() {
+
+		echo wp_kses_post( '<div class="footer-container cell medium-auto small-12">' );
+
+	}
+
+	/**
+	 * Render required links close tag
+	 *
+	 * @since 1.0
+	 * @return void
+	 */
+	public static function close_required_links_container() {
+
+		echo wp_kses_post( '</div>' );
+
+	}
+
+	/**
 	 * Render required links
 	 *
 	 * @since 1.0
@@ -135,7 +161,7 @@ class RequiredDOM {
 	 */
 	public static function render_required_links() {
 
-		$output  = '<div class="footer-container cell medium-auto small-12"><ul class="req-links">';
+		$output  = '<ul class="req-links">';
 		$output .= '<li><a href="http://agrilife.org/required-links/compact/">Compact with Texans</a></li>';
 		$output .= '<li><a href="http://agrilife.org/required-links/privacy/">Privacy and Security</a></li>';
 		$output .= '<li><a href="http://itaccessibility.tamu.edu/" target="_blank">Accessibility Policy</a></li>';
@@ -148,7 +174,7 @@ class RequiredDOM {
 		$output .= '<li><a href="http://veterans.portal.texas.gov/">Texas Veterans Portal</a></li>';
 		$output .= '<li><a href="http://agrilifeas.tamu.edu/hr/diversity/equal-opportunity-educational-programs/" target="_blank">Equal Opportunity</a></li>';
 		$output .= '<li class="last"><a href="http://agrilife.org/required-links/orpi/">Open Records/Public Information</a></li>';
-		$output .= '</ul></div>';
+		$output .= '</ul>';
 
 		echo wp_kses_post( $output );
 
