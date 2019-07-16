@@ -135,7 +135,7 @@ class RequiredDOM {
 	 */
 	public static function render_required_links() {
 
-		$output  = '<div class="footer-container cell medium-10 small-12"><ul class="req-links">';
+		$output  = '<div class="footer-container cell medium-auto small-12"><ul class="req-links">';
 		$output .= '<li><a href="http://agrilife.org/required-links/compact/">Compact with Texans</a></li>';
 		$output .= '<li><a href="http://agrilife.org/required-links/privacy/">Privacy and Security</a></li>';
 		$output .= '<li><a href="http://itaccessibility.tamu.edu/" target="_blank">Accessibility Policy</a></li>';
