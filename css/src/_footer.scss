@@ -21,9 +21,13 @@
 			color: $footer-link-active;
 			text-decoration: underline;
 		}
+
+		&.underline {
+			text-decoration: underline;
+		}
 	}
 
-	ul {
+	.req-links {
 		margin-left: 0;
 		font: {
 			family: $footer-font-family;
