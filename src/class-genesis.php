@@ -481,14 +481,17 @@ class Genesis {
 	 */
 	public function add_logo( $title, $inside, $wrap ) {
 
-		$logo = sprintf( '<img src="%s">', AF_THEME_DIRURL . '/images/logo-agrilife.png' );
-		$home = trailingslashit( home_url() );
-
+		$logo_html  = '<a href="%s" title="%s"><img src="%s"></a>';
+		$logo_url   = AF_THEME_DIRURL . '/images/logo-agrilife.png';
+		$home       = trailingslashit( home_url() );
 		$new_inside = sprintf(
-			'<a href="%s" title="Texas A&M AgriLife">%s</a>',
+			$logo_html,
 			$home,
-			$logo
+			'Texas A&M AgriLife',
+			$logo_url
 		);
+
+		$new_inside = apply_filters( 'af4_header_logo', $new_inside, $logo_html );
 
 		$title = str_replace( $inside, $new_inside, $title );
 
