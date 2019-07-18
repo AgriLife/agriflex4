@@ -55,7 +55,10 @@ body {
 			box-sizing: border-box;
 			max-width: 100%;
 			min-width: 282px;
-			margin: 0 $flow-margin-x $paragraph-margin-bottom 0;
+			margin: {
+				top: $paragraph-margin-bottom / 4;
+				bottom: $flow-margin-x;
+			}
 
 			&.alignleft,
 			&.alignright {
@@ -65,12 +68,6 @@ body {
 			&.is-large,
 			&.is-style-large {
 				width: calc(60% - #{$flow-margin-x});
-				margin: 0 $flow-margin-x $paragraph-margin-bottom 0;
-			}
-
-			&[style*="text-align:right"],
-			&.alignright {
-				margin: 0 0 $paragraph-margin-bottom $flow-margin-x;
 			}
 		}
 
@@ -110,6 +107,11 @@ body {
 		&.is-large p {
 			line-height: 1.3;
 		}
+
+		&.alignwide,
+		&.alignfull {
+			margin-bottom: $paragraph-margin-bottom;
+		}
 	}
 
 	.wp-block-quote {
@@ -124,7 +126,6 @@ body {
 	.wp-block-pullquote {
 		@include brackets($width: 20px, $axis: y);
 		clear: both;
-		margin-bottom: $paragraph-margin-bottom;
 		padding: $flow-margin-x;
 
 		&.alignleft,
@@ -241,12 +242,12 @@ body {
 	------------------------- */
 	.alignleft {
 		float: left;
-		margin: 0 $flow-margin-x $paragraph-margin-bottom 0;
+		margin-right: $flow-margin-x;
 	}
 
 	.alignright {
 		float: right;
-		margin: 0 0 $paragraph-margin-bottom $flow-margin-x;
+		margin-left: $flow-margin-x;
 	}
 
 	&.full-width-content {
