@@ -49,6 +49,8 @@ class AgriFlex {
 
 		$this->register_templates();
 
+		$this->require_classes();
+
 	}
 
 	/**
@@ -71,30 +73,42 @@ class AgriFlex {
 	 */
 	public function init() {
 
-		// Get Genesis setup the way we want it.
-		require_once AF_THEME_DIRPATH . '/src/class-genesis.php';
-		$af_genesis = new \AgriFlex\Genesis();
-
-		// Enqueue our assets.
-		require_once AF_THEME_DIRPATH . '/src/class-assets.php';
-		$af_assets = new \AgriFlex\Assets();
-
-		// Fix the navigation.
-		require_once AF_THEME_DIRPATH . '/src/class-navigation.php';
-		$af_navigation = new \AgriFlex\Navigation();
-
-		// Add AgriLife Required DOM Elements.
-		require_once AF_THEME_DIRPATH . '/src/class-requireddom.php';
-		$af_required = new \AgriFlex\RequiredDOM();
-
-		// Make People plugin customizations.
-		require_once AF_THEME_DIRPATH . '/src/class-people.php';
-		$af_people = new \AgriFlex\People();
-
 		// Add page template custom fields.
 		if ( class_exists( 'acf' ) ) {
 			require_once AF_THEME_DIRPATH . '/fields/service-landing-page-fields.php';
 		}
+
+	}
+
+	/**
+	 * Load classes so they are visible to plugins.
+	 *
+	 * @since 1.3.5
+	 * @return void
+	 */
+	private function require_classes() {
+
+		require_once AF_THEME_DIRPATH . '/src/class-assets.php';
+		require_once AF_THEME_DIRPATH . '/src/class-genesis.php';
+		require_once AF_THEME_DIRPATH . '/src/class-requireddom.php';
+		require_once AF_THEME_DIRPATH . '/src/class-navigation.php';
+		require_once AF_THEME_DIRPATH . '/src/class-people.php';
+
+		// Get Genesis setup the way we want it.
+		$af_genesis = new \AgriFlex\Genesis();
+
+		// Enqueue our assets.
+		$af_assets = new \AgriFlex\Assets();
+
+		// Fix the navigation.
+		$af_navigation = new \AgriFlex\Navigation();
+
+		// Add AgriLife Required DOM Elements.
+		global $af_required;
+		$af_required = new \AgriFlex\RequiredDOM();
+
+		// Make People plugin customizations.
+		$af_people = new \AgriFlex\People();
 
 	}
 

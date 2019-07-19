@@ -73,6 +73,7 @@ class Navigation {
 		$args['items_wrap'] = '<ul id="%s" class="%s" data-responsive-menu="accordion medium-dropdown">%s</ul>';
 
 		$nav_menu = wp_nav_menu( $args );
+		$nav_menu = apply_filters( 'af4_primary_nav_menu', $nav_menu );
 
 		$title_bars = array(
 			'wrap_open'  => '<div class="title-bars cell small-6 title-bar-right show-for-small-only">',
@@ -84,8 +85,27 @@ class Navigation {
 
 		$before_nav = apply_filters( 'af4_before_nav', $title_bars['all'], $title_bars['wrap_open'], $title_bars['wrap_close'], $title_bars['inside'] );
 
+		$top_bar_atts = array( 'class' => 'top-bar-left' );
+		$top_bar_atts = apply_filters( 'af4_top_bar_left_attr', $top_bar_atts );
+		$top_bar_att  = '';
+
+		// Cycle through attributes, build tag attribute string.
+		foreach ( $top_bar_atts as $key => $value ) {
+
+			if ( ! $value ) {
+				continue;
+			}
+
+			if ( true === $value ) {
+				$top_bar_att .= esc_html( $key ) . ' ';
+			} else {
+				$top_bar_att .= sprintf( '%s="%s" ', esc_html( $key ), esc_attr( $value ) );
+			}
+		}
+
 		$nav = sprintf(
-			'<div class="top-bar" id="nav-menu-primary"><section class="top-bar-left">%s</section></div>',
+			'<div class="top-bar" id="nav-menu-primary"><section %s>%s</section></div>',
+			$top_bar_att,
 			$nav_menu
 		);
 

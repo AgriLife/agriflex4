@@ -21,6 +21,13 @@ namespace AgriFlex;
 class RequiredDOM {
 
 	/**
+	 * Instance
+	 *
+	 * @var instance
+	 */
+	private static $instance;
+
+	/**
 	 * Initialize the class
 	 *
 	 * @since 0.1.0
@@ -36,10 +43,7 @@ class RequiredDOM {
 		add_action( 'genesis_footer', array( $this, 'open_required_links_container' ), 8 );
 		add_action( 'genesis_footer', array( $this, 'render_required_links' ), 10 );
 		add_action( 'genesis_footer', array( $this, 'close_required_links_container' ), 12 );
-
-		if ( ! is_plugin_active( 'af4-college/af4-college.php' ) ) {
-			add_action( 'genesis_footer', array( $this, 'render_tamus_logo' ) );
-		}
+		add_action( 'genesis_footer', array( $this, 'render_tamus_logo' ) );
 
 		// Alter header tags for SEO.
 		add_filter( 'genesis_seo_title', array( $this, 'alter_title_tag' ), 10, 3 );
@@ -49,6 +53,18 @@ class RequiredDOM {
 
 		// Add search form after navigation menu.
 		add_action( 'genesis_header', array( $this, 'add_header_right_widgets' ) );
+
+	}
+
+	/**
+	 * Return instance of class
+	 *
+	 * @since 0.1.0
+	 * @return object.
+	 */
+	public static function get_instance() {
+
+		return null === self::$instance ? new self() : self::$instance;
 
 	}
 
@@ -218,17 +234,51 @@ class RequiredDOM {
 	 * Add header right widget area
 	 *
 	 * @since 1.0.6
-	 * @return void
+	 * @param string $content If not empty then this function is running on a filter hook.
+	 * @return string
 	 */
-	public function add_header_right_widgets() {
+	public static function add_header_right_widgets( $content ) {
+
+		$defaults = array(
+			'class' => 'cell small-12 medium-3 header-right-widget-area',
+			'id'    => 'header-search',
+		);
+		$attr     = apply_filters( 'af4_header_right_attr', $defaults );
+		$output   = '';
+
+		// Cycle through attributes, build tag attribute string.
+		foreach ( $attr as $key => $value ) {
+
+			if ( ! $value ) {
+				continue;
+			}
+
+			if ( true === $value ) {
+				$output .= esc_html( $key ) . ' ';
+			} else {
+				$output .= sprintf( '%s="%s" ', esc_html( $key ), esc_attr( $value ) );
+			}
+		}
+
+		$before = sprintf( '<div %s>', $output );
+
+		if ( ! empty( $content ) ) {
+			ob_start();
+		}
 
 		genesis_widget_area(
 			'af4-header-right',
 			array(
-				'before' => '<div id="header-search" class="cell small-12 medium-3 header-right-widget-area">',
+				'before' => $before,
 				'after'  => '</div>',
 			)
 		);
+
+		if ( ! empty( $content ) ) {
+			$widget_area = ob_get_clean();
+
+			return $content .= $widget_area;
+		}
 
 	}
 

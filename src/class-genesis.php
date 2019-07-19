@@ -491,7 +491,7 @@ class Genesis {
 			$logo_url
 		);
 
-		$new_inside = apply_filters( 'af4_header_logo', $new_inside, $logo_html );
+		$new_inside = apply_filters( 'af4_header_logo', $new_inside, $inside, $logo_html, $home );
 
 		$title = str_replace( $inside, $new_inside, $title );
 
