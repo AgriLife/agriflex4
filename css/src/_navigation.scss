@@ -14,6 +14,10 @@
 		}
 	}
 
+	.dropdown.menu > li.is-dropdown-submenu-parent > a::after {
+		right: $dropdownmenu-padding-left;
+	}
+
 	.title-bar.title-bar-navigation {
 		.menu-icon {
 			@include hamburger(
