@@ -98,7 +98,20 @@ class CustomNavigationWalker extends \Walker_Nav_Menu {
 		 */
 
 		if ( $args->walker->has_children ) {
-			$classes[] = 'is-dropdown-submenu-parent';
+
+			$classes[]         = 'is-dropdown-submenu-parent';
+			$locations         = get_nav_menu_locations(); // Getting the locations of the nav menus array.
+			$menu              = wp_get_nav_menu_object( $locations['primary'] ); // Getting the menu calling the walker from the array.
+			$menu_items        = wp_get_nav_menu_items( $menu->term_id ); // Getting the menu item objects array from the menu.
+			$menu_item_parents = array_map(
+				function( $o ) {
+						return $o->menu_item_parent;
+				},
+				$menu_items
+			); // Getting the parent ids by looping through the menu item objects array. This will give an array of parent ids and the number of their children.
+			$children_count    = array_count_values( $menu_item_parents )[ $item->ID ]; // Get number of children menu item has.
+			$classes[]         = "child-count-{$children_count}";
+
 		}
 
 		$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) );
