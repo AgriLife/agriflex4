@@ -114,6 +114,12 @@ class CustomNavigationWalker extends \Walker_Nav_Menu {
 
 		}
 
+		if ( '#' !== $item->url && ! empty( $item->url ) ) {
+			$classes[] = 'linked';
+		} else {
+			$classes[] = 'unlinked';
+		}
+
 		$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) );
 		$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
 
