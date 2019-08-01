@@ -78,7 +78,7 @@ class Genesis {
 		add_filter( 'genesis_attr_content-sidebar-wrap', array( $this, 'class_grid_x_content' ) );
 		add_filter( 'genesis_attr_sidebar-content-wrap', array( $this, 'class_grid_x_content' ) );
 		add_filter( 'genesis_attr_content-wrap', array( $this, 'class_grid_x_content' ) );
-		add_filter( 'genesis_attr_title-area', array( $this, 'class_cell_title_area' ) );
+		add_filter( 'genesis_attr_title-area', array( $this, 'class_cell_title_area' ), 10 );
 		add_filter( 'genesis_attr_nav-primary', array( $this, 'class_cell_nav_primary' ) );
 		add_filter( 'genesis_attr_content', array( $this, 'class_cell_content' ) );
 		add_filter( 'genesis_attr_sidebar-primary', array( $this, 'class_cell_sidebar' ) );

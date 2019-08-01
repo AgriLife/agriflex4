@@ -95,6 +95,7 @@ class AgriFlex {
 		require_once AF_THEME_DIRPATH . '/src/class-people.php';
 
 		// Get Genesis setup the way we want it.
+		global $af_genesis;
 		$af_genesis = new \AgriFlex\Genesis();
 
 		// Enqueue our assets.

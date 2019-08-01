@@ -71,19 +71,12 @@ class Navigation {
 		require_once AF_THEME_DIRPATH . '/src/class-customnavigationwalker.php';
 		$args['walker']     = new \AgriFlex\CustomNavigationWalker();
 		$args['items_wrap'] = '<ul id="%s" class="%s" data-responsive-menu="accordion medium-dropdown">%s</ul>';
+		$args['class']      = apply_filters( 'af4_primary_nav_class', array( 'nav-primary', 'cell', 'small-12', 'medium-auto' ) );
 
 		$nav_menu = wp_nav_menu( $args );
 		$nav_menu = apply_filters( 'af4_primary_nav_menu', $nav_menu );
 
-		$title_bars = array(
-			'wrap_open'  => '<div class="title-bars cell small-6 title-bar-right show-for-small-only">',
-			'wrap_close' => '</div>',
-			'inside'     => '<div class="title-bar title-bar-navigation" data-responsive-toggle="nav-menu-primary"><button class="menu-icon" type="button" data-toggle="nav-menu-primary"></button><div class="title-bar-title" data-toggle="nav-menu-primary">Menu</div></div>',
-		);
-
-		$title_bars['all'] = $title_bars['wrap_open'] . $title_bars['inside'] . $title_bars['wrap_close'];
-
-		$before_nav = apply_filters( 'af4_before_nav', $title_bars['all'], $title_bars['wrap_open'], $title_bars['wrap_close'], $title_bars['inside'] );
+		$before_nav = apply_filters( 'af4_before_nav', '' );
 
 		$top_bar_atts = array( 'class' => 'top-bar-left' );
 		$top_bar_atts = apply_filters( 'af4_top_bar_left_attr', $top_bar_atts );
@@ -111,7 +104,7 @@ class Navigation {
 
 		$nav_markup_open = genesis_markup(
 			array(
-				'html5'   => '<nav class="nav-primary cell small-12 medium-auto" role="navigation">',
+				'html5'   => sprintf( '<nav class="%s" role="navigation">', implode( ' ', $args['class'] ) ),
 				'xhtml'   => '<div id="nav">',
 				'context' => 'nav-primary',
 				'echo'    => false,

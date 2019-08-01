@@ -49,7 +49,11 @@ class RequiredDOM {
 		add_filter( 'genesis_seo_title', array( $this, 'alter_title_tag' ), 10, 3 );
 		add_filter( 'genesis_seo_description', array( $this, 'alter_description_tag' ), 10, 3 );
 
-		add_filter( 'af4_before_nav', array( $this, 'add_search_toggle' ), 10, 4 );
+		// Add Foundation mobile toggle icons.
+		add_filter( 'af4_before_nav', array( $this, 'af4_nav_primary_open' ), 9 );
+		add_filter( 'af4_before_nav', array( $this, 'add_menu_toggle' ), 10 );
+		add_filter( 'af4_before_nav', array( $this, 'add_search_toggle' ), 11 );
+		add_filter( 'af4_before_nav', array( $this, 'af4_nav_primary_close' ), 12 );
 
 		// Add search form after navigation menu.
 		add_action( 'genesis_header', array( $this, 'add_header_right_widgets' ) );
@@ -211,22 +215,59 @@ class RequiredDOM {
 	}
 
 	/**
-	 * Add header search and menu toggle
+	 * Add open html for af4_before filter.
 	 *
-	 * @since 0.1.0
-	 * @param string $content Content of 'af4_before_nav' variable in theme.
-	 * @param string $open    Content of the element's open tag.
-	 * @param string $close   Content of the element's close tag.
-	 * @param string $inside  Content of the element's inner HTML.
+	 * @since 1.3.8
+	 * @param string $output Output for af4_before_nav_args.
 	 * @return string
 	 */
-	public function add_search_toggle( $content, $open, $close, $inside ) {
+	public function af4_nav_primary_open( $output = '' ) {
 
-		$search = '<div class="title-bar title-bar-search" data-responsive-toggle="header-search"><button class="search-icon" type="button" data-toggle="header-search"></button><div class="title-bar-title">Search</div></div>';
+		$output .= '<div class="title-bars cell small-6 title-bar-right show-for-small-only">';
+		return $output;
 
-		$content = $open . $search . $inside . $close;
+	}
 
-		return $content;
+	/**
+	 * Add header menu toggle
+	 *
+	 * @since 1.3.8
+	 * @param string $output Output for af4_before_nav_args.
+	 * @return string
+	 */
+	public function add_menu_toggle( $output = '' ) {
+
+		$output .= '<div class="title-bar title-bar-navigation" data-responsive-toggle="nav-menu-primary"><button class="menu-icon" type="button" data-toggle="nav-menu-primary"></button><div class="title-bar-title" data-toggle="nav-menu-primary">Menu</div></div>';
+		return $output;
+
+	}
+
+	/**
+	 * Add header search toggle
+	 *
+	 * @since 1.3.8
+	 * @param string $output Output for af4_before_nav_args.
+	 * @return string
+	 */
+	public function add_search_toggle( $output = '' ) {
+
+		$output .= '<div class="title-bar title-bar-search" data-responsive-toggle="header-search"><button class="search-icon" type="button" data-toggle="header-search"></button><div class="title-bar-title">Search</div></div>';
+
+		return $output;
+
+	}
+
+	/**
+	 * Add close html for af4_before filter.
+	 *
+	 * @since 1.3.8
+	 * @param string $output Output for af4_before_nav_args.
+	 * @return string
+	 */
+	public function af4_nav_primary_close( $output = '' ) {
+
+		$output .= '</div>';
+		return $output;
 
 	}
 
