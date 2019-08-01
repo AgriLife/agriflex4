@@ -43,12 +43,6 @@
 	}
 
 	@include breakpoint(medium) {
-		.title-bar,
-		.title-bars,
-		.menu-search-container {
-			@include element-invisible;
-		}
-
 		.nav-primary {
 			> .wrap {
 				display: flex;
