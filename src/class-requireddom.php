@@ -50,10 +50,10 @@ class RequiredDOM {
 		add_filter( 'genesis_seo_description', array( $this, 'alter_description_tag' ), 10, 3 );
 
 		// Add Foundation mobile toggle icons.
-		add_filter( 'af4_before_nav', array( $this, 'af4_nav_primary_open' ), 9 );
+		add_filter( 'af4_before_nav', array( $this, 'af4_nav_primary_title_bar_open' ), 9 );
 		add_filter( 'af4_before_nav', array( $this, 'add_menu_toggle' ), 10 );
 		add_filter( 'af4_before_nav', array( $this, 'add_search_toggle' ), 11 );
-		add_filter( 'af4_before_nav', array( $this, 'af4_nav_primary_close' ), 12 );
+		add_filter( 'af4_before_nav', array( $this, 'af4_nav_primary_title_bar_close' ), 12 );
 
 		// Add search form after navigation menu.
 		add_action( 'genesis_header', array( $this, 'add_header_right_widgets' ) );
@@ -221,7 +221,7 @@ class RequiredDOM {
 	 * @param string $output Output for af4_before_nav_args.
 	 * @return string
 	 */
-	public function af4_nav_primary_open( $output = '' ) {
+	public function af4_nav_primary_title_bar_open( $output = '' ) {
 
 		$output .= '<div class="title-bars cell small-6 title-bar-right show-for-small-only">';
 		return $output;
@@ -264,7 +264,7 @@ class RequiredDOM {
 	 * @param string $output Output for af4_before_nav_args.
 	 * @return string
 	 */
-	public function af4_nav_primary_close( $output = '' ) {
+	public function af4_nav_primary_title_bar_close( $output = '' ) {
 
 		$output .= '</div>';
 		return $output;
