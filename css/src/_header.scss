@@ -83,8 +83,7 @@
 	@include breakpoint(small only) {
 
 		.no-js & {
-			.header-right-widget-area,
-			.nav-primary {
+			.header-right-widget-area {
 				@include element-invisible;
 			}
 		}
