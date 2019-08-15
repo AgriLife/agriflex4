@@ -78,8 +78,12 @@ class Navigation {
 
 		$before_nav = apply_filters( 'af4_before_nav', '' );
 
-		$top_bar_atts = array( 'class' => 'top-bar-left' );
-		$top_bar_atts = apply_filters( 'af4_top_bar_left_attr', $top_bar_atts );
+		// Top bar.
+		$top_bar_atts = array(
+			'class' => 'top-bar',
+			'id'    => 'nav-menu-primary',
+		);
+		$top_bar_atts = apply_filters( 'af4_top_bar_attr', $top_bar_atts );
 		$top_bar_att  = '';
 
 		// Cycle through attributes, build tag attribute string.
@@ -96,9 +100,29 @@ class Navigation {
 			}
 		}
 
+		// Top bar left.
+		$top_bar_left_atts = array( 'class' => 'top-bar-left' );
+		$top_bar_left_atts = apply_filters( 'af4_top_bar_left_attr', $top_bar_left_atts );
+		$top_bar_left_att  = '';
+
+		// Cycle through attributes, build tag attribute string.
+		foreach ( $top_bar_left_atts as $key => $value ) {
+
+			if ( ! $value ) {
+				continue;
+			}
+
+			if ( true === $value ) {
+				$top_bar_left_att .= esc_html( $key ) . ' ';
+			} else {
+				$top_bar_left_att .= sprintf( '%s="%s" ', esc_html( $key ), esc_attr( $value ) );
+			}
+		}
+
 		$nav = sprintf(
-			'<div class="top-bar" id="nav-menu-primary"><section %s>%s</section></div>',
+			'<div %s><section %s>%s</section></div>',
 			$top_bar_att,
+			$top_bar_left_att,
 			$nav_menu
 		);
 
