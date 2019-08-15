@@ -15,9 +15,8 @@
 	.site-inner {
 		padding: 0;
 
-		> .grid-container {
+		> .grid-container:not(.full) {
 			padding: {
-				top: $grid-padding-gutters;
 				left: $grid-padding-gutters;
 				right: $grid-padding-gutters;
 			}
