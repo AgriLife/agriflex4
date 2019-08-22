@@ -44,3 +44,8 @@
 	}
 	/* End */
 }
+
+/* Add nowrap class for xy-grid. */
+.grid-x.grid-nowrap {
+	flex-wrap: nowrap;
+}
