@@ -32,3 +32,18 @@
 		}
 	}
 }
+
+.gsc-control-cse {
+	table {
+		margin-bottom: 0;
+
+		&,
+		& td {
+			border: none;
+		}
+
+		td {
+			padding: 0;
+		}
+	}
+}
