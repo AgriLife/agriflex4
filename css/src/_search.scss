@@ -34,6 +34,16 @@
 }
 
 .gsc-control-cse {
+	.content & {
+		padding: 0;
+	}
+
+	.gsc-thumbnail-inside,
+	.gsc-url-top,
+	.gsc-table-result {
+		padding-left: 0;
+	}
+
 	table {
 		margin-bottom: 0;
 
