@@ -182,6 +182,14 @@ class Assets {
 			'all'
 		);
 
+		wp_register_style(
+			'agriflex4-cloudfonts',
+			'https://cloud.typography.com/6280314/7977592/css/fonts.css',
+			array(),
+			'1.0.0',
+			'all'
+		);
+
 	}
 
 	/**
@@ -193,6 +201,7 @@ class Assets {
 	public function enqueue_external_styles() {
 
 		wp_enqueue_style( 'agriflex4-googlefonts' );
+		wp_enqueue_style( 'agriflex4-cloudfonts' );
 
 	}
 
