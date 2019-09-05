@@ -217,7 +217,7 @@ class Assets {
 	 */
 	public function detect_cloudfonts_loaded( $tag ) {
 
-		$tag = preg_replace( "/id='agriflex4-cloudfonts-css'/", "id='agriflex4-cloudfonts-css' onload='document.head.className=\"has-cloud-fonts\"'", $tag );
+		$tag = preg_replace( "/id='agriflex4-cloudfonts-css'/", "id='agriflex4-cloudfonts-css' onload='document.documentElement.className=\"has-cloud-fonts\"'", $tag );
 
 		return $tag;
 
