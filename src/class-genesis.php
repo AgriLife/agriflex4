@@ -98,6 +98,9 @@ class Genesis {
 		// Replace site title with logo.
 		add_filter( 'genesis_seo_title', array( $this, 'add_logo' ), 10, 3 );
 
+		// Customize archive pages.
+		add_action( 'wp', array( $this, 'archive_customizations' ) );
+
 	}
 
 	/**
@@ -497,6 +500,101 @@ class Genesis {
 
 		return $title;
 
+	}
+
+	/**
+	 * Filter only post_date for post meta.
+	 *
+	 * @since 0.5.14
+	 * @param string $info Current post meta with shortcodes.
+	 * @return string
+	 */
+	public function date_only( $info ) {
+
+		return '[post_date] [post_edit]';
+
+	}
+
+	/**
+	 * Customize archive pages
+	 *
+	 * @since 1.4.7
+	 * @return void
+	 */
+	public function archive_customizations() {
+
+		if ( is_archive() ) {
+
+			add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_full_width_content' );
+			remove_action( 'genesis_sidebar', 'genesis_do_sidebar' );
+
+			add_filter( 'get_term_metadata', array( $this, 'archive_title' ), 10, 4 );
+
+			remove_action( 'genesis_entry_content', 'genesis_do_post_image', 8 );
+			remove_action( 'genesis_post_content', 'genesis_do_post_image' );
+			remove_action( 'genesis_entry_footer', 'genesis_post_meta' );
+			remove_action( 'genesis_after_post_content', 'genesis_post_meta' );
+			remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
+			remove_action( 'genesis_before_post_content', 'genesis_post_info' );
+			add_action( 'genesis_entry_header', 'genesis_do_post_image', 1 );
+			add_action( 'genesis_entry_header', array( $this, 'custom_post_category_button' ), 4 );
+			add_action( 'genesis_entry_footer', 'genesis_post_info' );
+			add_filter( 'genesis_post_info', array( $this, 'date_only' ) );
+			add_filter( 'genesis_prev_link_text', array( $this, 'prev_link_text' ) );
+			add_filter( 'genesis_next_link_text', array( $this, 'next_link_text' ) );
+
+		}
+
+	}
+
+	/**
+	 * Make meta filter for headline fall back to the taxonomy term's name value.
+	 *
+	 * @since 1.4.7
+	 * @param string $value    Current term metadata value.
+	 * @param int    $term_id  Term ID.
+	 * @param string $meta_key Meta key.
+	 * @param bool   $single   Whether to return only the first value of the specified $meta_key.
+	 * @return string
+	 */
+	public function archive_title( $value, $term_id, $meta_key, $single ) {
+
+		if ( ( is_category() || is_tag() || is_tax() ) && 'headline' === $meta_key && ! is_admin() ) {
+
+			// Grab the current value, be sure to remove and re-add the hook to avoid infinite loops.
+			remove_action( 'get_term_metadata', array( $this, 'archive_title' ), 10 );
+			$value = get_term_meta( $term_id, 'headline', true );
+			add_action( 'get_term_metadata', array( $this, 'archive_title' ), 10, 4 );
+
+			// Use term name if empty.
+			if ( empty( $value ) ) {
+				$term  = get_queried_object();
+				$value = $term->name;
+			}
+		}
+
+		return $value;
+
+	}
+
+	/**
+	 * Customize pagination previous link text.
+	 *
+	 * @since 1.4.7
+	 * @return string
+	 */
+	public function prev_link_text() {
+		return '<';
+	}
+
+	/**
+	 * Customize pagination next link text.
+	 *
+	 * @since 1.4.7
+	 * @return string
+	 */
+	public function next_link_text() {
+		return '>';
 	}
 
 }
