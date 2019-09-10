@@ -578,6 +578,29 @@ class Genesis {
 	}
 
 	/**
+	 * Add post category button
+	 *
+	 * @since 1.4.7
+	 * @return void
+	 */
+	public function custom_post_category_button() {
+
+		$cats       = wp_get_post_terms( get_the_ID(), 'category' );
+		$cat_output = '';
+
+		foreach ( $cats as $cat ) {
+			$cat_output .= sprintf(
+				'<a href="%s" class="button">%s</a>',
+				get_term_link( $cat->term_id ),
+				$cat->name
+			);
+		}
+
+		echo sprintf( '<div class="post-category">%s</div>', wp_kses_post( $cat_output ) );
+
+	}
+
+	/**
 	 * Customize pagination previous link text.
 	 *
 	 * @since 1.4.7

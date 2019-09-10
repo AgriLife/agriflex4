@@ -179,7 +179,7 @@ class Assets {
 
 		wp_register_style(
 			'agriflex4-googlefonts',
-			'https://fonts.googleapis.com/css?family=Oswald|Monoton|Open+Sans:300,400,600,700',
+			'https://fonts.googleapis.com/css?family=Oswald|Monoton|Open+Sans:300,400,600,700,800',
 			array(),
 			'1.0.0',
 			'all'

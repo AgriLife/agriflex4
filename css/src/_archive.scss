@@ -87,4 +87,8 @@
 			}
 		}
 	}
+
+	.post-category .button {
+		@extend %button-compact;
+	}
 }
