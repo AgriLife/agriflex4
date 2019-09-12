@@ -1,0 +1,95 @@
+.archive {
+	h1 {
+		background: repeat-x url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkVrb+DwAB9AFiYaHxfAAAAABJRU5ErkJggg==") center center; // sass-lint:disable-line max-line-length
+		text-shadow: 20px 0 $whiter, 17px 0 $whiter, 14px 0 $whiter, 11px 0 $whiter, 8px 0 $whiter,
+		5px 0 $whiter, 2px 0 $whiter, -2px 0 $whiter, -5px 0 $whiter, -8px 0 $whiter, -11px 0 $whiter,
+		-14px 0 $whiter, -17px 0 $whiter, -20px 0 $whiter;
+		text-align: center;
+		position: relative;
+		margin-bottom: 2rem;
+	}
+
+	.post {
+
+		&:last-child {
+			margin-bottom: 2.5rem;
+		}
+
+		~ .post {
+			margin-top: 2.5rem;
+		}
+
+		h2 {
+			text-transform: none;
+			font-size: 2rem;
+			line-height: 1;
+			margin: 0 0 .7rem;
+
+			.has-cloud-fonts & {
+				font-weight: 600;
+			}
+
+			a {
+				color: $dark-blue;
+				text-decoration: none;
+
+				&:focus,
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+
+		p {
+			font-size: .875rem;
+			line-height: 1rem;
+
+			&.entry-meta {
+				margin-bottom: 0;
+			}
+		}
+
+		time {
+			font-style: italic;
+			font-size: 1rem;
+			line-height: 1.25rem;
+		}
+
+		.button {
+			padding: .25rem .5rem;
+			transition: 0.25s color, 0.25s background-color;
+			margin-bottom: .7rem;
+
+			&:hover {
+				background-color: transparent;
+				color: $black;
+				border: 1px solid $dark-blue;
+				text-decoration: none;
+			}
+		}
+
+		&.has-post-thumbnail {
+			position: relative;
+
+			.entry-image-link {
+				width: 25%;
+				position: absolute;
+				top: 0;
+				left: 0;
+
+				img {
+					margin-bottom: 0;
+				}
+			}
+
+			.entry-image-link ~ * {
+				margin-left: 25%;
+				padding-left: 1rem;
+			}
+		}
+	}
+
+	.post-category .button {
+		@extend %button-compact;
+	}
+}

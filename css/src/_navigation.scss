@@ -61,3 +61,33 @@
 		cursor: pointer;
 	}
 }
+
+.pagination {
+	text-transform: uppercase;
+	font-weight: 700;
+
+	ul {
+		list-style-type: none;
+		margin: {
+			left: 0;
+			top: 1rem;
+		}
+	}
+
+	li,
+	a {
+		display: inline-block;
+	}
+
+	a {
+		height: 1.6rem;
+		min-width: 1.6rem;
+		text-align: center;
+	}
+
+	.active a {
+		background-color: $dark-blue;
+		color: $white;
+	}
+}
+

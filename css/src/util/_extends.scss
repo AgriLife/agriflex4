@@ -52,3 +52,42 @@
 		border-radius: $button-radius;
 	}
 }
+
+%button-compact {
+	font: 900 .75rem/1rem $opensans;
+	display: inline-block;
+	padding: 0.4rem .8rem;
+	color: $white;
+	border: 1px solid lighten($dark-blue, 50%);
+	margin: {
+		bottom: 1rem;
+		right: 1rem;
+	}
+	background-color: $dark-blue;
+	text: {
+		transform: uppercase;
+	}
+
+	&:last-of-type {
+		margin-right: 0;
+	}
+
+	&:hover,
+	&:focus {
+		color: $white;
+	}
+
+	&.hollow {
+		color: $dark-blue;
+		border-color: $dark-blue;
+		background-color: $white;
+
+		&::hover {
+			color: $dark-blue;
+		}
+	}
+
+	a {
+		color: $white;
+	}
+}
