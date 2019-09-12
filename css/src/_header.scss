@@ -184,6 +184,12 @@
 				background: transparent url("../images/search-agrilife-light.png") no-repeat {
 					size: contain;
 				};
+				cursor: pointer;
+
+				&:hover,
+				&:focus {
+					background-image: url("../images/search-agrilife-white.png");
+				}
 			}
 		}
 

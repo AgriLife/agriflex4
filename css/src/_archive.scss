@@ -43,6 +43,7 @@
 		p {
 			font-size: .875rem;
 			line-height: 1rem;
+			margin-bottom: .7rem;
 
 			&.entry-meta {
 				margin-bottom: 0;
@@ -72,18 +73,12 @@
 			position: relative;
 
 			.entry-image-link {
-				width: 25%;
-				position: absolute;
-				top: 0;
-				left: 0;
-
 				img {
 					margin-bottom: 0;
 				}
 			}
 
-			.entry-image-link ~ * {
-				margin-left: 25%;
+			.cell.medium-9 {
 				padding-left: 1rem;
 			}
 		}
