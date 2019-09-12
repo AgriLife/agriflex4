@@ -47,3 +47,11 @@ hr {
 input[disabled] + label {
 	color: $gray-light;
 }
+
+// Fix flexbox issue for IE10
+main,
+aside {
+	&.cell {
+		display: block;
+	}
+}
