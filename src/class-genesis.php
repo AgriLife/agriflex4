@@ -26,6 +26,9 @@ class Genesis {
 	 */
 	public function __construct() {
 
+		// Declare default Genesis settings for this theme.
+		add_action( 'after_switch_theme', array( $this, 'genesis_default_theme_settings' ) );
+
 		// Add the responsive viewport.
 		$this->add_responsive_viewport();
 
@@ -100,6 +103,31 @@ class Genesis {
 
 		// Customize archive pages.
 		add_action( 'wp', array( $this, 'archive_customizations' ) );
+
+	}
+
+	/**
+	 * Add default theme setting values.
+	 *
+	 * @since 0.4.10
+	 * @return void
+	 */
+	public function genesis_default_theme_settings() {
+
+		if ( ! function_exists( 'genesis_update_settings' ) ) {
+			return;
+		}
+
+		$settings = array(
+			'site_layout'               => 'content-sidebar',
+			'content_archive'           => 'excerpts',
+			'content_archive_thumbnail' => 1,
+			'image_size'                => 'medium',
+			'image_alignment'           => '',
+			'posts_nav'                 => 'numeric',
+		);
+
+		genesis_update_settings( $settings );
 
 	}
 
