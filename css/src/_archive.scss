@@ -11,7 +11,7 @@
 
 	.entry {
 		~ .entry {
-			margin: $grid-padding-gutters * 1.5 0 $grid-padding-gutters / 2;
+			margin: $grid-padding-gutters * 1.5 0;
 		}
 
 		h2 {
@@ -75,10 +75,6 @@
 				img {
 					margin-bottom: 0;
 				}
-			}
-
-			.cell.medium-9 {
-				padding-left: 1rem;
 			}
 		}
 	}

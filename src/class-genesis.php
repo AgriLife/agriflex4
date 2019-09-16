@@ -585,7 +585,7 @@ class Genesis {
 	 */
 	public function archive_column_left_open() {
 
-		$output = '<div class="grid-x grid-margin-x">';
+		$output = '<div class="grid-x grid-padding-x">';
 
 		if ( ! is_singular() && genesis_get_option( 'content_archive_thumbnail' ) ) {
 
