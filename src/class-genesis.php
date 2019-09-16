@@ -122,7 +122,7 @@ class Genesis {
 			'site_layout'               => 'content-sidebar',
 			'content_archive'           => 'excerpts',
 			'content_archive_thumbnail' => 1,
-			'image_size'                => 'medium',
+			'image_size'                => 'archive',
 			'image_alignment'           => '',
 			'posts_nav'                 => 'numeric',
 		);
