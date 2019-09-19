@@ -90,6 +90,12 @@ module.exports = (grunt) ->
           {src: ['readme.md']},
           {src: ['style.css']}
         ]
+    coffee:
+      compile:
+        options:
+          bare: true
+        files:
+          'js/post-type-tile-filters.js': 'js/src/post-type-tile-filters.coffee'
     concat:
       dist:
         options:
@@ -140,6 +146,7 @@ module.exports = (grunt) ->
         dest: 'js/foundation.concat.js'
 
   @loadNpmTasks 'grunt-jsvalidate'
+  @loadNpmTasks 'grunt-contrib-coffee'
   @loadNpmTasks 'grunt-contrib-watch'
   @loadNpmTasks 'grunt-contrib-compress'
   @loadNpmTasks 'grunt-contrib-concat'
@@ -147,8 +154,8 @@ module.exports = (grunt) ->
   @loadNpmTasks 'grunt-sass'
   @loadNpmTasks 'grunt-postcss'
 
-  @registerTask 'default', ['sass:pkg', 'concat:dist', 'jsvalidate', 'postcss:pkg']
-  @registerTask 'develop', ['sasslint', 'sass:dev', 'concat:dev', 'jsvalidate', 'postcss:dev']
+  @registerTask 'default', ['sass:pkg', 'concat:dist', 'coffee', 'jsvalidate', 'postcss:pkg']
+  @registerTask 'develop', ['sasslint', 'sass:dev', 'concat:dev', 'coffee', 'jsvalidate', 'postcss:dev']
   @registerTask 'release', ['compress', 'makerelease']
   @registerTask 'makerelease', 'Set release branch for use in the release task', ->
     done = @async()
