@@ -55,3 +55,21 @@ aside {
 		display: block;
 	}
 }
+
+// Custom heading line height for Tungsten web font.
+.has-cloud-fonts {
+	h1,
+	.h1,
+	h2,
+	.h2,
+	h3,
+	.h3,
+	h4,
+	.h4,
+	h5,
+	.h5,
+	h6,
+	.h6 {
+		line-height: $header-lineheight-tungsten;
+	}
+}
