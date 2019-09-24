@@ -110,6 +110,24 @@ $hr-border: 2px dashed $light-blue;
 $table-border-color: $light-blue;
 $table-border: 1px solid $table-border-color;
 $flow-margin-x: rem-calc(24);
+$header-styles: (
+	small: (
+		"h1": ("font-size": 44),
+		"h2": ("font-size": 20),
+		"h3": ("font-size": 19),
+		"h4": ("font-size": 18),
+		"h5": ("font-size": 17),
+		"h6": ("font-size": 16),
+	),
+	medium: (
+		"h1": ("font-size": 48),
+		"h2": ("font-size": 40),
+		"h3": ("font-size": 31),
+		"h4": ("font-size": 25),
+		"h5": ("font-size": 20),
+		"h6": ("font-size": 16),
+	),
+);
 
 /* Buttons
 --------------------------------------------- */
