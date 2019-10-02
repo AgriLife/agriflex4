@@ -251,13 +251,28 @@ body {
 	}
 
 	&.full-width-content {
+
 		.alignfull {
-			margin: {
-				left: calc(50% - 50vw);
-				right: calc(50% - 50vw);
-			}
-			width: 100vw;
 			max-width: 100vw;
+			margin: {
+				left: -.62rem - $grid-padding-gutters / 2;
+				right: -.62rem - $grid-padding-gutters / 2;
+			}
+
+			@include breakpoint(medium) {
+				margin: {
+					left: -$grid-padding-gutters;
+					right: -$grid-padding-gutters;
+				}
+			}
+
+			@include breakpoint(xlarge) {
+				margin: {
+					left: calc(50% - 50vw);
+					right: calc(50% - 50vw);
+				}
+				width: 100vw;
+			}
 		}
 
 		.alignwide {
