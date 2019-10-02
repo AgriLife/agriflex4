@@ -53,3 +53,28 @@
 .grid-x.grid-nowrap {
 	flex-wrap: nowrap;
 }
+
+/* Flexbox order classes. */
+@include breakpoint(small only) {
+	.small-order {
+		&-1 {
+			order: 1;
+		}
+
+		&-2 {
+			order: 2;
+		}
+
+		&-3 {
+			order: 3;
+		}
+
+		&-4 {
+			order: 4;
+		}
+
+		&-5 {
+			order: 5;
+		}
+	}
+}
