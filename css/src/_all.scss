@@ -101,3 +101,17 @@ aside {
 		}
 	}
 }
+
+// Line truncation. No support for Internet Explorer.
+@include breakpoint(medium) {
+	.medium-truncate-lines {
+		display: -webkit-box; // sass-lint:disable-line no-vendor-prefixes
+		-webkit-line-clamp: 3; // sass-lint:disable-line no-vendor-prefixes
+		-webkit-box-orient: vertical; // sass-lint:disable-line no-vendor-prefixes
+		overflow: hidden;
+	}
+
+	.medium-truncate-2-lines {
+		-webkit-line-clamp: 2; // sass-lint:disable-line no-vendor-prefixes
+	}
+}
