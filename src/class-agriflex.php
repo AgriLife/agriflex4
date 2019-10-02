@@ -49,6 +49,8 @@ class AgriFlex {
 
 		add_action( 'init', array( $this, 'init' ) );
 
+		add_filter( 'wp_kses_allowed_html', array( $this, 'post_allowed_tags' ), 11, 2 );
+
 		$this->register_templates();
 
 		$this->require_classes();
@@ -112,6 +114,25 @@ class AgriFlex {
 
 		// Make People plugin customizations.
 		$af_people = new \AgriFlex\People();
+
+	}
+
+	/**
+	 * Change allowed HTML tags for wp_kses_post()
+	 *
+	 * @since 1.5.13
+	 * @param array  $allowedposttags Allowed HTML elements and attributes.
+	 * @param string $context The filter context within the current instance.
+	 * @return array
+	 */
+	public function post_allowed_tags( $allowedposttags, $context ) {
+
+		if ( 'post' === $context ) {
+			$allowedposttags['img']['srcset'] = true;
+			$allowedposttags['img']['sizes']  = true;
+		}
+
+		return $allowedposttags;
 
 	}
 
