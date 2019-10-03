@@ -69,7 +69,11 @@
 		}
 
 		.grid-x {
-			justify-content: end;
+			flex-wrap: nowrap;
+
+			@include breakpoint(medium) {
+				justify-content: end;
+			}
 		}
 
 		.button {
