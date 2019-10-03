@@ -81,9 +81,13 @@ class Genesis {
 		add_filter( 'genesis_attr_content-sidebar-wrap', array( $this, 'class_grid_x_content' ) );
 		add_filter( 'genesis_attr_sidebar-content-wrap', array( $this, 'class_grid_x_content' ) );
 		add_filter( 'genesis_attr_content-wrap', array( $this, 'class_grid_x_content' ) );
+		add_filter( 'genesis_attr_title-area', array( $this, 'class_cell' ), 10 );
 		add_filter( 'genesis_attr_title-area', array( $this, 'class_cell_title_area' ), 10 );
+		add_filter( 'genesis_attr_nav-primary', array( $this, 'class_cell' ), 10 );
 		add_filter( 'genesis_attr_nav-primary', array( $this, 'class_cell_nav_primary' ) );
+		add_filter( 'genesis_attr_content', array( $this, 'class_cell' ) );
 		add_filter( 'genesis_attr_content', array( $this, 'class_cell_content' ) );
+		add_filter( 'genesis_attr_sidebar-primary', array( $this, 'class_cell' ) );
 		add_filter( 'genesis_attr_sidebar-primary', array( $this, 'class_cell_sidebar' ) );
 		add_filter( 'genesis_structural_wrap-footer', array( $this, 'class_footer_wrap' ) );
 
@@ -185,6 +189,30 @@ class Genesis {
 	}
 
 	/**
+	 * Add cell class name
+	 *
+	 * @since 1.5.14
+	 * @param array $attributes HTML attributes.
+	 * @return array
+	 */
+	public function class_cell( $attributes ) {
+		$attributes['class'] .= ' cell';
+		return $attributes;
+	}
+
+	/**
+	 * Add cell shrink class name
+	 *
+	 * @since 1.5.14
+	 * @param array $attributes HTML attributes.
+	 * @return array
+	 */
+	public function class_cell_shrink( $attributes ) {
+		$attributes['class'] .= ' shrink';
+		return $attributes;
+	}
+
+	/**
 	 * Add header title area cell class names
 	 *
 	 * @since 0.1.0
@@ -192,7 +220,7 @@ class Genesis {
 	 * @return array
 	 */
 	public function class_cell_title_area( $attributes ) {
-		$attributes['class'] .= ' cell small-6 medium-2';
+		$attributes['class'] .= ' small-6 medium-2';
 		return $attributes;
 	}
 
@@ -204,7 +232,7 @@ class Genesis {
 	 * @return array
 	 */
 	public function class_cell_nav_primary( $attributes ) {
-		$attributes['class'] .= ' cell small-12 medium-auto';
+		$attributes['class'] .= ' small-12 medium-auto';
 		return $attributes;
 	}
 
@@ -216,7 +244,7 @@ class Genesis {
 	 * @return array
 	 */
 	public function class_cell_content( $attributes ) {
-		$attributes['class'] .= ' cell small-12 medium-auto';
+		$attributes['class'] .= ' small-12 medium-auto';
 		return $attributes;
 	}
 
@@ -228,7 +256,7 @@ class Genesis {
 	 * @return array
 	 */
 	public function class_cell_sidebar( $attributes ) {
-		$attributes['class'] .= ' cell small-12 medium-4';
+		$attributes['class'] .= ' small-12 medium-4';
 		return $attributes;
 	}
 
@@ -562,6 +590,10 @@ class Genesis {
 			remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
 			remove_action( 'genesis_before_post_content', 'genesis_post_info' );
 
+			add_action( 'genesis_archive_title_descriptions', array( $this, 'archive_title_open' ), 9 );
+			add_action( 'genesis_archive_title_descriptions', array( $this, 'archive_title_close' ), 11 );
+			add_filter( 'genesis_attr_archive-title', array( $this, 'class_cell' ) );
+			add_filter( 'genesis_attr_archive-title', array( $this, 'class_cell_shrink' ) );
 			add_action( 'genesis_entry_header', array( $this, 'archive_column_left_open' ), 1 );
 			add_action( 'genesis_entry_header', 'genesis_do_post_image', 1 );
 			add_action( 'genesis_entry_header', array( $this, 'archive_column_left_close' ), 3 );
@@ -574,6 +606,30 @@ class Genesis {
 			add_filter( 'genesis_next_link_text', array( $this, 'next_link_text' ) );
 
 		}
+
+	}
+
+	/**
+	 * Open archive title grid wrapper.
+	 *
+	 * @since 1.5.14
+	 * @return void
+	 */
+	public function archive_title_open() {
+
+		echo wp_kses_post( '<div class="grid-x"><div class="cell auto title-line"></div>' );
+
+	}
+
+	/**
+	 * Close archive title grid wrapper.
+	 *
+	 * @since 1.5.14
+	 * @return void
+	 */
+	public function archive_title_close() {
+
+		echo wp_kses_post( '<div class="cell auto title-line"></div></div>' );
 
 	}
 
