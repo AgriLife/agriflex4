@@ -1,12 +1,7 @@
 .archive {
 	.archive-description {
-		display: flex;
-		width: 100%;
-		justify-content: center;
-		align-items: center;
 		text-align: center;
 		margin-bottom: $grid-padding-gutters;
-		overflow: hidden;
 
 		h1 {
 			max-width: 75%;
@@ -14,25 +9,20 @@
 			margin-bottom: 0;
 			padding: 0 1rem;
 			line-height: 1.35em;
+			hyphens: auto;
+		}
 
-			&:before,
-			&:after {
-				content: "";
-				border-top: 2px solid;
-				position: absolute;
-				top: 50%;
-				margin-top: -1px;
-				width: 300%;
-				height: 1px;
-			}
+		.grid-x {
+			align-items: center;
+			flex-wrap: nowrap;
 
-			&:before {
-				right: 100%;
+			+ * {
+				margin-top: $grid-padding-gutters / 2;
 			}
+		}
 
-			&:after {
-				left: 100%;
-			}
+		.title-line {
+			border-top: 2px solid;
 		}
 	}
 
