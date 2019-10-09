@@ -11,7 +11,8 @@ module.exports = (grunt) ->
       url: ''
     watch:
       files: [
-        'css/src/**/*.scss'
+        'css/src/**/*.scss',
+        'js/src/*.coffee'
       ]
       tasks: ['develop']
     postcss:

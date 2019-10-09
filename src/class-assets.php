@@ -124,7 +124,7 @@ class Assets {
 		wp_register_script(
 			'agrilife-post-tile-search',
 			AF_THEME_DIRURL . '/js/post-type-tile-filters.js',
-			array( 'jquery' ),
+			array( 'jquery', 'foundation' ),
 			filemtime( AF_THEME_DIRPATH . '/js/post-type-tile-filters.js' ),
 			true
 		);

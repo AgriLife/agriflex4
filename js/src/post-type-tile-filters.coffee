@@ -54,5 +54,39 @@
   $search = $ '[data-post-tile-search]'
   $search.find('input').on 'change', $update
   $search.find('[data-post-tile-reset]').on 'click', $reset
+
+  # Handle sticky search filters.
+  $tiled_search = $('[data-post-tile-search] .sticky-target')
+
+  # Update the top margin offset for the sticky filters based on changing header height.
+  $updateMarginTop = (e) ->
+    $data = $tiled_search.data()
+    $data_margin_top = Math.ceil(($('.site-header').outerHeight() / 16) * 10) / 10
+
+    if $data.hasOwnProperty('zfPlugin') isnt false
+      $tiled_search.data('zfPlugin').options.marginTop = $data_margin_top
+
+  $(window).on 'load,resize,scroll', $updateMarginTop
+
+  # Initialize the sticky plugin.
+  options = JSON.parse('{' + $tiled_search.data('options').replace(/;/g,',').replace(/,$/,'').replace(/\b([^:,]+)\b/g,'"$1"') + '}')
+  $data_margin_top = Math.ceil(($('.site-header').outerHeight() / 16) * 10) / 10
+  options['marginTop'] = $data_margin_top
+
+  if window.innerWidth > 700
+    new Foundation.Sticky($tiled_search, options)
+
+  # Destroy or create the sticky plugin based on the current viewport width.
+  $(window).on 'resize', (e) ->
+    $tiled_search = $('[data-post-tile-search] .sticky-target')
+    $data = $tiled_search.data()
+
+    if window.innerWidth > 700
+      if $tiled_search.parent().hasClass('sticky-container') is false
+        new Foundation.Sticky($tiled_search, options)
+    else
+      if $data.hasOwnProperty('zfPlugin') and $data['zfPlugin'].className is 'Sticky' and $tiled_search.parent().hasClass('sticky-container')
+        $tiled_search.foundation('_destroy')
+
   return
 ) jQuery
