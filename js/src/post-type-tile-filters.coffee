@@ -74,19 +74,29 @@
     else
       return false
 
+  adminHeaderHeight = ->
+    if $('body').hasClass('logged-in') and $('.site-header .sticky.is-anchored').length > 0
+      admin_height = $('#wpadminbar').outerHeight()
+      height = Math.ceil((admin_height / 16) * 10) / 10
+      return height
+    else return 0
+
   $updateStickyTop = (e) ->
     # Change top position of filters when sticky header changes its stuck status.
     $data = $sticky_search.data()
     if window.innerWidth <= 700
       window.requestAnimationFrame ->
-        $header_height = Math.ceil(($('.site-header').outerHeight() / 16) * 10) / 10
+        logged_in_offset = adminHeaderHeight()
+        console.log logged_in_offset
+        $header_height = Math.ceil(($('.site-header').outerHeight() / 16) * 10) / 10 + logged_in_offset
         $search_filters.css( 'top', $header_height + 'rem' )
     else
       active = stickyIsActive()
       if active
         window.requestAnimationFrame ->
           # Plugin is active and screen is large enough to show the search filters as a sidebar.
-          header_height = Math.ceil(($('.site-header').outerHeight() / 16) * 10) / 10
+          logged_in_offset = adminHeaderHeight()
+          header_height = Math.ceil(($('.site-header').outerHeight() / 16) * 10) / 10 + logged_in_offset
           search_m_top = $sticky_search.css('margin-top')
           $sticky_search.attr('data-options', $sticky_search.attr('data-options').replace(/marginTop:[^;]+/, 'marginTop:' + header_height))
           $sticky_search.data('zfPlugin').options.marginTop = header_height
@@ -101,8 +111,9 @@
   $('.site-header [data-sticky]').on 'sticky.zf.unstuckfrom:top', $updateStickyTop
 
   # Initialize the sticky plugin.
+  logged_in_offset = adminHeaderHeight()
   options = JSON.parse('{' + $sticky_search.data('options').replace(/;/g,',').replace(/,$/,'').replace(/\b([^:,]+)\b/g,'"$1"') + '}')
-  $data_margin_top = Math.ceil(($('.site-header').outerHeight() / 16) * 10) / 10
+  $data_margin_top = Math.ceil(($('.site-header').outerHeight() / 16) * 10) / 10 + logged_in_offset
   options['marginTop'] = $data_margin_top
 
   if window.innerWidth > 700
