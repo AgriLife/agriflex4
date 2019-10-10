@@ -29,7 +29,6 @@
       # Find which taxonomies are present in active degrees.
       activeTaxonomies = []
       $activeItems.each ->
-        console.log this.className
         matches = this.className.match taxonomyPattern
         j = 0
         while j < matches.length
@@ -67,13 +66,6 @@
   $sticky_search = $search_filters.find '.sticky-target'
 
   # Update the top margin offset for the sticky filters based on changing header height.
-  $updateMarginTop = (e) ->
-    $data = $sticky_search.data()
-    $header_height = Math.ceil(($('.site-header').outerHeight() / 16) * 10) / 10
-
-    if $data.hasOwnProperty('zfPlugin') isnt false
-      $sticky_search.data('zfPlugin').options.marginTop = $header_height
-
   stickyIsActive = (e) ->
     $data = $sticky_search.data()
     if $data.hasOwnProperty('zfPlugin') isnt false and
@@ -82,10 +74,7 @@
     else
       return false
 
-  # $(window).on 'load,resize,scroll', $updateMarginTop
-
   $updateStickyTop = (e) ->
-    console.log e
     # Change top position of filters when sticky header changes its stuck status.
     $data = $sticky_search.data()
     if window.innerWidth <= 700
