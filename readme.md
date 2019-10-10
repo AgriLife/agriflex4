@@ -21,6 +21,9 @@ This WordPress theme provides functionality and visual styles for AgriLife affil
 * Post and page archives that show full or excerpted content, with or without a featured image
 * Widget Areas
     * Primary Sidebar: Positioned next to a page's content depending on which page layout it uses
+* JS file for tiled post search page templates
+		* Used by af4-aglifesciences and agrilife-degree-programs
+		* Uses the Sticky plugin from Foundation to position the filters in a helpful location when the browser window is greater than 700px wide
 
 ## Development Installation
 
