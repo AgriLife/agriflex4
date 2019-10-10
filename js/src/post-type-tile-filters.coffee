@@ -55,38 +55,88 @@
   $search.find('input').on 'change', $update
   $search.find('[data-post-tile-reset]').on 'click', $reset
 
-  # Handle sticky search filters.
-  $tiled_search = $('[data-post-tile-search] .sticky-target')
+  ## Handle sticky search filters.
+  ###
+    - The top position of the sticky sidebar needs to change because the height of
+      the header changes when it is stuck.
+    - The search filters are a sidebar on large screens, and a show-hide button on
+      small screens which occupies most of the web page below the site header.
+  ###
+
+  $search_filters = $ '[data-post-tile-search]'
+  $sticky_search = $search_filters.find '.sticky-target'
 
   # Update the top margin offset for the sticky filters based on changing header height.
   $updateMarginTop = (e) ->
-    $data = $tiled_search.data()
-    $data_margin_top = Math.ceil(($('.site-header').outerHeight() / 16) * 10) / 10
+    $data = $sticky_search.data()
+    $header_height = Math.ceil(($('.site-header').outerHeight() / 16) * 10) / 10
 
     if $data.hasOwnProperty('zfPlugin') isnt false
-      $tiled_search.data('zfPlugin').options.marginTop = $data_margin_top
+      $sticky_search.data('zfPlugin').options.marginTop = $header_height
 
-  $(window).on 'load,resize,scroll', $updateMarginTop
+  stickyIsActive = (e) ->
+    $data = $sticky_search.data()
+    if $data.hasOwnProperty('zfPlugin') isnt false and
+    $sticky_search.parent().hasClass('sticky-container')
+      return true
+    else
+      return false
+
+  # $(window).on 'load,resize,scroll', $updateMarginTop
+
+  $updateStickyTop = (e) ->
+    console.log e
+    # Change top position of filters when sticky header changes its stuck status.
+    $data = $sticky_search.data()
+    if window.innerWidth <= 700
+      window.requestAnimationFrame ->
+        $header_height = Math.ceil(($('.site-header').outerHeight() / 16) * 10) / 10
+        $search_filters.css( 'top', $header_height + 'rem' )
+    else
+      active = stickyIsActive()
+      if active
+        window.requestAnimationFrame ->
+          # Plugin is active and screen is large enough to show the search filters as a sidebar.
+          header_height = Math.ceil(($('.site-header').outerHeight() / 16) * 10) / 10
+          search_m_top = $sticky_search.css('margin-top')
+          $sticky_search.attr('data-options', $sticky_search.attr('data-options').replace(/marginTop:[^;]+/, 'marginTop:' + header_height))
+          $sticky_search.data('zfPlugin').options.marginTop = header_height
+
+          if e.namespace is 'stuckto:top.zf' and
+          search_m_top isnt header_height and
+          parseInt(search_m_top) isnt 0
+            console.log search_m_top
+            $sticky_search.css('margin-top', header_height + 'em')
+
+  $('.site-header [data-sticky]').on 'sticky.zf.stuckto:top', $updateStickyTop
+  $('.site-header [data-sticky]').on 'sticky.zf.unstuckfrom:top', $updateStickyTop
 
   # Initialize the sticky plugin.
-  options = JSON.parse('{' + $tiled_search.data('options').replace(/;/g,',').replace(/,$/,'').replace(/\b([^:,]+)\b/g,'"$1"') + '}')
+  options = JSON.parse('{' + $sticky_search.data('options').replace(/;/g,',').replace(/,$/,'').replace(/\b([^:,]+)\b/g,'"$1"') + '}')
   $data_margin_top = Math.ceil(($('.site-header').outerHeight() / 16) * 10) / 10
   options['marginTop'] = $data_margin_top
 
   if window.innerWidth > 700
-    new Foundation.Sticky($tiled_search, options)
+    new Foundation.Sticky($sticky_search, options)
 
   # Destroy or create the sticky plugin based on the current viewport width.
   $(window).on 'resize', (e) ->
-    $tiled_search = $('[data-post-tile-search] .sticky-target')
-    $data = $tiled_search.data()
+    $sticky_search = $('[data-post-tile-search] .sticky-target')
+    $data = $sticky_search.data()
 
     if window.innerWidth > 700
-      if $tiled_search.parent().hasClass('sticky-container') is false
-        new Foundation.Sticky($tiled_search, options)
+      if $sticky_search.parent().hasClass('sticky-container') is false
+        $search_filters.css( 'top', '' )
+        new Foundation.Sticky($sticky_search, options)
+      else
+        # Update max-width since it is set by the Sticky plugin
+        window.requestAnimationFrame ->
+          new_width = $sticky_search.parent().outerWidth()
+          if $sticky_search.css('max-width') isnt new_width
+            $sticky_search.css('max-width', new_width)
     else
-      if $data.hasOwnProperty('zfPlugin') and $data['zfPlugin'].className is 'Sticky' and $tiled_search.parent().hasClass('sticky-container')
-        $tiled_search.foundation('_destroy')
+      if stickyIsActive()
+        $sticky_search.foundation('_destroy')
 
   return
 ) jQuery
