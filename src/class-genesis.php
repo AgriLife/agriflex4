@@ -106,6 +106,7 @@ class Genesis {
 		add_filter( 'genesis_seo_title', array( $this, 'add_logo' ), 10, 3 );
 
 		// Customize archive pages.
+		add_filter( 'body_class', array( $this, 'af4_archive_class' ) );
 		add_action( 'wp', array( $this, 'archive_customizations' ) );
 
 	}
@@ -572,6 +573,23 @@ class Genesis {
 	}
 
 	/**
+	 * Add af4-archive class to multiple page types we want to display as an archive.
+	 *
+	 * @since 1.6.3
+	 * @param array $classes Current body classes.
+	 * @return array
+	 */
+	public function af4_archive_class( $classes ) {
+
+		if ( is_archive() || ( ! is_front_page() && is_home() ) ) {
+			$classes[] = 'af4-archive';
+		}
+
+		return $classes;
+
+	}
+
+	/**
 	 * Customize archive pages
 	 *
 	 * @since 1.4.7
@@ -579,7 +597,7 @@ class Genesis {
 	 */
 	public function archive_customizations() {
 
-		if ( is_archive() ) {
+		if ( is_archive() || ( ! is_front_page() && is_home() ) ) {
 
 			add_filter( 'get_term_metadata', array( $this, 'archive_title' ), 10, 4 );
 
