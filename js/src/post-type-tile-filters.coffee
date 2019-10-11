@@ -87,7 +87,6 @@
     if window.innerWidth <= 700
       window.requestAnimationFrame ->
         logged_in_offset = adminHeaderHeight()
-        console.log logged_in_offset
         $header_height = Math.ceil(($('.site-header').outerHeight() / 16) * 10) / 10 + logged_in_offset
         $search_filters.css( 'top', $header_height + 'rem' )
     else
@@ -104,7 +103,6 @@
           if e.namespace is 'stuckto:top.zf' and
           search_m_top isnt header_height and
           parseInt(search_m_top) isnt 0
-            console.log search_m_top
             $sticky_search.css('margin-top', header_height + 'em')
 
   $('.site-header [data-sticky]').on 'sticky.zf.stuckto:top', $updateStickyTop
