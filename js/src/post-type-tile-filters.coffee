@@ -84,26 +84,26 @@
   $updateStickyTop = (e) ->
     # Change top position of filters when sticky header changes its stuck status.
     $data = $sticky_search.data()
-    if window.innerWidth <= 700
-      window.requestAnimationFrame ->
-        logged_in_offset = adminHeaderHeight()
-        $header_height = Math.ceil(($('.site-header').outerHeight() / 16) * 10) / 10 + logged_in_offset
-        $search_filters.css( 'top', $header_height + 'rem' )
-    else
+    if Foundation.MediaQuery.atLeast('medium2')
       active = stickyIsActive()
       if active
         window.requestAnimationFrame ->
           # Plugin is active and screen is large enough to show the search filters as a sidebar.
           logged_in_offset = adminHeaderHeight()
-          header_height = Math.ceil(($('.site-header').outerHeight() / 16) * 10) / 10 + logged_in_offset
+          header_height = Math.ceil(($('.site-header .sticky').outerHeight() / 16) * 10) / 10 + logged_in_offset
           search_m_top = $sticky_search.css('margin-top')
+          $search_filters.css( 'top', '' )
           $sticky_search.attr('data-options', $sticky_search.attr('data-options').replace(/marginTop:[^;]+/, 'marginTop:' + header_height))
           $sticky_search.data('zfPlugin').options.marginTop = header_height
-
-          if e.namespace is 'stuckto:top.zf' and
+          if ( e.namespace is 'stuckto:top.zf' or e.type is 'resize' ) and
           search_m_top isnt header_height and
           parseInt(search_m_top) isnt 0
             $sticky_search.css('margin-top', header_height + 'em')
+    else
+      window.requestAnimationFrame ->
+        logged_in_offset = adminHeaderHeight()
+        $header_height = Math.ceil(($('.site-header .sticky').outerHeight() / 16) * 10) / 10 + logged_in_offset
+        $search_filters.css( 'top', $header_height + 'rem' )
 
   $('.site-header [data-sticky]').on 'sticky.zf.stuckto:top', $updateStickyTop
   $('.site-header [data-sticky]').on 'sticky.zf.unstuckfrom:top', $updateStickyTop
@@ -114,27 +114,24 @@
   $data_margin_top = Math.ceil(($('.site-header').outerHeight() / 16) * 10) / 10 + logged_in_offset
   options['marginTop'] = $data_margin_top
 
-  if window.innerWidth > 700
-    new Foundation.Sticky($sticky_search, options)
-
-  # Destroy or create the sticky plugin based on the current viewport width.
+  # Manage position and size for the search filters as needed when the window resizes.
+  # The following things change when the window resizes:
+  # Header height, navigation menu height, sidebar max width
   $(window).on 'resize', (e) ->
-    $sticky_search = $('[data-post-tile-search] .sticky-target')
-    $data = $sticky_search.data()
+    window.requestAnimationFrame ->
+      $sticky_search = $('[data-post-tile-search] .sticky-target')
+      $data = $sticky_search.data()
+      active = stickyIsActive()
 
-    if window.innerWidth > 700
-      if $sticky_search.parent().hasClass('sticky-container') is false
-        $search_filters.css( 'top', '' )
-        new Foundation.Sticky($sticky_search, options)
-      else
+      # Update top position of sticky filter container
+      $updateStickyTop e
+
+      if Foundation.MediaQuery.atLeast('medium2') and
+      active is true
         # Update max-width since it is set by the Sticky plugin
-        window.requestAnimationFrame ->
-          new_width = $sticky_search.parent().outerWidth()
-          if $sticky_search.css('max-width') isnt new_width
-            $sticky_search.css('max-width', new_width)
-    else
-      if stickyIsActive()
-        $sticky_search.foundation('_destroy')
+        new_width = $sticky_search.parent().outerWidth()
+        if $sticky_search.css('max-width') isnt new_width
+          $sticky_search.css('max-width', new_width)
 
   return
 ) jQuery
