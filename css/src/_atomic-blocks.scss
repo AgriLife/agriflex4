@@ -1,0 +1,39 @@
+
+/*Media Block Styles*/
+.wp-block-atomic-blocks-ab-columns {
+	figure.wp-block-image,
+	.wp-block-image > figure {
+		display: flex;
+	}
+}
+
+.ab-layout-columns-2 > .ab-layout-column-wrap > div:not(:first-of-type) {
+	figure.wp-block-image::after,
+	.wp-block-image > figure::after	{
+		content: "";
+		height: 45px;
+		width: 33px;
+		background: {
+			image: url("../images/media-block-arrow-right.png");
+			size: contain;
+			repeat: no-repeat;
+		}
+		flex: 0 0 auto;
+		margin: 20% auto auto -10px;
+	}
+
+	figure.wp-block-image::before,
+	.wp-block-image > figure::before {
+		content: "";
+		height: 45px;
+		width: 33px;
+		background: {
+			image: url("../images/media-block-arrow-left.png");
+			size: contain;
+			repeat: no-repeat;
+		}
+		flex: 0 0 auto;
+		margin: 20% -10px auto auto;
+		z-index: 1;
+	}
+}
