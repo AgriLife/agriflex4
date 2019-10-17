@@ -608,6 +608,7 @@ class Genesis {
 			remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
 			remove_action( 'genesis_before_post_content', 'genesis_post_info' );
 
+			add_filter( 'genesis_attr_entry', array( $this, 'add_af4_entry_class' ) );
 			add_action( 'genesis_archive_title_descriptions', array( $this, 'archive_title_open' ), 9 );
 			add_action( 'genesis_archive_title_descriptions', array( $this, 'archive_title_close' ), 11 );
 			add_filter( 'genesis_attr_archive-title', array( $this, 'class_cell' ) );
@@ -624,6 +625,21 @@ class Genesis {
 			add_filter( 'genesis_next_link_text', array( $this, 'next_link_text' ) );
 
 		}
+
+	}
+
+	/**
+	 * Add class to archive entries to make styling easier to implement elsewhere.
+	 *
+	 * @since 1.6.5
+	 * @param array $attributes HTML attributes.
+	 * @return array
+	 */
+	public function add_af4_entry_class( $attributes ) {
+
+		$attributes['class'] .= ' af4-entry-compact';
+
+		return $attributes;
 
 	}
 
