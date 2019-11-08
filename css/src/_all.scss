@@ -48,6 +48,14 @@ input[disabled] + label {
 	color: $gray-light;
 }
 
+// Highlight anchor link targets.
+:not(.no-js) *[id]:target {
+	transition: background-color 1.5s ease-in;
+	background-color: $yellow;
+	padding-left: .35em;
+	margin-left: -.35em;
+}
+
 // Fix flexbox issue for IE10
 main,
 aside {
