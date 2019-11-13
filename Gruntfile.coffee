@@ -277,7 +277,7 @@ module.exports = (grunt) ->
 
       done(err)
       return
-    returnreturn
+    return
   @registerTask 'themecomment', 'Add WordPress header to style.css and css/style.css', ->
     scss = 'css/src/_themecomment.scss'
     css = 'style.css'
