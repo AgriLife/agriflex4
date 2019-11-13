@@ -12,7 +12,9 @@ module.exports = (grunt) ->
     watch:
       files: [
         'css/src/**/*.scss',
-        'js/src/*.coffee'
+        '!css/src/_themecomment.scss',
+        'js/src/*.coffee',
+        'package.json'
       ]
       tasks: ['develop']
     postcss:
@@ -20,11 +22,12 @@ module.exports = (grunt) ->
         options:
           processors: [
             require('autoprefixer')({browsers: ['last 2 versions','ie > 9']})
+            require('cssnano')()
           ]
           failOnError: true
         files:
+          'css/style.css': 'css/style.css'
           'css/admin.css': 'css/admin.css'
-          'css/default.css': 'css/default.css'
           'css/service-landing-page.css': 'css/service-landing-page.css'
       dev:
         options:
@@ -34,16 +37,20 @@ module.exports = (grunt) ->
           ]
           failOnError: true
         files:
-          'css/admin.css': 'css/admin.css'
+          'css/style.css': 'css/style.css'
           'css/default.css': 'css/default.css'
           'css/service-landing-page.css': 'css/service-landing-page.css'
+    cmq:
+      your_target:
+        files:
+          'css': ['css/*.css']
     sass:
       pkg:
         options:
           implementation: sass
           noSourceMap: true
           outputStyle: 'compressed'
-          precision: 2
+          precision: 4
           includePaths: ['node_modules/foundation-sites/scss']
         files:
           'css/admin.css': 'css/src/admin.scss'
@@ -54,12 +61,19 @@ module.exports = (grunt) ->
           implementation: sass
           sourceMap: true
           outputStyle: 'nested'
-          precision: 2
+          precision: 4
           includePaths: ['node_modules/foundation-sites/scss']
         files:
           'css/admin.css': 'css/src/admin.scss'
-          'css/default.css': 'css/src/default.scss'
+          'css/style.css': 'css/src/style.scss'
           'css/service-landing-page.css': 'css/src/service-landing-page.scss'
+    sasslint:
+      options:
+        configFile: '.sass-lint.yml'
+      target: [
+        'css/**/*.s+(a|c)ss',
+        '!css/src/_themecomment.scss'
+      ]
     jsvalidate:
       options:
         globals:
@@ -72,10 +86,6 @@ module.exports = (grunt) ->
           src: [
             'js/*.js'
           ]
-    sasslint:
-      options:
-        configFile: '.sass-lint.yml'
-      target: ['css/**/*.s+(a|c)ss']
     compress:
       main:
         options:
@@ -154,9 +164,10 @@ module.exports = (grunt) ->
   @loadNpmTasks 'grunt-sass-lint'
   @loadNpmTasks 'grunt-sass'
   @loadNpmTasks 'grunt-postcss'
+  @loadNpmTasks 'grunt-combine-media-queries'
 
-  @registerTask 'default', ['sass:pkg', 'concat:dist', 'coffee', 'jsvalidate', 'postcss:pkg']
-  @registerTask 'develop', ['sasslint', 'sass:dev', 'concat:dev', 'coffee', 'jsvalidate', 'postcss:dev']
+  @registerTask 'default', ['themecomment', 'sasslint', 'sass:pkg', 'concat:dist', 'coffee', 'jsvalidate', 'cmq', 'postcss:pkg']
+  @registerTask 'develop', ['themecomment', 'sasslint', 'sass:dev', 'concat:dev', 'coffee', 'jsvalidate', 'postcss:dev']
   @registerTask 'release', ['compress', 'makerelease']
   @registerTask 'makerelease', 'Set release branch for use in the release task', ->
     done = @async()
@@ -266,6 +277,41 @@ module.exports = (grunt) ->
 
       done(err)
       return
+    returnreturn
+  @registerTask 'themecomment', 'Add WordPress header to style.css and css/style.css', ->
+    scss = 'css/src/_themecomment.scss'
+    css = 'style.css'
+    options =
+      encoding: 'utf-8'
+    output = '/*!\n'
+    output += '  Theme Name:  <%= pkg.org_agrilife.themename %>\n'
+    output += '  Theme URI:   <%= pkg.repository.url %>\n'
+    output += '  Author:      <%= pkg.author %>\n'
+    output += '  Author URI:  <%= pkg.org_agrilife.authoruri %>\n'
+    output += '  Description: <%= pkg.description %>\n'
+    output += '  Version:     <%= pkg.version %>\n'
+    output += '  License:     <%= pkg.license %>\n'
+    output += '  License URI: <%= pkg.org_agrilife.licenseuri %>\n'
+    output += '  Text Domain: <%= pkg.name %>\n'
+    output += '  Template:    <%= pkg.org_agrilife.template %>\n'
+    output += '*/\n'
+    output = grunt.template.process output
+    grunt.file.delete scss
+    grunt.file.write scss, output, options
+    output += '\n/* ----------------------------------------------------------------------------\n\n'
+    output += '  WordPress requires a style.css file located in the theme\'s root folder for\n'
+    output += '  stuff to work. However, we will not be using vanilla CSS. We\'re using Sass.\n\n'
+    output += '  Sass is a superset of CSS that adds in amazing features such as variables,\n'
+    output += '  nested selectors and loops. It\'s also the easiest way to customize\n'
+    output += '  Foundation. All Sass files are located in the /css/src folder.\n\n'
+    output += '  Please note that none of your scss files will be compiled to /css/style.css\n'
+    output += '  before you run "npm start" or "grunt" or "grunt develop".\n\n'
+    output += '  Please read the README.md file before getting started. More info on how to\n'
+    output += '  use Sass with Foundation can be found here:\n'
+    output += '  http://foundation.zurb.com/docs/sass.html\n\n'
+    output += '---------------------------------------------------------------------------- */'
+    grunt.file.delete css
+    grunt.file.write css, output, options
     return
 
   @event.on 'watch', (action, filepath) =>

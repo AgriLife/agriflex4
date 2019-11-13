@@ -17,8 +17,10 @@
   },
   "dependencies": {
     "autoprefixer": "^9.1.5",
+    "cssnano": "^4.1.10",
     "foundation-sites": "^6.5.3",
     "grunt": "^1.0.3",
+    "grunt-combine-media-queries": "^1.0.20",
     "grunt-contrib-coffee": "^2.0.0",
     "grunt-contrib-compress": "^1.4.3",
     "grunt-contrib-concat": "^1.0.1",
@@ -41,5 +43,11 @@
     "type": "git",
     "url": "https://github.com/agrilife/agriflex4.git"
   },
-  "homepage": "https://github.com/agrilife/agriflex4#readme"
+  "homepage": "https://github.com/agrilife/agriflex4#readme",
+  "org_agrilife": {
+    "themename": "AgriFlex4",
+    "authoruri": "https://communications.agrilife.org/",
+    "licenseuri": "http://www.gnu.org/licenses/gpl-2.0.html",
+    "template": "genesis"
+  }
 }

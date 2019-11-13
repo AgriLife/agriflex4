@@ -156,9 +156,9 @@ class Assets {
 
 		wp_register_style(
 			'agriflex-default-styles',
-			AF_THEME_DIRURL . '/css/default.css',
+			AF_THEME_DIRURL . '/css/style.css',
 			array(),
-			filemtime( AF_THEME_DIRPATH . '/css/default.css' ),
+			filemtime( AF_THEME_DIRPATH . '/css/style.css' ),
 			'screen'
 		);
 

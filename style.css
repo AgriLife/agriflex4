@@ -1,12 +1,30 @@
-/*
+/*!
   Theme Name:  AgriFlex4
-  Theme URI:   https://github.com/agrilife/agriflex4
-  Author: 		 Texas A&M AgriLife Communications
-  Author URI:  http://agrilife.org/communications
+  Theme URI:   https://github.com/agrilife/agriflex4.git
+  Author:      Zachary Watkins
+  Author URI:  https://communications.agrilife.org/
   Description: Genesis child theme for Texas A&M AgriLife
   Version:     1.6.6
-  License:     GNU General Public License v2 or later
+  License:     GPL-2.0+
   License URI: http://www.gnu.org/licenses/gpl-2.0.html
   Text Domain: agriflex4
   Template:    genesis
 */
+
+/* ----------------------------------------------------------------------------
+
+  WordPress requires a style.css file located in the theme's root folder for
+  stuff to work. However, we will not be using vanilla CSS. We're using Sass.
+
+  Sass is a superset of CSS that adds in amazing features such as variables,
+  nested selectors and loops. It's also the easiest way to customize
+  Foundation. All Sass files are located in the /css/src folder.
+
+  Please note that none of your scss files will be compiled to /css/style.css
+  before you run "npm start" or "grunt" or "grunt develop".
+
+  Please read the README.md file before getting started. More info on how to
+  use Sass with Foundation can be found here:
+  http://foundation.zurb.com/docs/sass.html
+
+---------------------------------------------------------------------------- */
