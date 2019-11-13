@@ -26,8 +26,8 @@ module.exports = (grunt) ->
           ]
           failOnError: true
         files:
-          'css/style.css': 'css/style.css'
           'css/admin.css': 'css/admin.css'
+          'css/style.css': 'css/style.css'
           'css/service-landing-page.css': 'css/service-landing-page.css'
       dev:
         options:
@@ -37,8 +37,8 @@ module.exports = (grunt) ->
           ]
           failOnError: true
         files:
+          'css/admin.css': 'css/admin.css'
           'css/style.css': 'css/style.css'
-          'css/default.css': 'css/default.css'
           'css/service-landing-page.css': 'css/service-landing-page.css'
     cmq:
       your_target:
@@ -54,7 +54,7 @@ module.exports = (grunt) ->
           includePaths: ['node_modules/foundation-sites/scss']
         files:
           'css/admin.css': 'css/src/admin.scss'
-          'css/default.css': 'css/src/default.scss'
+          'css/style.css': 'css/src/style.scss'
           'css/service-landing-page.css': 'css/src/service-landing-page.scss'
       dev:
         options:
