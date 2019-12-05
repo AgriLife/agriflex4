@@ -92,6 +92,7 @@ module.exports = (grunt) ->
           archive: '<%= pkg.name %>.zip'
         files: [
           {src: ['css/*.css']},
+          {src: ['fields/*.php']},
           {src: ['images/**']},
           {src: ['js/*.js']},
           {src: ['src/**']},
