@@ -12,7 +12,10 @@
 	[data-sticky] {
 		&.sticky {
 			top: 0 !important; // sass-lint:disable-line no-important
-			overflow: auto;
+
+			@include breakpoint(medium) {
+				overflow: auto;
+			}
 
 			@include breakpoint(medium2) {
 				top: 1rem !important; // sass-lint:disable-line no-important
