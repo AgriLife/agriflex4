@@ -496,8 +496,16 @@ class Genesis {
 	 */
 	public function sticky_header( $output ) {
 
-		$output = preg_replace( '/<div class="wrap"/', '<div class="wrap" data-sticky-container><div class="wrap" data-sticky data-options="stickyOn:small;marginTop:0;"><div class="grid-container"><div class="grid-x grid-padding-x"', $output );
-		$output = preg_replace( '/<\/div>$/', '</div></div></div></div>', $output );
+		$af4_header_wrap = apply_filters(
+			'af4_header_wrap',
+			array(
+				'open'  => '<div class="wrap" data-sticky-container><div class="wrap" data-sticky data-options="stickyOn:small;marginTop:0;"><div class="grid-container"><div class="grid-x grid-padding-x"',
+				'close' => '</div></div></div></div>',
+			)
+		);
+
+		$output = preg_replace( '/<div class="wrap"/', $af4_header_wrap['open'], $output );
+		$output = preg_replace( '/<\/div>$/', $af4_header_wrap['close'], $output );
 
 		return $output;
 
