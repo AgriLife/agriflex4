@@ -68,6 +68,7 @@ class Navigation {
 	public function custom_nav_walker( $nav_output, $nav, $args ) {
 
 		$args['menu_class'] = $args['menu_class'] . ' dropdown';
+		$args['menu_id']    = 'genesis-nav-primary';
 		require_once AF_THEME_DIRPATH . '/src/class-customnavigationwalker.php';
 		$args['walker']     = new \AgriFlex\CustomNavigationWalker();
 		$args['items_wrap'] = '<ul id="%s" class="%s" data-responsive-menu="accordion medium-dropdown">%s</ul>';
