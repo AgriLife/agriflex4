@@ -48,17 +48,10 @@ input[disabled] + label {
 	color: $gray-light;
 }
 
-// Highlight anchor link targets.
+// Highlight anchor link targets inside the page content.
 :not(.no-js) .site-inner *[id]:target {
 	transition: background-color 1.5s ease-in;
 	background-color: $yellow;
-	padding-left: .35em;
-	margin-left: -.35em;
-}
-
-:not(.no-js) #genesis-nav-primary > li > *[id]:target {
-	transition: background-color 1.5s ease-in;
-	box-shadow: 0 0 8px inset $yellow;
 	padding-left: .35em;
 	margin-left: -.35em;
 }
