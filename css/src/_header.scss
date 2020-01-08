@@ -25,7 +25,15 @@
 	}
 
 	.site-title img {
+		margin-right: 1rem;
+	}
+
+	.site-title img:not(.custom-logo) {
 		width: 168px;
+	}
+
+	.site-title img.custom-logo {
+		max-height: 47px;
 	}
 
 	.wrap.is-at-top {
@@ -40,6 +48,7 @@
 	.title-area {
 		font-weight: 700;
 		text-align: left;
+		padding-right: 0;
 	}
 
 	.site-title {

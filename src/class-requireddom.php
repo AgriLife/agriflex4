@@ -223,7 +223,7 @@ class RequiredDOM {
 	 */
 	public function af4_nav_primary_title_bar_open( $output = '' ) {
 
-		$output .= '<div class="title-bars cell small-6 title-bar-right show-for-small-only">';
+		$output .= '<div class="title-bars cell auto title-bar-right show-for-small-only">';
 		return $output;
 
 	}
