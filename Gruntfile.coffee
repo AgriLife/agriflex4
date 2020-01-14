@@ -131,7 +131,8 @@ module.exports = (grunt) ->
           'node_modules/foundation-sites/dist/js/plugins/foundation.accordionMenu.min.js',
           'node_modules/foundation-sites/dist/js/plugins/foundation.responsiveMenu.min.js',
           'node_modules/foundation-sites/dist/js/plugins/foundation.responsiveToggle.min.js',
-          'node_modules/foundation-sites/dist/js/plugins/foundation.smoothScroll.min.js'
+          'node_modules/foundation-sites/dist/js/plugins/foundation.smoothScroll.min.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.toggler.min.js'
         ]
         dest: 'js/foundation.concat.js'
       dev:
@@ -153,7 +154,8 @@ module.exports = (grunt) ->
           'node_modules/foundation-sites/dist/js/plugins/foundation.accordionMenu.js',
           'node_modules/foundation-sites/dist/js/plugins/foundation.responsiveMenu.js',
           'node_modules/foundation-sites/dist/js/plugins/foundation.responsiveToggle.js',
-          'node_modules/foundation-sites/dist/js/plugins/foundation.smoothScroll.js'
+          'node_modules/foundation-sites/dist/js/plugins/foundation.smoothScroll.js',
+          'node_modules/foundation-sites/dist/js/plugins/foundation.toggler.js'
         ]
         dest: 'js/foundation.concat.js'
 
