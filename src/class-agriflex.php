@@ -66,6 +66,7 @@ class AgriFlex {
 	public function after_setup_theme() {
 
 		add_theme_support( 'align-wide' );
+		add_theme_support( 'responsive-embeds' );
 
 	}
 
