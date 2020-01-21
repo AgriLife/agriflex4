@@ -1,0 +1,50 @@
+.toggle-modal {
+	cursor: pointer;
+}
+
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba( 0, 0, 0, 0.8 );
+	z-index: 999;
+
+	> .wrap {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate( -50%, -50% );
+		width: auto;
+		max-width: 100%;
+		padding: 1.5rem;
+		background-color: $maroon;
+
+		p {
+			margin-bottom: 0;
+
+			~ p {
+				margin-top: $paragraph-margin-bottom;
+			}
+		}
+
+		.close {
+			position: absolute;
+			top: -16px;
+			right: -16px;
+			border: 3px solid $white;
+			width: 32px;
+			height: 32px;
+			line-height: 26px;
+			font-weight: bold;
+			border-radius: 16px;
+			font-size: 1.5rem;
+			background-color: $black;
+		}
+
+		@include breakpoint(medium) {
+			max-width: 50rem;
+		}
+	}
+}
