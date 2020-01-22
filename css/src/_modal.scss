@@ -11,12 +11,12 @@
 	background-color: rgba( 0, 0, 0, 0.8 );
 	z-index: 999;
 
-	> .wrap {
+	.wrap {
 		position: absolute;
 		top: 50%;
 		left: 50%;
 		transform: translate( -50%, -50% );
-		width: auto;
+		width: 100%;
 		max-width: 100%;
 		padding: 1.5rem;
 		background-color: $maroon;
@@ -32,19 +32,40 @@
 		.close {
 			position: absolute;
 			top: -16px;
-			right: -16px;
-			border: 3px solid $white;
+			right: 6px;
 			width: 32px;
 			height: 32px;
 			line-height: 26px;
 			font-weight: bold;
 			border-radius: 16px;
 			font-size: 1.5rem;
+			border: 3px solid $white;
 			background-color: $black;
-		}
+			color: $white;
+			cursor: pointer;
 
-		@include breakpoint(medium) {
+			&:hover,
+			&:active {
+				text-decoration: none;
+			}
+		}
+	}
+
+	@include breakpoint(small only) {
+		.wrap iframe {
+			width: 100%;
+		}
+	}
+
+	@include breakpoint(medium) {
+		.wrap {
 			max-width: 50rem;
+			width: auto;
+
+			.close {
+				top: -16px;
+				right: -16px;
+			}
 		}
 	}
 }
