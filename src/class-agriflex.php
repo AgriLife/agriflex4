@@ -55,6 +55,10 @@ class AgriFlex {
 
 		$this->require_classes();
 
+		// Add parameters for Gutenberg's YouTube embed blocks.
+		// https://wpforthewin.com/remove-related-videos-wp-gutenberg-embed-blocks/.
+		add_filter( 'render_block', array( $this, 'add_youtube_player_url_params' ), 10, 3 );
+
 	}
 
 	/**
@@ -149,6 +153,25 @@ class AgriFlex {
 		$service = new \AgriFlex\PageTemplate( AF_THEME_TEMPLATE_PATH, 'service-landing-page.php', 'Service Landing Page' );
 		$service->register();
 
+	}
+
+	/**
+	 * Add URL parameters to the YouTube Embed block.
+	 *
+	 * @since 1.7.5
+	 * @param string $block_content The string version of the block.
+	 * @param array  $block The Gutenberg block object.
+	 * @return string
+	 */
+	public function add_youtube_player_url_params( $block_content, $block ) {
+
+		if ( 'core-embed/youtube' === $block['blockName'] ) {
+
+			$block_content = str_replace( '?feature=oembed', '?feature=oembed&modestbranding=1&showinfo=0&rel=0', $block_content );
+
+		}
+
+		return $block_content;
 	}
 
 	/**
