@@ -11,15 +11,18 @@
 	background-color: rgba( 0, 0, 0, 0.8 );
 	z-index: 999;
 
-	.wrap {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate( -50%, -50% );
-		width: 100%;
-		max-width: 100%;
-		padding: 1.5rem;
-		background-color: $maroon;
+	iframe {
+		display: block;
+	}
+
+	.modal-wrap {
+		margin: 1.75rem auto;
+		position: relative;
+		top: 0;
+		width: auto;
+		min-height: calc(100% - 3.5rem);
+		max-width: 1100px;
+		align-items: center;
 
 		p {
 			margin-bottom: 0;
@@ -28,44 +31,38 @@
 				margin-top: $paragraph-margin-bottom;
 			}
 		}
+	}
 
-		.close {
-			position: absolute;
-			top: -16px;
-			right: 6px;
-			width: 32px;
-			height: 32px;
-			line-height: 26px;
-			font-weight: bold;
-			border-radius: 16px;
-			font-size: 1.5rem;
-			border: 3px solid $white;
-			background-color: $black;
-			color: $white;
-			cursor: pointer;
+	.close {
+		position: absolute;
+		top: 0;
+		right: 0;
+		transform: translate( 0, -100% );
+		font: 200 1rem/1.5rem $opensans;
+		padding: 1rem 2rem;
+		border: 1px solid $light-blue;
+		background-color: rgba( 0, 0, 0, 0.6 );
+		color: $white;
+		cursor: pointer;
 
-			&:hover,
-			&:active {
-				text-decoration: none;
-			}
+		&:hover,
+		&:active {
+			text-decoration: none;
+		}
+	}
+
+	.modal-second-wrap {
+		position: relative;
+		background-color: $maroon;
+		margin: {
+			left: auto;
+			right: auto;
 		}
 	}
 
 	@include breakpoint(small only) {
-		.wrap iframe {
+		.modal-wrap iframe {
 			width: 100%;
-		}
-	}
-
-	@include breakpoint(medium) {
-		.wrap {
-			max-width: 50rem;
-			width: auto;
-
-			.close {
-				top: -16px;
-				right: -16px;
-			}
 		}
 	}
 }

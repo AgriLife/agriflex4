@@ -58,6 +58,31 @@ class AgriFlex {
 		// Add parameters for Gutenberg's YouTube embed blocks.
 		// https://wpforthewin.com/remove-related-videos-wp-gutenberg-embed-blocks/.
 		add_filter( 'render_block', array( $this, 'add_youtube_player_url_params' ), 10, 3 );
+		add_filter(
+			'embed_oembed_html',
+			function( $cache, $url, $attr, $post_ID ) {
+
+				preg_match( '/\ssrc="([^"]+)"/', $cache, $old_url );
+
+				if ( 2 <= count( $old_url ) ) {
+					unset( $attr['width'] );
+					unset( $attr['height'] );
+					$old_url  = $old_url[1];
+					$new_url  = $old_url . '&';
+					$new_atts = array();
+					foreach ( $attr as $att => $value ) {
+						array_push( $new_atts, $att . '=' . $value );
+					}
+					$new_url .= implode( '&', $new_atts );
+					$cache    = str_replace( $old_url, $new_url, $cache );
+				}
+
+				return $cache;
+
+			},
+			999,
+			4
+		);
 
 	}
 
@@ -69,8 +94,15 @@ class AgriFlex {
 	 */
 	public function after_setup_theme() {
 
+		$defaults = array(
+			'flex-height' => true,
+			'flex-width'  => true,
+			'header-text' => array( 'site-title', 'site-description' ),
+		);
+
 		add_theme_support( 'align-wide' );
 		add_theme_support( 'responsive-embeds' );
+		add_theme_support( 'custom-logo', $defaults );
 
 	}
 
