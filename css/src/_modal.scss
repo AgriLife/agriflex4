@@ -11,10 +11,6 @@
 	background-color: rgba( 0, 0, 0, 0.8 );
 	z-index: 999;
 
-	@include breakpoint(medium) {
-		display: flex;
-	}
-
 	@include breakpoint(small only) {
 		padding-left: 1.5rem;
 		padding-right: 1.5rem;
@@ -39,6 +35,10 @@
 			~ p {
 				margin-top: $paragraph-margin-bottom;
 			}
+		}
+
+		@include breakpoint(medium) {
+			display: flex;
 		}
 	}
 
@@ -72,6 +72,11 @@
 	@include breakpoint(small only) {
 		.modal-wrap iframe {
 			width: 100%;
+		}
+
+		.modal-second-wrap {
+			margin-left: 0;
+			margin-right: 0;
 		}
 	}
 }
