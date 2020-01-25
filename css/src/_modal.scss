@@ -18,6 +18,7 @@
 
 	iframe {
 		display: block;
+		max-width: calc(100vw - 3rem);
 	}
 
 	.modal-wrap {
@@ -70,8 +71,8 @@
 	}
 
 	@include breakpoint(small only) {
-		.modal-wrap iframe {
-			width: 100%;
+		.modal-wrap {
+			display: flex;
 		}
 
 		.modal-second-wrap {
