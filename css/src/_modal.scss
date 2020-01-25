@@ -71,6 +71,10 @@
 	}
 
 	@include breakpoint(small only) {
+		iframe {
+			max-height: 100vw;
+		}
+
 		.modal-wrap {
 			display: flex;
 		}
