@@ -84,6 +84,21 @@ class AgriFlex {
 			4
 		);
 
+		if ( function_exists( 'acf_add_options_page' ) ) {
+
+			$settings = array(
+				'page_title'  => __( 'AgriFlex4 Options' ),
+				'menu_title'  => __( 'AgriFlex4 Options' ),
+				'menu_slug'   => 'agriflex4-options',
+				'capability'  => 'edit_themes',
+				'position'    => '',
+				'parent_slug' => 'options-general.php',
+			);
+
+			acf_add_options_page( $settings );
+
+		}
+
 	}
 
 	/**
@@ -116,6 +131,7 @@ class AgriFlex {
 
 		// Add page template custom fields.
 		if ( class_exists( 'acf' ) ) {
+			require_once AF_THEME_DIRPATH . '/fields/options-fields.php';
 			require_once AF_THEME_DIRPATH . '/fields/service-landing-page-fields.php';
 		}
 

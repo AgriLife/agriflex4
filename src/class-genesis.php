@@ -221,7 +221,7 @@ class Genesis {
 	 * @return array
 	 */
 	public function class_cell_title_area( $attributes ) {
-		$attributes['class'] .= ' small-6 medium-2';
+		$attributes['class'] .= ' auto medium-shrink';
 		return $attributes;
 	}
 
@@ -549,17 +549,27 @@ class Genesis {
 	 */
 	public function add_logo( $title, $inside, $wrap ) {
 
-		$logo_html  = '<a href="%s" title="%s"><img src="%s"></a>';
-		$logo_url   = AF_THEME_DIRURL . '/images/logo-agrilife.png';
-		$home       = trailingslashit( home_url() );
-		$new_inside = sprintf(
-			$logo_html,
-			$home,
-			'Texas A&M AgriLife',
-			$logo_url
-		);
+		$logo_html = '<a href="%s" title="%s" class="custom-logo-link" rel="home"><img src="%s"></a>';
+		$logo_url  = AF_THEME_DIRURL . '/images/logo-agrilife.png';
+		$home      = trailingslashit( home_url() );
 
-		$new_inside = apply_filters( 'af4_header_logo', $new_inside, $inside, $logo_html, $home );
+		if ( function_exists( 'get_custom_logo' ) && has_custom_logo() ) {
+
+			$logo = get_custom_logo();
+			$logo = preg_replace( '/\s(width|height)=["]?\d+["]?/', '', $logo );
+
+		} else {
+
+			$logo = sprintf(
+				$logo_html,
+				$home,
+				'Texas A&M AgriLife',
+				$logo_url
+			);
+
+		}
+
+		$new_inside = apply_filters( 'af4_header_logo', $logo, $inside, $logo_html, $home );
 
 		$title = str_replace( $inside, $new_inside, $title );
 

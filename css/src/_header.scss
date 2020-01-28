@@ -25,7 +25,7 @@
 	}
 
 	.site-title img {
-		width: 168px;
+		max-width: 168px;
 	}
 
 	.wrap.is-at-top {
@@ -139,6 +139,10 @@
 
 	@include breakpoint(medium) {
 		text-align: left;
+
+		.site-header .site-title img {
+			max-height: 48px;
+		}
 
 		.grid-container {
 			padding: {
