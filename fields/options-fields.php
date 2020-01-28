@@ -20,7 +20,7 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 					'label'             => 'Logos',
 					'name'              => 'logos',
 					'type'              => 'repeater',
-					'instructions'      => '',
+					'instructions'      => 'This is not used on the following sites: aglifesciences.tamu.edu, agrilife.org',
 					'required'          => 0,
 					'conditional_logic' => 0,
 					'wrapper'           => array(
@@ -31,7 +31,7 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 					'collapsed'         => '',
 					'min'               => 0,
 					'max'               => 2,
-					'layout'            => 'table',
+					'layout'            => 'block',
 					'button_label'      => 'Add Logo',
 					'sub_fields'        => array(
 						array(
@@ -72,11 +72,11 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 								'id'    => '',
 							),
 							'choices'           => array(
-								'Small'  => 'Small',
-								'Medium' => 'Medium',
+								'small-only' => 'Small only',
+								'medium'     => 'Medium and up',
 							),
 							'default_value'     => array(
-								0 => 'Medium',
+								0 => 'medium',
 							),
 							'allow_null'        => 1,
 							'multiple'          => 0,

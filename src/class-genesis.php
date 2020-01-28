@@ -549,11 +549,32 @@ class Genesis {
 	 */
 	public function add_logo( $title, $inside, $wrap ) {
 
-		$logo_html = '<a href="%s" title="%s" class="custom-logo-link" rel="home"><img src="%s"></a>';
-		$logo_url  = AF_THEME_DIRURL . '/images/logo-agrilife.png';
-		$home      = trailingslashit( home_url() );
+		$logo_html  = '<a href="%s" title="%s" rel="home"><img src="%s"></a>';
+		$logo_url   = AF_THEME_DIRURL . '/images/logo-agrilife.png';
+		$logo_field = get_field( 'logos', 'option' );
+		$home       = trailingslashit( home_url() );
+		$name       = get_bloginfo( 'name' );
+		$logo       = '';
 
-		if ( function_exists( 'get_custom_logo' ) && has_custom_logo() ) {
+		// Decide where to retrieve the site's logo(s) from.
+		if ( $logo_field ) {
+
+			$logo = sprintf( '<a href="%s" title="%s" rel="home">', $home, $name );
+
+			foreach ( $logo_field as $key => $value ) {
+				$logo .= wp_get_attachment_image(
+					$value['image']['ID'],
+					'full',
+					false,
+					array(
+						'class' => 'show-for-' . strtolower( $value['screen_size'] ),
+					)
+				);
+			}
+
+			$logo .= '</a>';
+
+		} elseif ( function_exists( 'get_custom_logo' ) && has_custom_logo() ) {
 
 			$logo = get_custom_logo();
 			$logo = preg_replace( '/\s(width|height)=["]?\d+["]?/', '', $logo );
@@ -563,7 +584,7 @@ class Genesis {
 			$logo = sprintf(
 				$logo_html,
 				$home,
-				'Texas A&M AgriLife',
+				$name,
 				$logo_url
 			);
 

@@ -8,7 +8,7 @@
                 "label": "Logos",
                 "name": "logos",
                 "type": "repeater",
-                "instructions": "",
+                "instructions": "This is not used on the following sites: aglifesciences.tamu.edu, agrilife.org",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -18,8 +18,8 @@
                 },
                 "collapsed": "",
                 "min": 0,
-                "max": 0,
-                "layout": "table",
+                "max": 2,
+                "layout": "block",
                 "button_label": "Add Logo",
                 "sub_fields": [
                     {
@@ -60,12 +60,11 @@
                             "id": ""
                         },
                         "choices": {
-                            "Small": "Small",
-                            "Medium": "Medium",
-                            "Large": "Large"
+                            "small-only": "Small only",
+                            "medium": "Medium and up"
                         },
                         "default_value": [
-                            "Medium"
+                            "medium"
                         ],
                         "allow_null": 1,
                         "multiple": 0,
