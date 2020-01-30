@@ -60,11 +60,12 @@
                             "id": ""
                         },
                         "choices": {
+                            "small": "All",
                             "small-only": "Small only",
                             "medium": "Medium and up"
                         },
                         "default_value": [
-                            "medium"
+                            "small"
                         ],
                         "allow_null": 1,
                         "multiple": 0,

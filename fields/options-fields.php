@@ -72,11 +72,12 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 								'id'    => '',
 							),
 							'choices'           => array(
+								'small'      => 'All',
 								'small-only' => 'Small only',
 								'medium'     => 'Medium and up',
 							),
 							'default_value'     => array(
-								0 => 'medium',
+								0 => 'small',
 							),
 							'allow_null'        => 1,
 							'multiple'          => 0,
