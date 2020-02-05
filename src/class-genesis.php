@@ -562,7 +562,7 @@ class Genesis {
 			$logo = sprintf( '<a href="%s" title="%s" rel="home">', $home, $name );
 
 			foreach ( $logo_field as $key => $value ) {
-				$logo .= wp_get_attachment_image(
+				$logo_i = wp_get_attachment_image(
 					$value['image']['ID'],
 					'full',
 					false,
@@ -570,6 +570,7 @@ class Genesis {
 						'class' => 'show-for-' . strtolower( $value['screen_size'] ),
 					)
 				);
+				$logo  .= preg_replace( '/\s(width|height)=["]?\d+["]?/', '', $logo_i );
 			}
 
 			$logo .= '</a>';
