@@ -99,6 +99,51 @@ class AgriFlex {
 
 		}
 
+		// Gutenberg LiveWhale block.
+		add_action(
+			'init',
+			function() {
+
+				wp_register_script(
+					'gutenberg-af4-livewhale',
+					AF_THEME_DIRURL . '/js/block-livewhale.js',
+					array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
+					filemtime( AF_THEME_DIRPATH . '/js/block-livewhale.js' ),
+					true
+				);
+
+				/**
+				 * Handle block content before adding to webpage.
+				 *
+				 * @since 1.8.3
+				 * @param array  $attributes The block's attributes.
+				 * @param string $content The block's content.
+				 * @return string
+				 */
+				function cgb_api_block_posts( $attributes, $content ) {
+					$url            = 'https://calendar.tamu.edu/live/json/events/group/College%20of%20Agriculture%20and%20Life%20Sciences/only_starred/true/hide_repeats/true/';
+					$block_content  = str_replace( '<', '&lt;', $content );
+					$block_content .= implode( ',', preg_replace( '/<|\n/', '', $attributes ) );
+					// Return the frontend output for our block.
+					return $block_content;
+				}
+
+				register_block_type(
+					'agriflex4/livewhale-calendar',
+					array(
+						'editor_script'   => 'gutenberg-af4-livewhale',
+						'render_callback' => 'cgb_api_block_posts',
+						'attributes'      => array(
+							'group' => array(
+								'type' => 'string',
+							),
+						),
+					)
+				);
+
+			}
+		);
+
 	}
 
 	/**
