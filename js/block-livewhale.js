@@ -1,8 +1,12 @@
 /**
  * Dynamic Block
  */
- ( function( blocks, editor, element, serverSideRender ) {
+ ( function( blocks, editor, element, components, serverSideRender, InspectorControls ) {
     var el = element.createElement,
+    		TextControl = components.TextControl,
+    		PanelBody = components.PanelBody,
+    		StepperCell = components.StepperCell,
+    		StepperControl = components.StepperControl,
     		registerBlockType = blocks.registerBlockType,
     		ServerSideRender = serverSideRender;
 
@@ -15,8 +19,9 @@
       attributes: {
 				group: {
 	        type: 'string',
-	        source: 'html',
-	        selector: 'input'
+	        // source: 'attribute',
+	        // attribute: 'value',
+	        // selector: '.control-group input'
 	        //
 	        // type: 'string',
 	        // source: 'attribute',
@@ -25,20 +30,27 @@
 		    },
 		    category: {
 		    	type: 'string',
-		    	source: 'html',
-		    	selector: 'input'
+		    	// source: 'attribute',
+	      //   attribute: 'value',
+		    	// selector: '.control-category input'
 		    },
 				tag: {
 					type: 'string',
-		    	source: 'html',
-		    	selector: 'input',
-					default: ''
+		   //  	source: 'attribute',
+	    //     attribute: 'value',
+		   //  	selector: '.control-tag input',
+					// default: ''
 				},
 				count: {
-					type: 'number',
-		    	source: 'html',
-		    	selector: 'input',
-					default: 3,
+					type: 'string',
+		   //  	source: 'attribute',
+	    //     attribute: 'value',
+					default: '3',
+				},
+				content: {
+					type: 'string',
+					source: 'html',
+					selector: 'a.wp-block-agriflex4-livewhale-calendar'
 				}
 			},
       edit: function( props ) {
@@ -54,47 +66,81 @@
 		    var updateCountValue = function( val ) {
 	        props.setAttributes( { count: val } );
 		    };
-		    var group = wp.element.createElement(
-		    	wp.components.TextControl,
+		    var group = el(
+		    	TextControl,
 		    	{
 		    		label: 'Group',
+		    		className: 'control-group',
 		    		value: props.attributes.group,
 		    		key: 'group',
 		    		onChange: updateGroupValue
 		    	}
 		    );
-		    var category = wp.element.createElement(
-		    	wp.components.TextControl,
+		    var category = el(
+		    	TextControl,
 		    	{
 		    		label: 'Category',
+		    		className: 'control-category',
 		    		value: props.attributes.category,
 		    		key: 'category',
 		    		onChange: updateCategoryValue
 		    	}
 		    );
-		    var tag = wp.element.createElement(
-		    	wp.components.TextControl,
+		    var tag = el(
+		    	TextControl,
 		    	{
 		    		label: 'Tag',
+		    		className: 'control-tag',
 		    		value: props.attributes.tag,
 		    		key: 'tag',
 		    		onChange: updateTagValue
 		    	}
 		    );
-		    var count = wp.element.createElement(
-		    	wp.components.TextControl,
-		    	{
+		    var count = el(
+    			TextControl,
+    			{
 		    		label: 'Count',
+		    		className: 'control-count',
 		    		value: props.attributes.count,
 		    		key: 'count',
 		    		onChange: updateCountValue
 		    	}
-		    );
-		    return wp.element.createElement(
-	        'div',
-	        null,
-	        [ group, category, tag, count ]
-		    );
+				);
+
+				// Show these controls in the sidebar
+		    var sidebar = el(
+		    	InspectorControls,
+		    	null,
+		    	el(
+		    		PanelBody,
+		    		{
+		    			title: 'LiveWhale settings',
+		    			initialOpen: true
+		    		},
+		    		[ group, category, tag, count ]
+				  )
+				);
+
+				// Calendar link in block content.
+				var urlparams = 'https://calendar.tamu.edu/live/json/events';
+				if ( props.attributes.hasOwnProperty('group') && props.attributes.group !== '' ) {
+					urlparams += '/group/' + encodeURI(props.attributes.group);
+				}
+				if ( props.attributes.hasOwnProperty('category') && props.attributes.category !== '' ) {
+					urlparams += '/category/' + encodeURI(props.attributes.category);
+				}
+				if ( props.attributes.hasOwnProperty('tag') && props.attributes.tag !== '' ) {
+					urlparams += '/tag/' + encodeURI(props.attributes.tag);
+				}
+				urlparams += '/hide_repeats/true/';
+
+				var content = el(
+	    		'a',
+	    		{href: urlparams, "data-count": props.attributes.count},
+	    		'LiveWhale Calendar'
+				);
+
+		    return [ content, sidebar ];
 			},
 			save: function( props ) {
 				var urlparams = 'https://calendar.tamu.edu/live/json/events';
@@ -109,11 +155,11 @@
 				}
 				urlparams += '/hide_repeats/true/';
 
+
 		    return el(
 	    		'a',
 	    		{href: urlparams, "data-count": props.attributes.count},
-	    		'LiveWhale Calendar',
-	    		props.attributes.category
+	    		'LiveWhale Calendar'
 	    	);
 			},
     } );
@@ -121,7 +167,9 @@
   window.wp.blocks,
   window.wp.editor,
   window.wp.element,
-  window.wp.serverSideRender
+  window.wp.components,
+  window.wp.serverSideRender,
+  window.wp.blockEditor.InspectorControls
 ) );
 //  ( function( blocks, editor, element, serverSideRender ) {
 //     var el = element.createElement,

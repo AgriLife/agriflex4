@@ -121,11 +121,61 @@ class AgriFlex {
 				 * @return string
 				 */
 				function cgb_api_block_posts( $attributes, $content ) {
-					$url            = 'https://calendar.tamu.edu/live/json/events/group/College%20of%20Agriculture%20and%20Life%20Sciences/only_starred/true/hide_repeats/true/';
-					$block_content  = str_replace( '<', '&lt;', $content );
-					$block_content .= implode( ',', preg_replace( '/<|\n/', '', $attributes ) );
-					// Return the frontend output for our block.
-					return $block_content;
+
+					$url = 'https://calendar.tamu.edu/live/json/events';
+					if ( array_key_exists( 'group', $attributes ) ) {
+						$url .= '/group/' . $attributes['group'];
+					}
+					if ( array_key_exists( 'category', $attributes ) ) {
+						$url .= '/category/' . $attributes['category'];
+					}
+					if ( array_key_exists( 'group', $attributes ) ) {
+						$url .= '/tag/' . $attributes['tag'];
+					}
+
+					$url .= '/only_starred/true/hide_repeats/';
+
+					$output       = '';
+					$feed_json    = wp_remote_get( $url );
+					$feed_array   = json_decode( $feed_json['body'], true );
+					$l_events     = array_slice( $feed_array, 0, 3 ); // Choose number of events.
+					$l_event_list = '';
+
+					foreach ( $l_events as $event ) {
+
+						$title      = $event['title'];
+						$url        = $event['url'];
+						$location   = $event['location'];
+						$date       = $event['date_utc'];
+						$time       = $event['date_time'];
+						$date       = date_create( $date );
+						$date_day   = date_format( $date, 'd' );
+						$date_month = date_format( $date, 'M' );
+
+						if ( array_key_exists( 'custom_room_number', $event ) && ! empty( $event['custom_room_number'] ) ) {
+
+							$location .= ' ' . $event['custom_room_number'];
+
+						}
+
+						$l_event_list .= sprintf(
+							'<div class="event cell medium-auto small-12"><div class="grid-x grid-padding-x"><div class="cell date shrink"><div class="month h3">%s</div><div class="h2 day">%s</div></div><div class="cell title auto"><a href="%s" title="%s" class="event-title">%s</a><div class="location">%s</div></div></div></div>',
+							$date_month,
+							$date_day,
+							$url,
+							$title,
+							$title,
+							$location
+						);
+
+					}
+
+					$output .= sprintf(
+						'<div class="alignfull livewhale invert"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><div class="events-cell cell medium-auto small-12 grid-container"><div class="grid-x grid-padding-x">%s</div></div><div class="events-all cell medium-shrink small-12"><a class="h3 arrow-right" href="http://calendar.tamu.edu/agls/">All Events</a></div></div></div></div>',
+						$l_event_list
+					);
+
+					return $output;
 				}
 
 				register_block_type(
