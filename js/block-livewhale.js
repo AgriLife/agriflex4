@@ -1,9 +1,10 @@
 /**
- * Dynamic Block
+ * LiveWhale Gutenberg Block
  */
  ( function( blocks, editor, element, components, serverSideRender, InspectorControls ) {
     var el = element.createElement,
     		TextControl = components.TextControl,
+    		ToggleControl = components.ToggleControl,
     		PanelBody = components.PanelBody,
     		StepperCell = components.StepperCell,
     		StepperControl = components.StepperControl,
@@ -18,34 +19,20 @@
     	multiple: false,
       attributes: {
 				group: {
-	        type: 'string',
-	        // source: 'attribute',
-	        // attribute: 'value',
-	        // selector: '.control-group input'
-	        //
-	        // type: 'string',
-	        // source: 'attribute',
-	        // selector: 'input',
-	        // attribute: 'value'
+	        type: 'string'
 		    },
 		    category: {
-		    	type: 'string',
-		    	// source: 'attribute',
-	      //   attribute: 'value',
-		    	// selector: '.control-category input'
+		    	type: 'string'
 		    },
 				tag: {
-					type: 'string',
-		   //  	source: 'attribute',
-	    //     attribute: 'value',
-		   //  	selector: '.control-tag input',
-					// default: ''
+					type: 'string'
 				},
 				count: {
 					type: 'string',
-		   //  	source: 'attribute',
-	    //     attribute: 'value',
-					default: '3',
+					default: '3'
+				},
+				starred: {
+					type: 'boolean'
 				},
 				content: {
 					type: 'string',
@@ -65,6 +52,9 @@
 		    };
 		    var updateCountValue = function( val ) {
 	        props.setAttributes( { count: val } );
+		    };
+		    var updateStarredValue = function( val ) {
+	        props.setAttributes( { starred: val } );
 		    };
 		    var group = el(
 		    	TextControl,
@@ -99,11 +89,22 @@
 		    var count = el(
     			TextControl,
     			{
-		    		label: 'Count',
+		    		label: 'Events to display',
 		    		className: 'control-count',
 		    		value: props.attributes.count,
 		    		key: 'count',
 		    		onChange: updateCountValue
+		    	}
+				);
+				var starred = el(
+    			ToggleControl,
+    			{
+		    		label: 'Starred Events Only',
+		    		checked: props.attributes.starred,
+		    		className: 'control-starred',
+		    		value: props.attributes.starred,
+		    		key: 'starred',
+		    		onChange: updateStarredValue
 		    	}
 				);
 
@@ -117,7 +118,7 @@
 		    			title: 'LiveWhale settings',
 		    			initialOpen: true
 		    		},
-		    		[ group, category, tag, count ]
+		    		[ group, category, tag, count, starred ]
 				  )
 				);
 
@@ -131,6 +132,9 @@
 				}
 				if ( props.attributes.hasOwnProperty('tag') && props.attributes.tag !== '' ) {
 					urlparams += '/tag/' + encodeURI(props.attributes.tag);
+				}
+				if ( props.attributes.hasOwnProperty('starred') && true === props.attributes.starred ) {
+					urlparams += '/only_starred/true';
 				}
 				urlparams += '/hide_repeats/true/';
 
@@ -153,6 +157,9 @@
 				if ( props.attributes.hasOwnProperty('tag') && props.attributes.tag !== '' ) {
 					urlparams += '/tag/' + encodeURI(props.attributes.tag);
 				}
+				if ( props.attributes.hasOwnProperty('starred') && false === props.attributes.starred ) {
+					urlparams += '/starred/true';
+				}
 				urlparams += '/hide_repeats/true/';
 
 
@@ -171,96 +178,3 @@
   window.wp.serverSideRender,
   window.wp.blockEditor.InspectorControls
 ) );
-//  ( function( blocks, editor, element, serverSideRender ) {
-//     var el = element.createElement,
-//     		registerBlockType = blocks.registerBlockType,
-//     		ServerSideRender = serverSideRender;
-
-//     registerBlockType( 'agriflex4/livewhale-calendar', {
-//         title: 'LiveWhale Calendar',
-//         icon: 'calendar-alt',
-//         category: 'embed',
-//       	anchor: true,
-//       	multiple: false,
-//         attributes: {
-// 					content: {
-// 						type: 'string',
-// 						default: 'Editable block content...',
-// 					},
-// 				},
-//         edit: function( props ) {
-//         	var content = props.attributes.content;
-//         	function onChangeContent( newContent ) {
-//         		props.setAttributes( { content: newContent } );
-//         	}
-//         	var mel = el( ServerSideRender, {
-//             block: 'agriflex4/livewhale-calendar',
-//             attributes: props.attributes,
-//           } );
-//           return ( mel );
-//         },
-//         save: function() {
-//         	return null;
-//         },
-//     } );
-// }(
-//   window.wp.blocks,
-//   window.wp.editor,
-//   window.wp.element,
-//   window.wp.serverSideRender
-// ) );
-// ( function( blocks, element, data ) {
-//   var el = element.createElement,
-//     registerBlockType = blocks.registerBlockType,
-//     withSelect = data.withSelect;
-
-//   registerBlockType( 'agriflex4/livewhale-calendar', {
-// 		title: __( 'LiveWhale Calendar' ), // Block title. __() function allows for internationalization.
-// 		description: __( 'Block showing TAMU events' ), // Block description. __() function allows for internationalization.
-//     icon: 'calendar-alt',
-//     category: 'embed',
-//     attributes: {
-// 			group: {
-// 				type: 'string',
-// 				default: 'College of Agriculture and Life Sciences',
-// 			},
-// 			category: {
-// 				type: 'string',
-// 				default: '',
-// 			},
-// 			tag: {
-// 				type: 'string',
-// 				default: '',
-// 			},
-// 			starredonly: {
-// 				type: 'boolean',
-// 				default: false,
-// 			},
-// 			count: {
-// 				type: 'number',
-// 				default: 3,
-// 			},
-// 			content: {
-// 				type: 'string',
-// 				default: 'Editable block content...',
-// 			},
-// 		},
-//     edit: function() {
-// 	    return wp.element.createElement(
-//         'div',
-//         null,
-//         'Your block.'
-// 	    );
-// 		},
-// 		save: function() {
-// 	    return wp.element.createElement(
-//         'div',
-//         null,
-//         'Your block.'
-// 	    );
-// 		}
-// }(
-//     window.wp.blocks,
-//     window.wp.element,
-//     window.wp.data,
-// ) );

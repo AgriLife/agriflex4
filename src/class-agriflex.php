@@ -122,23 +122,32 @@ class AgriFlex {
 				 */
 				function cgb_api_block_posts( $attributes, $content ) {
 
-					$url = 'https://calendar.tamu.edu/live/json/events';
-					if ( array_key_exists( 'group', $attributes ) ) {
-						$url .= '/group/' . $attributes['group'];
-					}
-					if ( array_key_exists( 'category', $attributes ) ) {
-						$url .= '/category/' . $attributes['category'];
-					}
-					if ( array_key_exists( 'group', $attributes ) ) {
-						$url .= '/tag/' . $attributes['tag'];
+					// Decide how many calendar items to display.
+					$count = 3;
+					if ( array_key_exists( 'count', $attributes ) && ! empty( $attributes['count'] ) ) {
+						$count = $attributes['count'];
 					}
 
-					$url .= '/only_starred/true/hide_repeats/';
+					// Build the LiveWhale Feed URL.
+					$furl = 'https://calendar.tamu.edu/live/json/events';
+					if ( array_key_exists( 'group', $attributes ) && ! empty( $attributes['group'] ) ) {
+						$furl .= '/group/' . $attributes['group'];
+					}
+					if ( array_key_exists( 'category', $attributes ) && ! empty( $attributes['category'] ) ) {
+						$furl .= '/category/' . $attributes['category'];
+					}
+					if ( array_key_exists( 'tag', $attributes ) && ! empty( $attributes['tag'] ) ) {
+						$furl .= '/tag/' . $attributes['tag'];
+					}
+					if ( array_key_exists( 'starred', $attributes ) && true === $attributes['starred'] ) {
+						$furl .= '/only_starred/true';
+					}
+					$furl .= '/hide_repeats/';
 
 					$output       = '';
-					$feed_json    = wp_remote_get( $url );
+					$feed_json    = wp_remote_get( $furl );
 					$feed_array   = json_decode( $feed_json['body'], true );
-					$l_events     = array_slice( $feed_array, 0, 3 ); // Choose number of events.
+					$l_events     = array_slice( $feed_array, 0, $count ); // Choose number of events.
 					$l_event_list = '';
 
 					foreach ( $l_events as $event ) {
@@ -171,8 +180,9 @@ class AgriFlex {
 					}
 
 					$output .= sprintf(
-						'<div class="alignfull livewhale invert"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><div class="events-cell cell medium-auto small-12 grid-container"><div class="grid-x grid-padding-x">%s</div></div><div class="events-all cell medium-shrink small-12"><a class="h3 arrow-right" href="http://calendar.tamu.edu/agls/">All Events</a></div></div></div></div>',
-						$l_event_list
+						'<div class="alignfull livewhale invert"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><div class="events-cell cell medium-auto small-12 grid-container"><div class="grid-x grid-padding-x">%s</div></div><div class="events-all cell medium-shrink small-12"><a class="h3 arrow-right" href="%s">All Events</a></div></div></div></div>',
+						$l_event_list,
+						str_replace( '/live/json', '', $furl )
 					);
 
 					return $output;
