@@ -47,5 +47,6 @@ node_modules
 css/*.css*
 js/*.concat.js*
 js/post-type-tile-filters.js
+js/block-livewhale.js
 vendor
 *.zip

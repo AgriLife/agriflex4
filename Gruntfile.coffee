@@ -108,6 +108,7 @@ module.exports = (grunt) ->
           bare: true
         files:
           'js/post-type-tile-filters.js': 'js/src/post-type-tile-filters.coffee'
+          'js/block-livewhale.js': 'js/src/block-livewhale.coffee'
     concat:
       dist:
         options:

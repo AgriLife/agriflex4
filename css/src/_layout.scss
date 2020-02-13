@@ -10,7 +10,18 @@
 	}
 }
 
-@include breakpoint(medium up) {
+.entry-content > .alignfull > .grid-container {
+	$grid-padding-x: map-get($grid-container-padding, "small");
+	padding-left: $grid-padding-gutters / 2 + rem-calc( $grid-padding-x ) / 2;
+	padding-right: $grid-padding-gutters / 2 + rem-calc( $grid-padding-x ) / 2;
+}
+
+@include breakpoint(medium) {
+	.entry-content > .alignfull > .grid-container {
+		$grid-padding-x: map-get($grid-container-padding, "medium");
+		padding-left: $grid-padding-gutters / 2 + rem-calc( $grid-padding-x ) / 2;
+		padding-right: $grid-padding-gutters / 2 + rem-calc( $grid-padding-x ) / 2;
+	}
 
 	.layout-container {
 		@include xy-grid-container($break-xlarge, 0);

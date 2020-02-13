@@ -26,6 +26,10 @@ ul.reset > li {
 	@extend %button;
 }
 
+.arrow-right {
+	@extend %arrow-right;
+}
+
 table {
 	border-collapse: collapse;
 	margin-bottom: $paragraph-margin-bottom;

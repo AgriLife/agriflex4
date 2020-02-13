@@ -98,112 +98,6 @@ class AgriFlex {
 			acf_add_options_page( $settings );
 
 		}
-
-		// Gutenberg LiveWhale block.
-		add_action(
-			'init',
-			function() {
-
-				wp_register_script(
-					'gutenberg-af4-livewhale',
-					AF_THEME_DIRURL . '/js/block-livewhale.js',
-					array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
-					filemtime( AF_THEME_DIRPATH . '/js/block-livewhale.js' ),
-					true
-				);
-
-				/**
-				 * Handle block content before adding to webpage.
-				 *
-				 * @since 1.8.3
-				 * @param array  $attributes The block's attributes.
-				 * @param string $content The block's content.
-				 * @return string
-				 */
-				function cgb_api_block_posts( $attributes, $content ) {
-
-					// Decide how many calendar items to display.
-					$count = 3;
-					if ( array_key_exists( 'count', $attributes ) && ! empty( $attributes['count'] ) ) {
-						$count = $attributes['count'];
-					}
-
-					// Build the LiveWhale Feed URL.
-					$furl = 'https://calendar.tamu.edu/live/json/events';
-					if ( array_key_exists( 'group', $attributes ) && ! empty( $attributes['group'] ) ) {
-						$furl .= '/group/' . $attributes['group'];
-					}
-					if ( array_key_exists( 'category', $attributes ) && ! empty( $attributes['category'] ) ) {
-						$furl .= '/category/' . $attributes['category'];
-					}
-					if ( array_key_exists( 'tag', $attributes ) && ! empty( $attributes['tag'] ) ) {
-						$furl .= '/tag/' . $attributes['tag'];
-					}
-					if ( array_key_exists( 'starred', $attributes ) && true === $attributes['starred'] ) {
-						$furl .= '/only_starred/true';
-					}
-					$furl .= '/hide_repeats/';
-
-					$output       = '';
-					$feed_json    = wp_remote_get( $furl );
-					$feed_array   = json_decode( $feed_json['body'], true );
-					$l_events     = array_slice( $feed_array, 0, $count ); // Choose number of events.
-					$l_event_list = '';
-
-					foreach ( $l_events as $event ) {
-
-						$title      = $event['title'];
-						$url        = $event['url'];
-						$location   = $event['location'];
-						$date       = $event['date_utc'];
-						$time       = $event['date_time'];
-						$date       = date_create( $date );
-						$date_day   = date_format( $date, 'd' );
-						$date_month = date_format( $date, 'M' );
-
-						if ( array_key_exists( 'custom_room_number', $event ) && ! empty( $event['custom_room_number'] ) ) {
-
-							$location .= ' ' . $event['custom_room_number'];
-
-						}
-
-						$l_event_list .= sprintf(
-							'<div class="event cell medium-auto small-12"><div class="grid-x grid-padding-x"><div class="cell date shrink"><div class="month h3">%s</div><div class="h2 day">%s</div></div><div class="cell title auto"><a href="%s" title="%s" class="event-title">%s</a><div class="location">%s</div></div></div></div>',
-							$date_month,
-							$date_day,
-							$url,
-							$title,
-							$title,
-							$location
-						);
-
-					}
-
-					$output .= sprintf(
-						'<div class="alignfull livewhale invert"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><div class="events-cell cell medium-auto small-12 grid-container"><div class="grid-x grid-padding-x">%s</div></div><div class="events-all cell medium-shrink small-12"><a class="h3 arrow-right" href="%s">All Events</a></div></div></div></div>',
-						$l_event_list,
-						str_replace( '/live/json', '', $furl )
-					);
-
-					return $output;
-				}
-
-				register_block_type(
-					'agriflex4/livewhale-calendar',
-					array(
-						'editor_script'   => 'gutenberg-af4-livewhale',
-						'render_callback' => 'cgb_api_block_posts',
-						'attributes'      => array(
-							'group' => array(
-								'type' => 'string',
-							),
-						),
-					)
-				);
-
-			}
-		);
-
 	}
 
 	/**
@@ -255,10 +149,14 @@ class AgriFlex {
 		require_once AF_THEME_DIRPATH . '/src/class-requireddom.php';
 		require_once AF_THEME_DIRPATH . '/src/class-navigation.php';
 		require_once AF_THEME_DIRPATH . '/src/class-people.php';
+		require_once AF_THEME_DIRPATH . '/src/class-livewhaleblock.php';
 
 		// Get Genesis setup the way we want it.
 		global $af_genesis;
 		$af_genesis = new \AgriFlex\Genesis();
+
+		// Register Gutenberg blocks.
+		$af_livewhaleblock = new \AgriFlex\LiveWhaleBlock();
 
 		// Enqueue our assets.
 		$af_assets = new \AgriFlex\Assets();
