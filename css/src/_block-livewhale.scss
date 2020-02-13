@@ -70,6 +70,7 @@
 		}
 		@include breakpoint(medium) {
 			padding: $grid-margin-gutters / 2;
+			min-width: rem-calc(250);
 
 			.cell.date,
 			.cell.title {
