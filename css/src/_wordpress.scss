@@ -250,6 +250,16 @@ body {
 		margin-left: $flow-margin-x;
 	}
 
+	.alignwide,
+	.alignfull {
+		text-align: center;
+
+		img,
+		video {
+			width: 100%;
+		}
+	}
+
 	@include breakpoint(small only) {
 		.alignfull {
 			max-width: 100vw;
