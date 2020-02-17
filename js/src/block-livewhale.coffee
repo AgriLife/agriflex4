@@ -2,13 +2,14 @@
 # LiveWhale Gutenberg Block
 ###
 
-((blocks, editor, element, components, InspectorControls) ->
+((blocks, editor, element, components) ->
 	el = element.createElement
 	TextControl = components.TextControl
 	ToggleControl = components.ToggleControl
 	PanelBody = components.PanelBody
 	StepperCell = components.StepperCell
 	StepperControl = components.StepperControl
+	InspectorControls = editor.InspectorControls
 
 	getLiveWhaleURL = ( props ) ->
 
@@ -121,4 +122,4 @@
 		save: (props) ->
 			getEditorContent props
 	return
-) window.wp.blocks, window.wp.editor, window.wp.element, window.wp.components, window.wp.blockEditor.InspectorControls
+) window.wp.blocks, window.wp.editor, window.wp.element, window.wp.components
