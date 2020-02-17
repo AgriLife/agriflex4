@@ -44,6 +44,10 @@ class LiveWhaleBlock {
 			$url .= '/max/' . $attributes['count'];
 		}
 
+		if ( array_key_exists( 'subscription', $attributes ) && ! empty( $attributes['subscription'] ) ) {
+			$url .= '/subscription/' . $attributes['subscription'];
+		}
+
 		if ( array_key_exists( 'group', $attributes ) && ! empty( $attributes['group'] ) ) {
 			$url .= '/group/' . $attributes['group'];
 		}

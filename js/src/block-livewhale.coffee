@@ -16,6 +16,8 @@
 		url = 'https://calendar.tamu.edu/live/json/events'
 		if props.attributes.hasOwnProperty('count') and props.attributes.count != ''
 			url += '/max/' + encodeURI(props.attributes.count)
+		if props.attributes.hasOwnProperty('subscription') and props.attributes.subscription != ''
+			url += '/subscription/' + encodeURI(props.attributes.subscription)
 		if props.attributes.hasOwnProperty('group') and props.attributes.group != ''
 			url += '/group/' + encodeURI(props.attributes.group)
 		if props.attributes.hasOwnProperty('category') and props.attributes.category != ''
@@ -47,11 +49,15 @@
 				type: 'string'
 				default: '3'
 			starred: type: 'boolean'
+			subscription: type: 'string'
 			content:
 				type: 'string'
 				source: 'html'
 				selector: 'a.wp-block-agriflex4-livewhale-calendar'
 		edit: (props) ->
+			updatesubscriptionValue = (val) ->
+				props.setAttributes subscription: val
+				return
 			updateGroupValue = (val) ->
 				props.setAttributes group: val
 				return
@@ -68,6 +74,12 @@
 				props.setAttributes starred: val
 				return
 
+			subscription = el(TextControl,
+				label: 'Calendar'
+				className: 'control-subscription'
+				value: props.attributes.subscription
+				key: 'subscription'
+				onChange: updatesubscriptionValue)
 			group = el(TextControl,
 				label: 'Group'
 				className: 'control-group'
@@ -105,6 +117,7 @@
 				title: 'LiveWhale settings'
 				initialOpen: true
 			}, [
+				subscription
 				group
 				category
 				tag
