@@ -82,32 +82,6 @@ class LiveWhaleBlock {
 			true
 		);
 
-		// Provide LiveWhale script with JSON API data in editor.
-		if ( is_admin() && isset( $_SERVER['QUERY_STRING'] ) ) {
-			$query = sanitize_text_field( wp_unslash( $_SERVER['QUERY_STRING'] ) );
-			preg_match_all( '/post=([^&]+)/', $query, $post_id );
-			$post_id = $post_id[1][0];
-			$post    = get_post( $post_id );
-
-			if ( has_blocks( $post->post_content ) ) {
-
-				$blocks           = parse_blocks( $post->post_content );
-				$key              = array_search( 'agriflex4/livewhale-calendar', array_column( $blocks, 'blockName' ), true );
-				$livewhale        = $blocks[ $key ];
-				$furl             = $this->get_url( $livewhale['attrs'] );
-				$feed_json        = wp_remote_get( $furl );
-				$feed_json_string = $feed_json['body'];
-
-				wp_localize_script(
-					'gutenberg-af4-livewhale',
-					'af4_livewhaleblock',
-					array(
-						'json' => $feed_json_string,
-					)
-				);
-			}
-		}
-
 		register_block_type(
 			'agriflex4/livewhale-calendar',
 			array(
