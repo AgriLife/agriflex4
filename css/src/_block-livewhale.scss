@@ -7,7 +7,12 @@
 		top: $grid-padding-gutters / 2;
 		bottom: $grid-padding-gutters / 2;
 	};
-	margin: $grid-padding-gutters 0;
+
+	@if($admin == true) {
+		font-family: $body-font-family;
+	} @else {
+		margin: $grid-padding-gutters 0;
+	}
 
 	a {
 		color: $whiter;
@@ -95,6 +100,18 @@
 		padding: {
 			top: .88rem;
 			bottom: .88rem;
+		}
+	}
+}
+
+@if($admin == true) {
+	.block-editor-page .edit-post-visual-editor .livewhale-block {
+		line-height: $global-lineheight;
+
+		@extend .livewhale-block;
+
+		.arrow-right {
+			@extend %arrow-right;
 		}
 	}
 }

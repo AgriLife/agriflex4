@@ -118,6 +118,8 @@ class LiveWhaleBlock {
 		$count = 3;
 		if ( array_key_exists( 'count', $attributes ) && ! empty( $attributes['count'] ) ) {
 			$count = $attributes['count'];
+		} else {
+			$attributes['count'] = $count;
 		}
 
 		// Build the LiveWhale Feed URL.
@@ -158,10 +160,13 @@ class LiveWhaleBlock {
 
 		}
 
+		$aurl = str_replace( '/live/json', '', $furl );
+		$aurl = preg_replace( '/\/max\/\d+/', '', $furl );
+
 		$output .= sprintf(
 			$cal_template,
 			$l_event_list,
-			str_replace( '/live/json', '', $furl )
+			$aurl
 		);
 
 		return $output;

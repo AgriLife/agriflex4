@@ -30,9 +30,30 @@
 		return url
 
 	getEditorContent = ( props ) ->
-		el 'a', {
-			href: getLiveWhaleURL props
-		}, 'LiveWhale Calendar Link'
+		el 'div', null,
+			el 'div', { class: 'livewhale-block grid-x grid-padding-x' }, [
+				el 'div', { class: 'event cell auto' },
+					el 'div', { class: 'grid-x grid-padding-x' }, [
+						el 'div', { class: 'cell date shrink' }, [
+							el 'div', { class: 'month h3' }, 'Jan'
+							el 'div', { class: 'h2 day' }, '01'
+						]
+						el 'div', { class: 'cell title auto' }, [
+							el 'a', {
+								href: getLiveWhaleURL props
+								title: 'LiveWhale Feed URL'
+								class: 'event-title'
+								}, 'Event Title'
+							el 'div', { class: 'location' }, 'Location'
+						]
+					]
+				el 'div', { class: 'events-all cell shrink' },
+					el 'a', {
+						class: 'h3 arrow-right',
+						href: getLiveWhaleURL props
+							.replace /\/max\/\d+/, ''
+					}, 'All Events'
+			]
 
 	registerBlockType = blocks.registerBlockType
 	registerBlockType 'agriflex4/livewhale-calendar',
@@ -53,7 +74,7 @@
 			content:
 				type: 'string'
 				source: 'html'
-				selector: 'a.wp-block-agriflex4-livewhale-calendar'
+				selector: '.livewhale-block'
 		edit: (props) ->
 			updatesubscriptionValue = (val) ->
 				props.setAttributes subscription: val

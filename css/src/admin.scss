@@ -5,9 +5,24 @@ $admin: true;
 @import "foundation";
 @import "settings";
 @import "util/mixins";
+@import "util/extends";
 @import "wordpress";
+@import "block-livewhale";
 
-.gutenberg .edit-post-visual-editor {
+@include foundation-xy-grid-classes(
+	$base-grid: true,
+	$margin-grid: false,
+	$padding-grid: true,
+	$block-grid: false,
+	$collapse: true,
+	$offset: false,
+	$vertical-grid: false,
+	$frame-grid: false
+);
+
+@include af4-cloudfont-styles;
+
+.block-editor-page .edit-post-visual-editor {
 	font-family: $body-font-family;
 
 	// Headings
