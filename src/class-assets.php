@@ -27,9 +27,6 @@ class Assets {
 	public function __construct() {
 
 		// Register global scripts used in the theme.
-		add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_styles' ) );
-
-		// Register global scripts used in the theme.
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_public_scripts' ), 11 );
 
 		// Enqueue global scripts.
@@ -46,6 +43,11 @@ class Assets {
 
 		// Enqueue global styles.
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_external_styles' ), 3 );
+
+		// Register global scripts used in the theme.
+		add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'register_external_styles' ), 3 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_external_styles' ), 3 );
 
 		// Remove unneeded default assets.
 		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
