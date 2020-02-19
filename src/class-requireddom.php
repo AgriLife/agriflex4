@@ -303,16 +303,21 @@ class RequiredDOM {
 
 		$before = sprintf( '<div %s>', $output );
 
+		$wattr = apply_filters(
+			'af4_header_right_widget_area_atts',
+			array(
+				'before' => $before,
+				'after'  => '</div>',
+			)
+		);
+
 		if ( ! empty( $content ) ) {
 			ob_start();
 		}
 
 		genesis_widget_area(
 			'af4-header-right',
-			array(
-				'before' => $before,
-				'after'  => '</div>',
-			)
+			$wattr
 		);
 
 		if ( ! empty( $content ) ) {
