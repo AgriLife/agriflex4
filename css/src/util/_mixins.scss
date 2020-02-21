@@ -123,8 +123,8 @@
 	}
 }
 
-@mixin af4-cloudfont-styles () {
-	.has-cloud-fonts {
+@mixin af4-cloudfont-styles ( $selector: "" ) {
+	.has-cloud-fonts#{$selector} {
 		// Heading styles
 		@each $size, $headers in $header-styles-tungsten {
 			@include breakpoint($size) {

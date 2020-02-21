@@ -20,7 +20,7 @@ $admin: true;
 	$frame-grid: false
 );
 
-@include af4-cloudfont-styles;
+@include af4-cloudfont-styles(".block-editor-page .edit-post-visual-editor");
 
 .block-editor-page .edit-post-visual-editor {
 	font-family: $body-font-family;
