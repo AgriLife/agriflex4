@@ -21,7 +21,7 @@ module.exports = (grunt) ->
       pkg:
         options:
           processors: [
-            require('autoprefixer')({browsers: ['last 2 versions','ie > 9']})
+            require('autoprefixer')()
             require('cssnano')()
           ]
           failOnError: true
@@ -33,7 +33,7 @@ module.exports = (grunt) ->
         options:
           map: true
           processors: [
-            require('autoprefixer')({browsers: ['last 2 versions','ie > 9']})
+            require('autoprefixer')()
           ]
           failOnError: true
         files:
@@ -171,7 +171,7 @@ module.exports = (grunt) ->
   @loadNpmTasks 'grunt-combine-media-queries'
 
   @registerTask 'default', ['themecomment', 'sasslint', 'sass:pkg', 'concat:dist', 'coffee', 'jsvalidate', 'cmq', 'postcss:pkg']
-  @registerTask 'develop', ['themecomment', 'sasslint', 'sass:dev', 'concat:dev', 'coffee', 'jsvalidate', 'postcss:dev']
+  @registerTask 'develop', ['themecomment', 'sasslint', 'sass:dev', 'concat:dev', 'coffee', 'jsvalidate']
   @registerTask 'release', ['compress', 'makerelease']
   @registerTask 'makerelease', 'Set release branch for use in the release task', ->
     done = @async()
