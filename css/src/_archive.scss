@@ -43,7 +43,6 @@
 		}
 
 		a {
-			color: $dark-blue;
 			text-decoration: none;
 
 			&:focus,
@@ -64,8 +63,10 @@
 	}
 
 	time {
-		font-style: italic;
-		font-size: 1rem;
+		font: {
+			style: italic;
+			size: 1rem;
+		}
 		line-height: 1.25rem;
 	}
 
@@ -83,9 +84,10 @@
 		margin-bottom: .7rem;
 
 		&:hover {
-			background-color: transparent;
-			color: $black;
-			border: 1px solid $dark-blue;
+			border: {
+				width: 1px;
+				style: solid;
+			}
 			text-decoration: none;
 		}
 	}

@@ -7,7 +7,10 @@
 		display: block;
 		width: 4rem;
 		margin: 1.5rem auto 0;
-		border-bottom: 2px solid #B4D234;
+		border-bottom: {
+			width: 2px;
+			style: solid;
+		}
 	}
 }
 
@@ -19,7 +22,10 @@
 		content: "";
 		display: block;
 		margin: 0.4rem auto 0;
-		border-bottom: 2px solid #27A9E1;
+		border-bottom: {
+			width: 2px;
+			style: solid;
+		}
 	}
 
 	a {
@@ -31,7 +37,7 @@
 		}
 
 		&:hover {
-			color: #500000;
+			color: $maroon;
 		}
 	}
 }
@@ -58,12 +64,12 @@
 	display: inline-block;
 	padding: 0.4rem .8rem;
 	color: $white;
-	border: 1px solid lighten($dark-blue, 50%);
+	border: 1px solid lighten(map-get($af4-colors, primary), 50%);
 	margin: {
 		bottom: 1rem;
 		right: 1rem;
 	}
-	background-color: $dark-blue;
+	background-color: map-get($af4-colors, primary);
 	text: {
 		transform: uppercase;
 	}
@@ -78,12 +84,12 @@
 	}
 
 	&.hollow {
-		color: $dark-blue;
-		border-color: $dark-blue;
+		color: map-get($af4-colors, primary);
+		border-color: map-get($af4-colors, primary);
 		background-color: $white;
 
 		&::hover {
-			color: $dark-blue;
+			color: map-get($af4-colors, primary);
 		}
 	}
 

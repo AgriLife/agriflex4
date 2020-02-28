@@ -5,12 +5,6 @@
 .nav-primary {
 	clear: both;
 
-	a,
-	a:hover,
-	li:hover a {
-		color: $site-title-color;
-	}
-
 	.no-js & {
 		@include element-invisible;
 	}
@@ -31,10 +25,12 @@
 		}
 
 		.submenu li {
-			border-left: 2px solid $topbar-submenu-background;
-
+			&,
 			&:hover {
-				border-left: 2px solid rgb(180, 210, 52);
+				border-left: {
+					width: 2px;
+					style: solid;
+				}
 			}
 		}
 	}
@@ -63,9 +59,11 @@
 }
 
 .pagination {
-	text-transform: uppercase;
+	text: {
+		transform: uppercase;
+		align: center;
+	}
 	font-weight: 700;
-	text-align: center;
 
 	ul {
 		list-style-type: none;
@@ -84,11 +82,6 @@
 		height: 1.6rem;
 		min-width: 1.6rem;
 		text-align: center;
-	}
-
-	.active a {
-		background-color: $dark-blue;
-		color: $white;
 	}
 }
 

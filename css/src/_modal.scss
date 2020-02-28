@@ -12,8 +12,10 @@
 	z-index: 999;
 
 	@include breakpoint(small only) {
-		padding-left: 1.5rem;
-		padding-right: 1.5rem;
+		padding: {
+			left: 1.5rem;
+			right: 1.5rem;
+		}
 	}
 
 	iframe {
@@ -50,7 +52,10 @@
 		transform: translate( 0, -100% );
 		font: 200 1rem/1.5rem $opensans;
 		padding: 1rem 2rem;
-		border: 1px solid $light-blue;
+		border: {
+			width: 1px;
+			style: solid;
+		}
 		background-color: rgba( 0, 0, 0, 0.6 );
 		color: $white;
 		cursor: pointer;
@@ -63,7 +68,6 @@
 
 	.modal-second-wrap {
 		position: relative;
-		background-color: $maroon;
 		margin: {
 			left: auto;
 			right: auto;
@@ -80,8 +84,10 @@
 		}
 
 		.modal-second-wrap {
-			margin-left: 0;
-			margin-right: 0;
+			margin: {
+				left: 0;
+				right: 0;
+			}
 		}
 	}
 }

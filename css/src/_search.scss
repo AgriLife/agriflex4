@@ -7,7 +7,10 @@
 
 		li {
 			display: inline-block;
-			border: 1px solid $maroon;
+			border: {
+				width: 1px;
+				style: solid;
+			}
 			border-radius: 8px;
 			padding: 6px;
 			line-height: 1;
@@ -16,14 +19,8 @@
 				border-color: transparent;
 			}
 
-			&.active {
-				background-color: $dark-blue;
-				border-color: $dark-blue;
-
-				a {
-					color: $whiter;
-					font-weight: bold;
-				}
+			&.active a {
+				font-weight: bold;
 			}
 
 			a {

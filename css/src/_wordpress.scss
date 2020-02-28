@@ -10,31 +10,11 @@ body {
 		@include button-base;
 	}
 
-	.wp-block-file .wp-block-file__button {
-		background: $button-background;
-
-		&:active,
-		&:focus,
-		&:hover {
-			background: $button-background-hover;
-		}
-	}
-
 	.wp-block-button {
 		margin-bottom: $paragraph-margin-bottom;
 
 		.wp-block-button__link {
 			margin: 0;
-
-			&:not(.has-background) {
-				background: $button-background;
-
-				&:active,
-				&:focus,
-				&:hover {
-					background: $button-background-hover;
-				}
-			}
 		}
 	}
 
@@ -212,16 +192,10 @@ body {
 	------------------------- */
 	.wp-block-table {
 		&.is-style-stripes {
-			border: $table-border;
-
-			tr:nth-child(2n+1) {
-				background-color: lighten($table-border-color, 42%);
+			border: {
+				width: 1px;
+				style: solid;
 			}
-		}
-
-		td,
-		th {
-			border-color: $table-border-color;
 		}
 	}
 
@@ -229,12 +203,7 @@ body {
 	------------------------- */
 	.wp-block-separator {
 		&:not(.is-style-dots) {
-			border-bottom-color: $hr-border-color;
 			border-bottom-style: dashed;
-		}
-
-		&.is-style-dots:before {
-			color: $hr-border-color;
 		}
 	}
 

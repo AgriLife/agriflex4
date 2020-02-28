@@ -1,6 +1,5 @@
 .site-footer {
-	background-color: $footer-background;
-	color: $footer-text;
+	color: $white;
 	line-height: 2.4em;
 	font: {
 		family: $footer-font-family;
@@ -13,12 +12,12 @@
 	}
 
 	a {
-		color: $footer-text;
+		color: $white;
 		text-decoration: none;
 
 		&:focus,
 		&:hover {
-			color: $footer-link-active;
+			color: map-get($af4-colors, primary-light);
 			text-decoration: underline;
 		}
 
@@ -55,7 +54,7 @@
 	}
 
 	.footer-tamus {
-		border: 2px solid $footer-text;
+		border: 2px solid $white;
 	}
 
 	@include breakpoint(medium up) {

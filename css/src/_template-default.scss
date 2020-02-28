@@ -1,7 +1,6 @@
 /* Default Page and Post styles */
 
 .page-template {
-
 	.content-sidebar-wrap .content {
 		margin-top: 0;
 	}
@@ -15,12 +14,5 @@
 
 	h2 {
 		@extend %h2;
-	}
-}
-
-.button {
-	&,
-	&:hover {
-		background-color: #B4D234;
 	}
 }

@@ -45,7 +45,7 @@
 		}
 
 		&.underline-lightblue::after {
-			border-top-color: $robins-egg-blue;
+			border-top-color: $light-blue;
 		}
 	}
 
@@ -83,7 +83,7 @@
 		}
 
 		&.flow-arrow-bdr-lightblue::after {
-			border-color: $robins-egg-blue;
+			border-color: $light-blue;
 		}
 
 		&.bg-darkblue {
@@ -114,9 +114,6 @@
 	}
 
 	.card {
-		background: $maroon-alt;
-		color: $whiter;
-
 		.image {
 			max-height: 175px;
 			overflow: hidden;
@@ -138,7 +135,6 @@
 
 		a.item-button {
 			margin: .5rem;
-			background-color: $robins-egg-blue;
 		}
 	}
 
@@ -172,7 +168,7 @@
 		.center-line.line-lightblue {
 			&::after,
 			& ~ .item-button {
-				border-color: $robins-egg-blue;
+				border-color: $light-blue;
 			}
 		}
 	}

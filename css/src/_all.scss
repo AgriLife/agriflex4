@@ -36,7 +36,10 @@ table {
 
 	&,
 	& td {
-		border: $table-border;
+		border: {
+			width: 1px;
+			style: solid;
+		}
 	}
 
 	td {
@@ -55,7 +58,6 @@ input[disabled] + label {
 // Highlight anchor link targets inside the page content.
 :not(.no-js) .site-inner *[id]:target {
 	transition: background-color 1.5s ease-in;
-	background-color: $yellow;
 	padding-left: .35em;
 	margin-left: -.35em;
 }

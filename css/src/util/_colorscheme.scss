@@ -1,0 +1,221 @@
+.page-template-default,
+.post-template-default {
+	h1:after {
+		border-bottom-color: $light-green;
+	}
+
+	h2:after {
+		border-bottom-color: map-get($af4-colors, primary-light);
+	}
+}
+
+.site-header,
+.site-footer {
+	background-color: map-get($af4-colors, primary);
+}
+
+.site-header {
+	.wrap.is-at-top {
+		background: $site-title-background;
+	}
+
+	@include breakpoint(medium) {
+		.unit-header {
+			background-color: map-get($af4-colors, primary);
+
+			.wrap {
+				border-left: 2px solid $light-green;
+			}
+		}
+	}
+}
+
+.nav-primary {
+	a,
+	a:hover,
+	li:hover a {
+		color: $site-title-color;
+	}
+
+	@include breakpoint(medium) {
+		.submenu li {
+			border-left-color: $topbar-submenu-background;
+
+			&:hover {
+				border-left-color: $light-green;
+			}
+		}
+	}
+}
+
+:not(.no-js) .site-inner *[id]:target {
+	background-color: $yellow;
+}
+
+body .entry-content {
+	.wp-block-quote,
+	.wp-block-pullquote {
+		&::before,
+		&::after {
+			border-color: map-get($af4-colors, primary-light);
+		}
+	}
+}
+
+blockquote {
+	&,
+	p {
+		color: $blockquote-color;
+	}
+}
+
+.pagination .active a {
+	background-color: map-get($af4-colors, primary);
+	color: $white;
+}
+
+.archive-pagination ul li {
+	border-color: $maroon;
+
+	&.active {
+		background-color: map-get($af4-colors, primary);
+		border-color: map-get($af4-colors, primary);
+
+		a {
+			color: $whiter;
+		}
+	}
+}
+
+.af4-entry-compact {
+	h2 a {
+		color: map-get($af4-colors, primary);
+	}
+
+	.button:hover {
+		background-color: transparent;
+		color: $black;
+		border-color: map-get($af4-colors, primary);
+	}
+
+	.post-category .button {
+		color: $white;
+		border-color: lighten(map-get($af4-colors, primary), 50%);
+		background-color: map-get($af4-colors, primary);
+
+		&:hover,
+		&:focus {
+			color: $white;
+		}
+
+		&.hollow {
+			color: map-get($af4-colors, primary);
+			border-color: map-get($af4-colors, primary);
+			background-color: $white;
+
+			&::hover {
+				color: map-get($af4-colors, primary);
+			}
+		}
+
+		a {
+			color: $white;
+		}
+	}
+}
+
+.button {
+	&,
+	&:hover {
+		background-color: $light-green;
+	}
+}
+
+.modal {
+	.close {
+		border-color: map-get($af4-colors, primary-light);
+	}
+
+	.modal-second-wrap {
+		background-color: $maroon;
+	}
+}
+
+.livewhale-block {
+	background-color: $gray-darker;
+	color: $whiter;
+
+	.date {
+		border-right-color: $button-red-highlight;
+	}
+}
+
+.service-landing {
+	.card {
+		background: $maroon-alt;
+		color: $whiter;
+
+		a.item-button {
+			background-color: lighten(saturate(adjust-hue(map-get($af4-colors, primary), -9), 6.56), 34.90);
+		}
+	}
+}
+
+.site-footer {
+	color: $white;
+
+	a {
+		color: $white;
+
+		&:focus,
+		&:hover {
+			color: map-get($af4-colors, primary-light);
+		}
+	}
+}
+
+table {
+	&,
+	& td {
+		border-color: $table-border-color;
+	}
+}
+
+// Override default Gutenberg styles by adding the body selector.
+body {
+	.wp-block-file .wp-block-file__button,
+	.wp-block-button .wp-block-button__link:not(.has-background) {
+		background: $button-background;
+
+		&:active,
+		&:focus,
+		&:hover {
+			background: $button-background-hover;
+		}
+	}
+
+	.wp-block-table {
+		&.is-style-stripes {
+			border-color: $table-border-color;
+
+			tr:nth-child(2n+1) {
+				background-color: lighten($table-border-color, 42%);
+			}
+		}
+
+		td,
+		th {
+			border-color: $table-border-color;
+		}
+	}
+
+	.wp-block-separator {
+		&:not(.is-style-dots) {
+			border-bottom-color: $hr-border-color;
+		}
+
+		&.is-style-dots:before {
+			color: $hr-border-color;
+		}
+	}
+}

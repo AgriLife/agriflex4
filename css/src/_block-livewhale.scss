@@ -1,8 +1,6 @@
 /* LiveWhale block.
 ---------------------------------- */
 .livewhale-block {
-	background-color: $gray-darker;
-	color: $whiter;
 	padding: {
 		top: $grid-padding-gutters / 2;
 		bottom: $grid-padding-gutters / 2;
@@ -37,7 +35,10 @@
 	}
 
 	.date {
-		border-right: 2px solid $button-red-highlight;
+		border-right: {
+			width: 2px;
+			style: solid;
+		}
 		text-align: center;
 		padding: {
 			top: .2rem;
@@ -73,14 +74,17 @@
 			top: $grid-margin-gutters / 2;
 			bottom: $grid-margin-gutters / 2;
 		}
+
 		@include breakpoint(medium) {
 			padding: $grid-margin-gutters / 2;
 			min-width: rem-calc(250);
 
 			.cell.date,
 			.cell.title {
-				padding-left: 1rem;
-				padding-right: 1rem;
+				padding: {
+					left: 1rem;
+					right: 1rem;
+				}
 			}
 		}
 

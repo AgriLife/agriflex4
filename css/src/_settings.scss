@@ -84,7 +84,7 @@ $site-title-font-size: 2.75rem;
 $site-title-font-family: "minion-pro", sans-serif;
 $site-description: $gray-dark;
 $site-title-color: $whiter;
-$site-title-background: $dark-blue;
+$site-title-background: map-get($af4-colors, primary);
 
 /* Navigation
 --------------------------------------------- */
@@ -119,13 +119,13 @@ $titlebar-text-font-weight: normal;
 --------------------------------------------- */
 $small-side-spacing: 9%;
 $blockquote-border: none;
-$blockquote-color: darken($light-blue, 20%);
+$blockquote-color: lighten(desaturate(adjust-hue(map-get($af4-colors, primary), -7), 18.13), 19.80);
 $blockquote-padding: rem-calc(9 20 9 19);
 $cite-font-size: 0.9rem;
-$cite-color: darken($light-blue, 20%);
-$hr-border-color: $light-blue;
-$hr-border: 2px dashed $light-blue;
-$table-border-color: $light-blue;
+$cite-color: $blockquote-color;
+$hr-border-color: map-get($af4-colors, primary-light);
+$hr-border: 2px dashed map-get($af4-colors, primary-light);
+$table-border-color: map-get($af4-colors, primary-light);
 $table-border: 1px solid $table-border-color;
 $flow-margin-x: rem-calc(24);
 $header-styles: (
@@ -168,14 +168,11 @@ $header-styles-tungsten: (
 /* Buttons
 --------------------------------------------- */
 $button-radius: 2rem;
-$button-background: $light-blue;
-$button-background-hover: $dark-blue;
+$button-background: map-get($af4-colors, primary-light);
+$button-background-hover: map-get($af4-colors, primary);
 $button-red-highlight: #FD0020;
 
 /* Footer
 --------------------------------------------- */
-$footer-background: $site-title-background;
-$footer-text: #F8F8F8;
-$footer-link-active: $light-blue;
 $footer-font-family: $header-font-family;
 $footer-font-weight: 400;

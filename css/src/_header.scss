@@ -13,10 +13,11 @@
 
 .site-header {
 	text-align: center;
-	font-family: $header-font-family;
-	font-variant-ligatures: none;
+	font: {
+		family: $header-font-family;
+		variant-ligatures: none;
+	}
 	letter-spacing: .1em;
-	background: $site-title-background;
 	position: relative;
 	z-index: 4;
 
@@ -25,12 +26,10 @@
 	}
 
 	.site-title img {
-		max-width: 168px;
-		max-height: 72px;
-	}
-
-	.wrap.is-at-top {
-		background: $site-title-background;
+		max: {
+			width: 168px;
+			height: 72px;
+		}
 	}
 
 	.grid-container {
@@ -49,7 +48,7 @@
 			family: $site-title-font-family;
 			style: normal;
 		}
-		color: #222;
+		color: $gray-darker;
 		text-rendering: optimizelegibility;
 	}
 
@@ -165,8 +164,10 @@
 			input[type="search"] {
 				background-color: transparent;
 				display: inline-block;
-				box-sizing: border-box;
-				box-shadow: none;
+				box: {
+					sizing: border-box;
+					shadow: none;
+				}
 				width: calc(100% - 38px);
 				height: 32px;
 				border: 1px solid #D5D6DA {
@@ -221,7 +222,6 @@
 		}
 
 		.unit-header {
-			background-color: $dark-blue;
 			padding: 2rem 3.5rem;
 			color: #FFF;
 
@@ -245,7 +245,10 @@
 			}
 
 			.wrap {
-				border-left: 2px solid $light-green;
+				border-left: {
+					width: 2px;
+					style: solid;
+				}
 				padding: 0.5rem 1rem;
 			}
 		}
