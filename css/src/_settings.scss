@@ -45,6 +45,12 @@ $primary-color: $maroon;
 $yellow: #FF0;
 $nav-yellow: #FFE404;
 
+$af4-colors: (
+	primary: $dark-blue,
+	primary-light: $light-blue,
+	secondary: $light-green
+);
+
 /* Fonts
 --------------------------------------------- */
 $tungsten: "Tungsten A", "Tungsten B", "Oswald", sans-serif;
