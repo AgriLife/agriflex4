@@ -16,20 +16,20 @@
     "email": "first-call@tamu.edu"
   },
   "dependencies": {
-    "autoprefixer": "^9.1.5",
+    "autoprefixer": "^9.7.4",
     "cssnano": "^4.1.10",
-    "foundation-sites": "^6.5.3",
-    "grunt": "^1.0.3",
+    "foundation-sites": "^6.6.1",
+    "grunt": "^1.0.4",
     "grunt-combine-media-queries": "^1.0.20",
-    "grunt-contrib-coffee": "^2.0.0",
-    "grunt-contrib-compress": "^1.4.3",
+    "grunt-contrib-coffee": "^2.1.0",
+    "grunt-contrib-compress": "^1.6.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-postcss": "^0.9.0",
     "grunt-sass": "^3.1.0",
-    "jquery": "^3.3.1",
-    "node-sass": "^4.12.0",
-    "underscore": "^1.9.1",
-    "what-input": "^5.1.2"
+    "jquery": "^3.4.1",
+    "node-sass": "^4.13.1",
+    "underscore": "^1.9.2",
+    "what-input": "^5.2.6"
   },
   "devDependencies": {
     "grunt-contrib-watch": "^1.1.0",
