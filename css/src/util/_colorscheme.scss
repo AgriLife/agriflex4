@@ -1,7 +1,7 @@
 .page-template-default,
 .post-template-default {
 	h1:after {
-		border-bottom-color: $light-green;
+		border-bottom-color: map-get($af4-colors, secondary);
 	}
 
 	h2:after {
@@ -24,7 +24,7 @@
 			background-color: map-get($af4-colors, primary);
 
 			.wrap {
-				border-left: 2px solid $light-green;
+				border-left-color: map-get($af4-colors, secondary);
 			}
 		}
 	}
@@ -42,7 +42,7 @@
 			border-left-color: $topbar-submenu-background;
 
 			&:hover {
-				border-left-color: $light-green;
+				border-left-color: map-get($af4-colors, secondary);
 			}
 		}
 	}
@@ -127,7 +127,7 @@ blockquote {
 .button {
 	&,
 	&:hover {
-		background-color: $light-green;
+		background-color: map-get($af4-colors, secondary);
 	}
 }
 
