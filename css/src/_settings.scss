@@ -36,20 +36,29 @@ $maroon: #500000;
 $dark-blue: #02233B;
 $light-blue: #27A9E1;
 $light-blue-alt: #1DAFED;
+$light-blue-alt-2: #1779BA;
 $robins-egg-blue: #00AEEF;
 $green: #337845;
 $light-green: #B4D234;
 $purple: #5D0025;
 $beige: #FDE1B4;
-$primary-color: $maroon;
+$primary-color: $maroon !default;
 $yellow: #FF0;
 $nav-yellow: #FFE404;
 
 $af4-colors: (
 	primary: $dark-blue,
 	primary-light: $light-blue,
-	secondary: $light-green
-);
+	secondary: $light-green,
+	anchor: $light-blue-alt-2,
+	success: #3ADB76,
+	warning: #FFAE00,
+	alert: #CC4B37,
+) !default;
+
+$foundation-palette: $af4-colors;
+
+$primary-color: map-get($foundation-palette, primary);
 
 /* Fonts
 --------------------------------------------- */
@@ -64,8 +73,8 @@ $header-color-alt: lighten( $maroon, 12% );
 
 /* Global
 --------------------------------------------- */
-$anchor-color: $primary-color;
-$anchor-color-hover: scale-color($anchor-color, $lightness: -14%);
+$anchor-color: map-get($af4-colors, anchor);
+$anchor-color-hover: scale-color(map-get($af4-colors, anchor), $lightness: -14%);
 $anchor-text-decoration: underline;
 $anchor-text-decoration-hover: underline;
 $site-padding: 1rem;

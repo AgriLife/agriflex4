@@ -156,7 +156,13 @@ blockquote {
 		color: $whiter;
 
 		a.item-button {
-			background-color: lighten(saturate(adjust-hue(map-get($af4-colors, primary), -9), 6.56), 34.90);
+			background-color: lighten(
+				saturate(
+					adjust-hue(
+						map-get($af4-colors, primary), -9
+					), 6.56
+				), 34.90
+			);
 		}
 	}
 }
