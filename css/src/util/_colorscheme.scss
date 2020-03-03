@@ -1,3 +1,11 @@
+a {
+	color: $anchor-color;
+
+	&:hover {
+		color: $anchor-color-hover;
+	}
+}
+
 .page-template-default,
 .post-template-default {
 	h1:after {
