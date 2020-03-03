@@ -128,7 +128,13 @@ $titlebar-text-font-weight: normal;
 --------------------------------------------- */
 $small-side-spacing: 9%;
 $blockquote-border: none;
-$blockquote-color: lighten(desaturate(adjust-hue(map-get($af4-colors, primary), -7), 18.13), 19.80);
+$blockquote-color: lighten(
+	desaturate(
+		adjust-hue(
+			map-get($af4-colors, primary), -7
+		), 18.13
+	), 19.80
+) !default;
 $blockquote-padding: rem-calc(9 20 9 19);
 $cite-font-size: 0.9rem;
 $cite-color: $blockquote-color;
