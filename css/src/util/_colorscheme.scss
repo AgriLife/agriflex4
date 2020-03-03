@@ -60,15 +60,15 @@ a {
 	background-color: $yellow;
 }
 
-body .entry-content {
-	.wp-block-quote,
-	.wp-block-pullquote {
-		&::before,
-		&::after {
-			border-color: map-get($af4-colors, primary-light);
-		}
+// body .entry-content {
+.wp-block-quote,
+.wp-block-pullquote {
+	&::before,
+	&::after {
+		border-color: map-get($af4-colors, primary-light);
 	}
 }
+// }
 
 blockquote {
 	&,
@@ -196,40 +196,45 @@ table {
 }
 
 // Override default Gutenberg styles by adding the body selector.
-body {
-	.wp-block-file .wp-block-file__button,
-	.wp-block-button .wp-block-button__link:not(.has-background) {
-		background: $button-background;
+// body {
+.wp-block-file:not(.is-style-outline) .wp-block-file__button,
+.wp-block-button:not(.is-style-outline) .wp-block-button__link:not(.has-background) {
+	background: $button-background;
 
-		&:active,
-		&:focus,
-		&:hover {
-			background: $button-background-hover;
-		}
-	}
-
-	.wp-block-table {
-		&.is-style-stripes {
-			border-color: $table-border-color;
-
-			tr:nth-child(2n+1) {
-				background-color: lighten($table-border-color, 42%);
-			}
-		}
-
-		td,
-		th {
-			border-color: $table-border-color;
-		}
-	}
-
-	.wp-block-separator {
-		&:not(.is-style-dots) {
-			border-bottom-color: $hr-border-color;
-		}
-
-		&.is-style-dots:before {
-			color: $hr-border-color;
-		}
+	&:active,
+	&:focus,
+	&:hover {
+		background: $button-background-hover;
 	}
 }
+
+.wp-block-button.is-style-outline .wp-block-button__link,
+.wp-block-file.is-style-outline .wp-block-file__button {
+	border-color: $button-background;
+}
+
+.wp-block-table {
+	&.is-style-stripes {
+		border-color: $table-border-color;
+
+		tr:nth-child(2n+1) {
+			background-color: lighten($table-border-color, 42%);
+		}
+	}
+
+	td,
+	th {
+		border-color: $table-border-color;
+	}
+}
+
+.wp-block-separator {
+	&:not(.is-style-dots) {
+		border-bottom-color: $hr-border-color;
+	}
+
+	&.is-style-dots:before {
+		color: $hr-border-color;
+	}
+}
+// }
