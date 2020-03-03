@@ -6,6 +6,24 @@ a {
 	}
 }
 
+blockquote {
+	&,
+	p {
+		color: $blockquote-color;
+	}
+}
+
+table {
+	&,
+	td {
+		border-color: $table-border-color;
+	}
+}
+
+@at-root :not(.no-js) .site-inner *[id]:target {
+	background-color: $yellow;
+}
+
 .page-template-default,
 .post-template-default {
 	h1:after {
@@ -56,24 +74,11 @@ a {
 	}
 }
 
-:not(.no-js) .site-inner *[id]:target {
-	background-color: $yellow;
-}
-
-// body .entry-content {
 .wp-block-quote,
 .wp-block-pullquote {
 	&::before,
 	&::after {
 		border-color: map-get($af4-colors, primary-light);
-	}
-}
-// }
-
-blockquote {
-	&,
-	p {
-		color: $blockquote-color;
 	}
 }
 
@@ -102,32 +107,29 @@ blockquote {
 
 	.button:hover {
 		background-color: transparent;
-		color: $black;
 		border-color: map-get($af4-colors, primary);
+		color: $black;
 	}
 
 	.post-category .button {
-		color: $white;
-		border-color: lighten(map-get($af4-colors, primary), 50%);
 		background-color: map-get($af4-colors, primary);
+		border-color: lighten(map-get($af4-colors, primary), 50%);
+		color: $white;
 
+		a,
 		&:hover,
 		&:focus {
 			color: $white;
 		}
 
 		&.hollow {
-			color: map-get($af4-colors, primary);
-			border-color: map-get($af4-colors, primary);
 			background-color: $white;
+			border-color: map-get($af4-colors, primary);
+			color: map-get($af4-colors, primary);
 
 			&::hover {
 				color: map-get($af4-colors, primary);
 			}
-		}
-
-		a {
-			color: $white;
 		}
 	}
 }
@@ -158,45 +160,34 @@ blockquote {
 	}
 }
 
-.service-landing {
-	.card {
-		background: $maroon-alt;
-		color: $whiter;
+.service-landing .card {
+	background: $maroon-alt;
+	color: $whiter;
 
-		a.item-button {
-			background-color: lighten(
-				saturate(
-					adjust-hue(
-						map-get($af4-colors, primary), -9
-					), 6.56
-				), 34.90
-			);
-		}
+	a.item-button {
+		background-color: lighten(
+			saturate(
+				adjust-hue(
+					map-get($af4-colors, primary), -9
+				), 6.56
+			), 34.90
+		);
 	}
 }
 
 .site-footer {
-	color: $white;
-
+	&,
 	a {
 		color: $white;
-
-		&:focus,
-		&:hover {
-			color: map-get($af4-colors, primary-light);
-		}
 	}
-}
 
-table {
-	&,
-	& td {
-		border-color: $table-border-color;
+	a:focus,
+	a:hover {
+		color: map-get($af4-colors, primary-light);
 	}
 }
 
 // Override default Gutenberg styles by adding the body selector.
-// body {
 .wp-block-file:not(.is-style-outline) .wp-block-file__button,
 .wp-block-button:not(.is-style-outline) .wp-block-button__link:not(.has-background) {
 	background: $button-background;
@@ -214,17 +205,14 @@ table {
 }
 
 .wp-block-table {
-	&.is-style-stripes {
-		border-color: $table-border-color;
-
-		tr:nth-child(2n+1) {
-			background-color: lighten($table-border-color, 42%);
-		}
-	}
-
+	&.is-style-stripes,
 	td,
 	th {
 		border-color: $table-border-color;
+	}
+
+	&.is-style-stripes tr:nth-child(2n+1) {
+		background-color: lighten($table-border-color, 42%);
 	}
 }
 
@@ -237,4 +225,3 @@ table {
 		color: $hr-border-color;
 	}
 }
-// }
