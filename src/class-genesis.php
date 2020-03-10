@@ -775,7 +775,7 @@ class Genesis {
 	 */
 	public function archive_column_right_open() {
 
-		echo wp_kses_post( '<div class="cell small-auto medium-9">' );
+		echo wp_kses_post( '<div class="cell auto medium-9">' );
 
 	}
 
