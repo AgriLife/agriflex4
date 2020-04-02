@@ -149,14 +149,10 @@ class AgriFlex {
 		require_once AF_THEME_DIRPATH . '/src/class-requireddom.php';
 		require_once AF_THEME_DIRPATH . '/src/class-navigation.php';
 		require_once AF_THEME_DIRPATH . '/src/class-people.php';
-		require_once AF_THEME_DIRPATH . '/src/class-livewhaleblock.php';
 
 		// Get Genesis setup the way we want it.
 		global $af_genesis;
 		$af_genesis = new \AgriFlex\Genesis();
-
-		// Register Gutenberg blocks.
-		$af_livewhaleblock = new \AgriFlex\LiveWhaleBlock();
 
 		// Enqueue our assets.
 		$af_assets = new \AgriFlex\Assets();
