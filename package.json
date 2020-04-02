@@ -1,6 +1,6 @@
 {
   "name": "agriflex4",
-  "version": "1.9.6",
+  "version": "1.10.0",
   "description": "Genesis child theme for Texas A&M AgriLife",
   "main": "functions.php",
   "scripts": {
@@ -49,5 +49,9 @@
     "authoruri": "https://communications.agrilife.org/",
     "licenseuri": "http://www.gnu.org/licenses/gpl-2.0.html",
     "template": "genesis"
-  }
+  },
+  "browserslist": [
+    "last 2 versions",
+    "ie > 9"
+  ]
 }
