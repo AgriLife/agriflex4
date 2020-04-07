@@ -59,6 +59,32 @@ class AgriFlex {
 		// https://wpforthewin.com/remove-related-videos-wp-gutenberg-embed-blocks/.
 		add_filter( 'render_block', array( $this, 'add_youtube_player_url_params' ), 10, 3 );
 		add_filter(
+			'wp_kses_allowed_html',
+			function ( $allowed, $context ) {
+
+				if ( 'post' === $context ) {
+					if ( ! array_key_exists( 'iframe', $allowed ) ) {
+						$allowed['iframe'] = array();
+					}
+
+					$allowed['iframe']['data-*']          = true;
+					$allowed['iframe']['src']             = array();
+					$allowed['iframe']['href']            = array();
+					$allowed['iframe']['title']           = array();
+					$allowed['iframe']['width']           = array();
+					$allowed['iframe']['height']          = array();
+					$allowed['iframe']['allow']           = array();
+					$allowed['iframe']['allowfullscreen'] = array();
+					$allowed['iframe']['frameborder']     = array();
+				}
+
+				return $allowed;
+
+			},
+			10,
+			2
+		);
+		add_filter(
 			'embed_oembed_html',
 			function( $cache, $url, $attr, $post_ID ) {
 
@@ -75,6 +101,10 @@ class AgriFlex {
 					}
 					$new_url .= implode( '&', $new_atts );
 					$cache    = str_replace( $old_url, $new_url, $cache );
+
+					if ( array_key_exists( 'autoplay', $attr ) && '1' === $attr['autoplay'] ) {
+						$cache = preg_replace( '/\s(src="[^"]+")/', ' data-agf-autoplay="1" data-agf-$1 src=""', $cache );
+					}
 				}
 
 				return $cache;
