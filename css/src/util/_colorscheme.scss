@@ -183,7 +183,7 @@ table {
 
 	a:focus,
 	a:hover {
-		color: map-get($af4-colors, primary-light);
+		color: map-get($af4-colors, footer-anchor-hover);
 	}
 }
 
