@@ -40,10 +40,29 @@ module.exports = (grunt) ->
           'css/admin.css': 'css/admin.css'
           'css/style.css': 'css/style.css'
           'css/service-landing-page.css': 'css/service-landing-page.css'
-    cmq:
-      your_target:
+    merge_media:
+      pkg:
+        options:
+          compress: true
         files:
-          'css': ['css/*.css']
+          'css/style.css': 'css/style.css'
+          'css/default-template.css': 'css/default-template.css'
+          'css/admin.css': 'css/admin.css'
+          'css/default.css': 'css/default.css'
+          'css/global.css': 'css/global.css'
+          'css/header-nav-footer.css': 'css/header-nav-footer.css'
+          'css/service-landing-page.css': 'css/service-landing-page.css'
+      dev:
+        options:
+          compress: false
+        files:
+          'css/style.css': 'css/style.css'
+          'css/default-template.css': 'css/default-template.css'
+          'css/admin.css': 'css/admin.css'
+          'css/default.css': 'css/default.css'
+          'css/global.css': 'css/global.css'
+          'css/header-nav-footer.css': 'css/header-nav-footer.css'
+          'css/service-landing-page.css': 'css/service-landing-page.css'
     sass:
       pkg:
         options:
@@ -167,10 +186,10 @@ module.exports = (grunt) ->
   @loadNpmTasks 'grunt-sass-lint'
   @loadNpmTasks 'grunt-sass'
   @loadNpmTasks 'grunt-postcss'
-  @loadNpmTasks 'grunt-combine-media-queries'
+  @loadNpmTasks 'grunt-merge-media'
 
-  @registerTask 'default', ['themecomment', 'sasslint', 'sass:pkg', 'concat:dist', 'coffee', 'jsvalidate', 'cmq', 'postcss:pkg']
-  @registerTask 'develop', ['themecomment', 'sasslint', 'sass:dev', 'concat:dev', 'coffee', 'jsvalidate']
+  @registerTask 'default', ['themecomment', 'sasslint', 'sass:pkg', 'concat:dist', 'coffee', 'jsvalidate', 'merge_media:pkg', 'postcss:pkg']
+  @registerTask 'develop', ['themecomment', 'sasslint', 'sass:dev', 'concat:dev', 'coffee', 'jsvalidate', 'merge_media:dev']
   @registerTask 'release', ['compress', 'makerelease']
   @registerTask 'makerelease', 'Set release branch for use in the release task', ->
     done = @async()
