@@ -167,7 +167,7 @@ class Assets {
 			'screen'
 		);
 
-		if ( ! $template_name || 'default' == $template_name ) {
+		if ( ! $template_name || 'default' === $template_name ) {
 			wp_register_style(
 				'agriflex-default-template-styles',
 				AF_THEME_DIRURL . '/css/template-default.css',
@@ -190,7 +190,7 @@ class Assets {
 
 		wp_enqueue_style( 'agriflex-default-styles' );
 
-		if ( ! $template_name || 'default' == $template_name ) {
+		if ( ! $template_name || 'default' === $template_name ) {
 			wp_enqueue_style( 'agriflex-default-template-styles' );
 		}
 
