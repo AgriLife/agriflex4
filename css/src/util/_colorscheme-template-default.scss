@@ -1,0 +1,19 @@
+h1 {
+	@supports (text-decoration-color: map-get($af4-colors, secondary)) {
+		text-decoration-color: map-get($af4-colors, secondary);
+	}
+
+	&::after {
+		border-bottom-color: map-get($af4-colors, secondary);
+	}
+}
+
+h2 {
+	@supports (text-decoration-color: map-get($af4-colors, primary-light)) {
+		text-decoration-color: map-get($af4-colors, primary-light);
+	}
+
+	&::after {
+		border-bottom-color: map-get($af4-colors, primary-light);
+	}
+}

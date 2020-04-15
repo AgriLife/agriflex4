@@ -2,7 +2,7 @@
 	text-align: center;
 	padding: 1em 0;
 
-	&:after {
+	&::after {
 		content: "";
 		display: block;
 		width: 4rem;
@@ -15,6 +15,10 @@
 
 	@supports (text-decoration-color: map-get($af4-colors, secondary)) {
 		text-underline-position: under;
+		text-decoration: {
+			style: solid;
+			line: underline;
+		}
 		display: block;
 
 		&::after {
@@ -38,6 +42,10 @@
 
 	@supports (text-decoration-color: map-get($af4-colors, primary-light)) {
 		text-underline-position: under;
+		text-decoration: {
+			style: solid;
+			line: underline;
+		}
 		display: block;
 
 		&::after {
