@@ -156,6 +156,9 @@ class Assets {
 	 */
 	public function register_public_styles() {
 
+		global $wp_query;
+		$template_name = get_post_meta( $wp_query->post->ID, '_wp_page_template', true );
+
 		wp_register_style(
 			'agriflex-default-styles',
 			AF_THEME_DIRURL . '/css/style.css',
@@ -163,6 +166,16 @@ class Assets {
 			filemtime( AF_THEME_DIRPATH . '/css/style.css' ),
 			'screen'
 		);
+
+		if ( ! $template_name || 'default' == $template_name ) {
+			wp_register_style(
+				'agriflex-default-template-styles',
+				AF_THEME_DIRURL . '/css/template-default.css',
+				array( 'agriflex-default-styles' ),
+				filemtime( AF_THEME_DIRPATH . '/css/template-default.css' ),
+				'screen'
+			);
+		}
 
 	}
 
@@ -176,6 +189,10 @@ class Assets {
 	public function enqueue_public_styles() {
 
 		wp_enqueue_style( 'agriflex-default-styles' );
+
+		if ( ! $template_name || 'default' == $template_name ) {
+			wp_enqueue_style( 'agriflex-default-template-styles' );
+		}
 
 	}
 

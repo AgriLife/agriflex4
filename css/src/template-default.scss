@@ -1,0 +1,20 @@
+/* Default Page and Post styles */
+@charset "utf-8";
+
+@import "foundation";
+@import "settings";
+@import "util/extends";
+
+.page-template {
+	.content-sidebar-wrap .content {
+		margin-top: 0;
+	}
+}
+
+h1 {
+	@extend %h1;
+}
+
+h2 {
+	@extend %h2;
+}
