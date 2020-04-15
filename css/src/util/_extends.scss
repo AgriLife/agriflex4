@@ -12,6 +12,15 @@
 			style: solid;
 		}
 	}
+
+	@supports (text-decoration-color: map-get($af4-colors, secondary)) {
+		text-underline-position: under;
+		display: block;
+
+		&::after {
+			display: none;
+		}
+	}
 }
 
 %h2 {
@@ -24,6 +33,15 @@
 		border-bottom: {
 			width: 2px;
 			style: solid;
+		}
+	}
+
+	@supports (text-decoration-color: map-get($af4-colors, primary-light)) {
+		text-underline-position: under;
+		display: block;
+
+		&::after {
+			display: none;
 		}
 	}
 
