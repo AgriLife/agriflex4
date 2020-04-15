@@ -188,6 +188,9 @@ class Assets {
 	 */
 	public function enqueue_public_styles() {
 
+		global $wp_query;
+		$template_name = get_post_meta( $wp_query->post->ID, '_wp_page_template', true );
+
 		wp_enqueue_style( 'agriflex-default-styles' );
 
 		if ( ! $template_name || 'default' === $template_name ) {
