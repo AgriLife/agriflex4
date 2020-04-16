@@ -167,7 +167,9 @@ class Assets {
 			'screen'
 		);
 
-		if ( ! $template_name || 'default' === $template_name ) {
+		// If body class is page-template-default or post-template-default.
+		if ( ( ! $template_name || 'default' === $template_name ) && is_singular() ) {
+
 			wp_register_style(
 				'agriflex-default-template-styles',
 				AF_THEME_DIRURL . '/css/template-default.css',
@@ -175,6 +177,7 @@ class Assets {
 				filemtime( AF_THEME_DIRPATH . '/css/template-default.css' ),
 				'screen'
 			);
+
 		}
 
 	}

@@ -14,6 +14,7 @@
 	}
 
 	@supports (text-decoration-color: map-get($af4-colors, secondary)) {
+		padding-bottom: 1.15em;
 		text-underline-position: under;
 		text-decoration: {
 			style: solid;
@@ -41,6 +42,7 @@
 	}
 
 	@supports (text-decoration-color: map-get($af4-colors, primary-light)) {
+		padding-bottom: 0.15em;
 		text-underline-position: under;
 		text-decoration: {
 			style: solid;
