@@ -168,8 +168,7 @@ class Assets {
 		);
 
 		// If body class is page-template-default or post-template-default.
-		if ( ( ! $template_name || 'default' === $template_name ) && is_singular() ) {
-
+		if ( is_singular( 'post' ) || ( is_singular( 'page' ) && ( ! $template_name || 'default' === $template_name ) ) ) {
 			wp_register_style(
 				'agriflex-default-template-styles',
 				AF_THEME_DIRURL . '/css/template-default.css',
@@ -177,7 +176,6 @@ class Assets {
 				filemtime( AF_THEME_DIRPATH . '/css/template-default.css' ),
 				'screen'
 			);
-
 		}
 
 	}
@@ -196,7 +194,8 @@ class Assets {
 
 		wp_enqueue_style( 'agriflex-default-styles' );
 
-		if ( ! $template_name || 'default' === $template_name ) {
+		// If body class is page-template-default or post-template-default.
+		if ( is_singular( 'post' ) || ( is_singular( 'page' ) && ( ! $template_name || 'default' === $template_name ) ) ) {
 			wp_enqueue_style( 'agriflex-default-template-styles' );
 		}
 
