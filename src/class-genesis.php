@@ -775,7 +775,15 @@ class Genesis {
 	 */
 	public function archive_column_right_open() {
 
-		echo wp_kses_post( '<div class="cell auto medium-9">' );
+		$output = '<div class="cell auto medium-9">';
+
+		if ( is_archive() && ! genesis_get_option( 'content_archive_thumbnail' ) ) {
+
+			$output = '<div class="cell auto">';
+
+		}
+
+		echo wp_kses_post( $output );
 
 	}
 
