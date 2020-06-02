@@ -593,6 +593,10 @@ class Genesis {
 
 		$new_inside = apply_filters( 'af4_header_logo', $logo, $inside, $logo_html, $home );
 
+		if ( ! empty( $logo ) ) {
+			$title = str_replace( 'class="site-title', 'class="site-title has-logo', $title );
+		}
+
 		$title = str_replace( $inside, $new_inside, $title );
 
 		return $title;

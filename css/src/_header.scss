@@ -32,6 +32,12 @@
 		}
 	}
 
+	.site-title.has-logo {
+		a {
+			text-decoration: none;
+		}
+	}
+
 	.grid-container {
 		padding: $grid-padding-gutters / 2;
 		color: $site-title-color;
