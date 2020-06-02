@@ -35,6 +35,11 @@
 	.site-title.has-logo {
 		a {
 			text-decoration: none;
+
+			img + .site-title-text {
+				display: inline-block;
+				margin-left: 1.5rem;
+			}
 		}
 	}
 
