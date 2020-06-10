@@ -36,6 +36,37 @@ class Navigation {
 		// Remove span tags from nav link elements.
 		add_filter( 'wp_nav_menu_args', array( $this, 'custom_nav_attributes' ) );
 
+		add_filter( 'widget_nav_menu_args', array( $this, 'vertical_widget_menu' ), 11, 4 );
+
+	}
+
+	/**
+	 * Make nav menu widgets vertical.
+	 *
+	 * @since 1.12.0
+	 * @param array   $nav_menu_args An array of arguments passed to wp_nav_menu() to retrieve a navigation menu.
+	 * @param WP_Term $nav_menu Nav menu object for the current menu.
+	 * @param array   $args Display arguments for the current widget.
+	 * @param array   $instance Array of settings for the current widget.
+	 * @return array
+	 */
+	public function vertical_widget_menu( $nav_menu_args, $nav_menu, $args, $instance ) {
+
+		if ( 'Primary Sidebar' === $args['name'] ) {
+
+			if ( ! isset( $nav_menu_args['menu_class'] ) ) {
+
+				$nav_menu_args['menu_class'] = 'menu vertical';
+
+			} else {
+
+				$nav_menu_args['menu_class'] .= ' vertical';
+
+			}
+		}
+
+		return $nav_menu_args;
+
 	}
 
 	/**
