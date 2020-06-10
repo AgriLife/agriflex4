@@ -228,7 +228,6 @@
 		}
 
 		.unit-header-wrap {
-			padding-top: 2rem;
 			background: {
 				repeat: no-repeat;
 				position: center top;
@@ -237,13 +236,13 @@
 		}
 
 		.unit-header {
-			padding: 2rem 3.5rem;
+			padding: 1rem 3.5rem;
 			color: #FFF;
 
 			.site-title {
 				font: {
 					family: $tungsten;
-					size: 3rem;
+					size: 2rem;
 				}
 				line-height: 1;
 				text-transform: uppercase;
