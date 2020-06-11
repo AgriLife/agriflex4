@@ -52,7 +52,7 @@ class Navigation {
 	 */
 	public function vertical_widget_menu( $nav_menu_args, $nav_menu, $args, $instance ) {
 
-		if ( 'Primary Sidebar' === $args['name'] ) {
+		if ( false !== strpos( $args['name'], 'Sidebar' ) ) {
 
 			if ( ! isset( $nav_menu_args['menu_class'] ) ) {
 
