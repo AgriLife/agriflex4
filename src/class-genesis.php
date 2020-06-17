@@ -645,8 +645,12 @@ class Genesis {
 
 			add_filter( 'get_term_metadata', array( $this, 'archive_title' ), 10, 4 );
 
+			// Remove the post image action hook to move it to a different position.
 			remove_action( 'genesis_entry_content', 'genesis_do_post_image', 8 );
 			remove_action( 'genesis_post_content', 'genesis_do_post_image' );
+			// On TXMN the entry header post image action wasn't removed so we have to remove it on a different hook.
+			add_action( 'get_header', array( $this, 'remove_do_post_image' ) );
+			// Remove post meta and info.
 			remove_action( 'genesis_entry_footer', 'genesis_post_meta' );
 			remove_action( 'genesis_after_post_content', 'genesis_post_meta' );
 			remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
@@ -668,6 +672,20 @@ class Genesis {
 			add_filter( 'genesis_prev_link_text', array( $this, 'prev_link_text' ) );
 			add_filter( 'genesis_next_link_text', array( $this, 'next_link_text' ) );
 
+		}
+
+	}
+
+	/**
+	 * Remove genesis_do_post_image when it's added after the get_header hook.
+	 *
+	 * @since 1.12.3
+	 * @return void
+	 */
+	public function remove_do_post_image() {
+
+		if ( has_action( 'genesis_entry_header', 'genesis_do_post_image' ) ) {
+			remove_action( 'genesis_entry_header', 'genesis_do_post_image', 8 );
 		}
 
 	}
@@ -721,7 +739,7 @@ class Genesis {
 
 		$output = '<div class="grid-x grid-padding-x">';
 
-		if ( ! is_singular() && genesis_get_option( 'content_archive_thumbnail' ) ) {
+		if ( genesis_get_option( 'content_archive_thumbnail' ) ) {
 
 			$img = genesis_get_image(
 				array(
@@ -751,7 +769,7 @@ class Genesis {
 	 */
 	public function archive_column_left_close() {
 
-		if ( ! is_singular() && genesis_get_option( 'content_archive_thumbnail' ) ) {
+		if ( genesis_get_option( 'content_archive_thumbnail' ) ) {
 
 			$img = genesis_get_image(
 				array(
@@ -779,13 +797,16 @@ class Genesis {
 	 */
 	public function archive_column_right_open() {
 
-		$output = '<div class="cell auto medium-9">';
+		$tag   = '<div class="%s">';
+		$class = 'cell auto';
 
-		if ( is_archive() && ! genesis_get_option( 'content_archive_thumbnail' ) ) {
+		if ( genesis_get_option( 'content_archive_thumbnail' ) ) {
 
-			$output = '<div class="cell auto">';
+			$class .= ' medium-9';
 
 		}
+
+		$output = sprintf( $tag, $class );
 
 		echo wp_kses_post( $output );
 
