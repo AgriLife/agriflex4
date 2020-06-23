@@ -53,9 +53,6 @@ class Assets {
 		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 		remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
-		// Detect A&M Fonts.
-		add_filter( 'style_loader_tag', array( $this, 'detect_cloudfonts_loaded' ) );
-
 	}
 
 	/**
@@ -217,14 +214,6 @@ class Assets {
 			'all'
 		);
 
-		wp_register_style(
-			'agriflex4-cloudfonts',
-			'https://cloud.typography.com/6280314/7977592/css/fonts.css',
-			array(),
-			'1.0.0',
-			'all'
-		);
-
 	}
 
 	/**
@@ -236,22 +225,6 @@ class Assets {
 	public function enqueue_external_styles() {
 
 		wp_enqueue_style( 'agriflex4-googlefonts' );
-		wp_enqueue_style( 'agriflex4-cloudfonts' );
-
-	}
-
-	/**
-	 * Add attributes to stylesheet elements.
-	 *
-	 * @since 1.4.6
-	 * @param string $tag HTML for the stylesheet element.
-	 * @return string
-	 */
-	public function detect_cloudfonts_loaded( $tag ) {
-
-		$tag = preg_replace( "/id='agriflex4-cloudfonts-css'/", "id='agriflex4-cloudfonts-css' onload='document.documentElement.className=\"has-cloud-fonts\"'", $tag );
-
-		return $tag;
 
 	}
 
