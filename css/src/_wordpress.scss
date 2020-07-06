@@ -322,3 +322,7 @@ p.intro-text,
 .wp-block-image {
 	margin-bottom: $paragraph-margin-bottom;
 }
+
+.wp-block-cover:first-child {
+	margin-top: -$grid-padding-gutters;
+}
