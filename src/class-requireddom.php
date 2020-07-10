@@ -56,7 +56,7 @@ class RequiredDOM {
 		add_filter( 'af4_before_nav', array( $this, 'af4_nav_primary_title_bar_close' ), 12 );
 
 		// Add search form after navigation menu.
-		add_action( 'genesis_header', array( $this, 'add_header_right_widgets' ) );
+		add_action( 'genesis_header', array( $this, 'add_nav_search_widget_area' ) );
 
 	}
 
@@ -278,13 +278,13 @@ class RequiredDOM {
 	 * @param string $content If not empty then this function is running on a filter hook.
 	 * @return string
 	 */
-	public static function add_header_right_widgets( $content ) {
+	public static function add_nav_search_widget_area( $content ) {
 
 		$defaults = array(
 			'class' => 'cell small-12 medium-3 header-right-widget-area',
 			'id'    => 'header-search',
 		);
-		$attr     = apply_filters( 'af4_header_right_attr', $defaults );
+		$attr     = apply_filters( 'af4_nav_search_attr', $defaults );
 		$output   = '';
 
 		// Cycle through attributes, build tag attribute string.
@@ -304,7 +304,7 @@ class RequiredDOM {
 		$before = sprintf( '<div %s>', $output );
 
 		$wattr = apply_filters(
-			'af4_header_right_widget_area_atts',
+			'af4_nav_search_widget_area_atts',
 			array(
 				'before' => $before,
 				'after'  => '</div>',

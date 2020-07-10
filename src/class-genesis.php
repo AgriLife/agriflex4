@@ -404,7 +404,7 @@ class Genesis {
 
 		genesis_register_sidebar(
 			array(
-				'name'        => __( 'Header - Right', 'agrilife-today' ),
+				'name'        => __( 'Primary Navigation Search', 'agrilife-today' ),
 				'id'          => 'af4-header-right',
 				'description' => __( 'This is the widget area for the right side of the header.', 'agrilife-today' ),
 			)
