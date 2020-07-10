@@ -51,8 +51,6 @@ class AgriFlex {
 
 		add_filter( 'wp_kses_allowed_html', array( $this, 'post_allowed_tags' ), 11, 2 );
 
-		$this->register_templates();
-
 		$this->require_classes();
 
 		// Add parameters for Gutenberg's YouTube embed blocks.
@@ -169,7 +167,6 @@ class AgriFlex {
 		// Add page template custom fields.
 		if ( class_exists( 'acf' ) ) {
 			require_once AF_THEME_DIRPATH . '/fields/options-fields.php';
-			require_once AF_THEME_DIRPATH . '/fields/service-landing-page-fields.php';
 		}
 
 	}
@@ -223,20 +220,6 @@ class AgriFlex {
 		}
 
 		return $allowedposttags;
-
-	}
-
-	/**
-	 * Initialize page templates
-	 *
-	 * @since 0.7.0
-	 * @return void
-	 */
-	private function register_templates() {
-
-		require_once AF_THEME_DIRPATH . '/src/class-pagetemplate.php';
-		$service = new \AgriFlex\PageTemplate( AF_THEME_TEMPLATE_PATH, 'service-landing-page.php', 'Service Landing Page' );
-		$service->register();
 
 	}
 

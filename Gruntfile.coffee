@@ -29,7 +29,6 @@ module.exports = (grunt) ->
           'css/admin.css': 'css/admin.css'
           'css/style.css': 'css/style.css'
           'css/template-default.css': 'css/template-default.css'
-          'css/service-landing-page.css': 'css/service-landing-page.css'
       dev:
         options:
           map: true
@@ -41,7 +40,6 @@ module.exports = (grunt) ->
           'css/admin.css': 'css/admin.css'
           'css/style.css': 'css/style.css'
           'css/template-default.css': 'css/template-default.css'
-          'css/service-landing-page.css': 'css/service-landing-page.css'
     merge_media:
       pkg:
         options:
@@ -50,7 +48,6 @@ module.exports = (grunt) ->
           'css/style.css': 'css/style.css'
           'css/template-default.css': 'css/template-default.css'
           'css/admin.css': 'css/admin.css'
-          'css/service-landing-page.css': 'css/service-landing-page.css'
       dev:
         options:
           compress: false
@@ -58,7 +55,6 @@ module.exports = (grunt) ->
           'css/style.css': 'css/style.css'
           'css/template-default.css': 'css/template-default.css'
           'css/admin.css': 'css/admin.css'
-          'css/service-landing-page.css': 'css/service-landing-page.css'
     sass:
       pkg:
         options:
@@ -71,7 +67,6 @@ module.exports = (grunt) ->
           'css/admin.css': 'css/src/admin.scss'
           'css/style.css': 'css/src/style.scss'
           'css/template-default.css': 'css/src/template-default.scss'
-          'css/service-landing-page.css': 'css/src/service-landing-page.scss'
       dev:
         options:
           implementation: sass
@@ -83,7 +78,6 @@ module.exports = (grunt) ->
           'css/admin.css': 'css/src/admin.scss'
           'css/style.css': 'css/src/style.scss'
           'css/template-default.css': 'css/src/template-default.scss'
-          'css/service-landing-page.css': 'css/src/service-landing-page.scss'
     sasslint:
       options:
         configFile: '.sass-lint.yml'
