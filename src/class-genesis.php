@@ -404,9 +404,9 @@ class Genesis {
 
 		genesis_register_sidebar(
 			array(
-				'name'        => __( 'Primary Navigation Search', 'agrilife-today' ),
+				'name'        => __( 'Primary Navigation Search', 'agriflex4' ),
 				'id'          => 'af4-header-right',
-				'description' => __( 'This is the widget area for the right side of the header.', 'agrilife-today' ),
+				'description' => __( 'This is the widget area for the search feature on the right side of the navigation menu.', 'agriflex4' ),
 			)
 		);
 
