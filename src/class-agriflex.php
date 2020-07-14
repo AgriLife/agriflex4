@@ -47,7 +47,7 @@ class AgriFlex {
 
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
 
-		add_action( 'init', array( $this, 'init' ) );
+		add_action( 'acf/init', array( $this, 'af4_theme_options_page' ) );
 
 		add_filter( 'wp_kses_allowed_html', array( $this, 'post_allowed_tags' ), 11, 2 );
 
@@ -113,6 +113,22 @@ class AgriFlex {
 			4
 		);
 
+		// Speed up rss feed cache refresh.
+		add_filter( 'wp_feed_cache_transient_lifetime', array( $this, 'rss_widget_refresh_interval' ) );
+
+		// Make Feedzy use the smaller of the first two enclosure images in an RSS feed item.
+		add_filter( 'feedzy_retrieve_image', array( $this, 'feedzy_retrieve_image' ), 11, 2 );
+
+	}
+
+	/**
+	 * Add options page for theme.
+	 *
+	 * @since 1.13.5
+	 * @return void
+	 */
+	public function af4_theme_options_page() {
+
 		if ( function_exists( 'acf_add_options_page' ) ) {
 
 			$settings = array(
@@ -126,13 +142,9 @@ class AgriFlex {
 
 			acf_add_options_page( $settings );
 
+			require_once AF_THEME_DIRPATH . '/fields/options-fields.php';
+
 		}
-
-		// Speed up rss feed cache refresh.
-		add_filter( 'wp_feed_cache_transient_lifetime', array( $this, 'rss_widget_refresh_interval' ) );
-
-		// Make Feedzy use the smaller of the first two enclosure images in an RSS feed item.
-		add_filter( 'feedzy_retrieve_image', array( $this, 'feedzy_retrieve_image' ), 11, 2 );
 
 	}
 
@@ -153,21 +165,6 @@ class AgriFlex {
 		add_theme_support( 'align-wide' );
 		add_theme_support( 'responsive-embeds' );
 		add_theme_support( 'custom-logo', $defaults );
-
-	}
-
-	/**
-	 * Initialize the various classes
-	 *
-	 * @since 0.1.0
-	 * @return void
-	 */
-	public function init() {
-
-		// Add page template custom fields.
-		if ( class_exists( 'acf' ) ) {
-			require_once AF_THEME_DIRPATH . '/fields/options-fields.php';
-		}
 
 	}
 
