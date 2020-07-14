@@ -919,7 +919,7 @@ class Genesis {
 
 				wp_enqueue_script( 'google-cse' );
 
-				echo '<div class="gcse-search"></div>';
+				echo '<div class="gcse-search" data-queryParameterName="s"></div>';
 
 			}
 		}
