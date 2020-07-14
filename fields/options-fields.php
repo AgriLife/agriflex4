@@ -116,4 +116,27 @@ if ( function_exists( 'acf_add_local_field' ) ) {
 		)
 	);
 
+	acf_add_local_field(
+		array(
+			'key'               => 'field_5f0dfcb50958b',
+			'label'             => 'Google Search Engine ID',
+			'name'              => 'google_search_engine_id',
+			'type'              => 'text',
+			'instructions'      => '',
+			'required'          => 0,
+			'conditional_logic' => 0,
+			'wrapper'           => array(
+				'width' => '',
+				'class' => '',
+				'id'    => '',
+			),
+			'default_value'     => '',
+			'placeholder'       => '',
+			'prepend'           => '',
+			'append'            => '',
+			'maxlength'         => 75,
+			'parent'            => 'group_5e14d2d88b326',
+		)
+	);
+
 }

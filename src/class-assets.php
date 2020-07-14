@@ -128,6 +128,20 @@ class Assets {
 			true
 		);
 
+		$field = get_field( 'google_search_engine_id', 'option' );
+
+		if ( ! empty( $field ) ) {
+
+			wp_register_script(
+				'google-cse',
+				'https://cse.google.com/cse.js?cx=' . $field,
+				array(),
+				'1.0.0',
+				true
+			);
+
+		}
+
 	}
 
 	/**

@@ -75,6 +75,25 @@
                         "placeholder": ""
                     }
                 ]
+            },
+            {
+                "key": "field_5f0dfcb50958b",
+                "label": "Google Search Engine ID",
+                "name": "google_search_engine_id",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": 75
             }
         ],
         "location": [

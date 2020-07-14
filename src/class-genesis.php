@@ -109,6 +109,11 @@ class Genesis {
 		add_filter( 'body_class', array( $this, 'af4_archive_class' ) );
 		add_action( 'wp', array( $this, 'archive_customizations' ) );
 
+		// Implement Google Search if the site has an id in the theme option field.
+		add_action( 'genesis_before_loop', array( $this, 'add_google_cse_results' ), 11 );
+		add_filter( 'genesis_noposts_text', array( $this, 'empty_google_cse_results_text' ) );
+		add_action( 'pre_get_posts', array( $this, 'empty_wp_results_for_google_cse' ) );
+
 	}
 
 	/**
@@ -895,6 +900,78 @@ class Genesis {
 	 */
 	public function next_link_text() {
 		return '>';
+	}
+
+	/**
+	 * Add the Google CSE search results code.
+	 *
+	 * @since   1.14.0
+	 *
+	 * @return  void
+	 */
+	public function add_google_cse_results() {
+
+		if ( ! is_admin() && is_main_query() && is_search() ) {
+
+			$field = get_field( 'google_search_engine_id', 'option' );
+
+			if ( ! empty( $field ) ) {
+
+				wp_enqueue_script( 'google-cse' );
+
+				echo '<div class="gcse-search"></div>';
+
+			}
+		}
+
+	}
+
+	/**
+	 * Empty the WordPress search results text when using Google CSE
+	 *
+	 * @since 1.14.0
+	 * @param string $text The current text to show for empty search results.
+	 *
+	 * @return string
+	 */
+	public function empty_google_cse_results_text( $text ) {
+
+		if ( ! is_admin() && is_main_query() && is_search() ) {
+
+			$field = get_field( 'google_search_engine_id', 'option' );
+
+			if ( ! empty( $field ) ) {
+
+				return '';
+
+			}
+		}
+
+		return $text;
+
+	}
+
+	/**
+	 * Empty search result posts when using Google CSE
+	 *
+	 * @since 1.14.0
+	 * @param object $query The search query.
+	 *
+	 * @return void
+	 */
+	public function empty_wp_results_for_google_cse( $query ) {
+
+		if ( ! is_admin() && $query->is_main_query() && $query->is_search() ) {
+
+			$field = get_field( 'google_search_engine_id', 'option' );
+
+			if ( ! empty( $field ) ) {
+
+				$query->set( 'post__in', array( 0 ) );
+
+			}
+		}
+
 	}
 
 }
