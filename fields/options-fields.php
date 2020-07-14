@@ -45,7 +45,7 @@ if ( function_exists( 'acf_add_local_field' ) ) {
 			'label'             => 'Logos',
 			'name'              => 'logos',
 			'type'              => 'repeater',
-			'instructions'      => 'This is not used on the following sites: aglifesciences.tamu.edu, agrilife.org',
+			'instructions'      => 'This is not used on the following sites: aglifesciences.tamu.edu, agrilife.tamu.edu',
 			'required'          => 0,
 			'conditional_logic' => 0,
 			'wrapper'           => array(
