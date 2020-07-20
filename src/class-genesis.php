@@ -92,7 +92,6 @@ class Genesis {
 		add_filter( 'genesis_structural_wrap-footer', array( $this, 'class_footer_wrap' ) );
 
 		// Sticky Header.
-		add_filter( 'genesis_structural_wrap-header', array( $this, 'sticky_header' ) );
 		remove_action( 'wp_head', 'genesis_custom_header_style' );
 
 		// Add Read More excerpt link.
@@ -101,6 +100,11 @@ class Genesis {
 		// Relocate primary navigation menu.
 		remove_action( 'genesis_after_header', 'genesis_do_nav' );
 		add_action( 'genesis_header', 'genesis_do_nav' );
+
+		// Sticky Header.
+		add_filter( 'genesis_structural_wrap-header', array( $this, 'sticky_header_container' ), 10, 2 );
+		add_action( 'genesis_header', array( $this, 'sticky_header_wrap_open' ), 6 );
+		add_action( 'genesis_header', array( $this, 'sticky_header_wrap_close' ), 11 );
 
 		// Replace site title with logo.
 		add_filter( 'genesis_seo_title', array( $this, 'add_logo' ), 10, 3 );
@@ -489,43 +493,6 @@ class Genesis {
 
 		remove_meta_box( 'genesis-theme-settings-nav', $_genesis_theme_settings_pagehook, 'main' );
 		remove_meta_box( 'genesis-theme-settings-scripts', $_genesis_theme_settings_pagehook, 'main' );
-
-	}
-
-	/**
-	 * Adds attributes for sticky navigation and add wrap for header layout requirements
-	 *
-	 * @since 0.1.0
-	 * @param string $output The output of the Genesis header wrap.
-	 * @return string
-	 */
-	public function sticky_header( $output ) {
-
-		$af4_header_wrap = apply_filters(
-			'af4_header_wrap',
-			array(
-				'open'  => '<div class="wrap" data-sticky-container><div class="wrap" data-sticky data-options="stickyOn:small;marginTop:0;"><div class="grid-container"><div class="grid-x grid-padding-x"',
-				'close' => '</div></div></div></div>',
-			)
-		);
-
-		$output = preg_replace( '/<div class="wrap"/', $af4_header_wrap['open'], $output );
-		$output = preg_replace( '/<\/div>$/', $af4_header_wrap['close'], $output );
-
-		return $output;
-
-	}
-
-	/**
-	 * Add close wrap to enable desired header layout
-	 *
-	 * @since 0.1.0
-	 * @param string $output The output of the header extra wrap close.
-	 * @return string
-	 */
-	public function header_extra_wrap_close( $output ) {
-
-		return $output;
 
 	}
 
@@ -971,6 +938,51 @@ class Genesis {
 
 			}
 		}
+
+	}
+
+	/**
+	 * Add Foundation sticky container data attribute to opening Genesis structural wrap.
+	 *
+	 * @since 1.15.0
+	 * @param string $output   The structural wrap output.
+	 * @param string $position The open or close wrap to filter.
+	 *
+	 * @return string
+	 */
+	public function sticky_header_container( $output, $position ) {
+
+		if ( 'open' === $position ) {
+			$output = str_replace( 'class="', 'data-sticky-container class="', $output );
+		}
+
+		return $output;
+
+	}
+
+	/**
+	 * The opening sticky header wrap elements.
+	 *
+	 * @since 1.15.0
+	 *
+	 * @return void
+	 */
+	public function sticky_header_wrap_open() {
+
+		echo wp_kses_post( '<div class="wrap" data-sticky data-options="stickyOn:small;marginTop:0;"><div class="grid-container"><div class="grid-x grid-padding-x">' );
+
+	}
+
+	/**
+	 * The opening sticky header wrap elements.
+	 *
+	 * @since 1.15.0
+	 *
+	 * @return void
+	 */
+	public function sticky_header_wrap_close() {
+
+		echo wp_kses_post( '</div></div></div>' );
 
 	}
 
