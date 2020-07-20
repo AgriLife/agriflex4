@@ -104,7 +104,9 @@ class Genesis {
 		// Sticky Header.
 		add_filter( 'genesis_structural_wrap-header', array( $this, 'sticky_header_container' ), 10, 2 );
 		add_action( 'genesis_header', array( $this, 'sticky_header_wrap_open' ), 6 );
-		add_action( 'genesis_header', array( $this, 'sticky_header_wrap_close' ), 11 );
+		add_action( 'genesis_header', array( $this, 'grid_container_padding_x_open' ), 6 );
+		add_action( 'genesis_header', array( $this, 'grid_container_padding_x_close' ), 11 );
+		add_action( 'genesis_header', array( $this, 'sticky_header_wrap_close' ), 13 );
 
 		// Replace site title with logo.
 		add_filter( 'genesis_seo_title', array( $this, 'add_logo' ), 10, 3 );
@@ -969,7 +971,33 @@ class Genesis {
 	 */
 	public function sticky_header_wrap_open() {
 
-		echo wp_kses_post( '<div class="wrap" data-sticky data-options="stickyOn:small;marginTop:0;"><div class="grid-container"><div class="grid-x grid-padding-x">' );
+		echo wp_kses_post( '<div class="wrap" data-sticky data-options="stickyOn:small;marginTop:0;">' );
+
+	}
+
+	/**
+	 * Opening grid container padding x elements.
+	 *
+	 * @since 1.15.0
+	 *
+	 * @return void
+	 */
+	public function grid_container_padding_x_open() {
+
+		echo wp_kses_post( '<div class="grid-container"><div class="grid-x grid-padding-x">' );
+
+	}
+
+	/**
+	 * The opening sticky header wrap elements.
+	 *
+	 * @since 1.15.0
+	 *
+	 * @return void
+	 */
+	public function grid_container_padding_x_close() {
+
+		echo wp_kses_post( '</div></div>' );
 
 	}
 
@@ -982,7 +1010,7 @@ class Genesis {
 	 */
 	public function sticky_header_wrap_close() {
 
-		echo wp_kses_post( '</div></div></div>' );
+		echo wp_kses_post( '</div>' );
 
 	}
 
