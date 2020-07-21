@@ -107,7 +107,7 @@ class Genesis {
 		add_action( 'genesis_header', array( $this, 'grid_container_padding_x_open' ), 6 );
 		add_action( 'genesis_header', array( $this, 'grid_container_padding_x_close' ), 11 );
 		add_action( 'genesis_header', array( $this, 'sticky_header_wrap_close' ), 13 );
-		add_filter( 'genesis_attr_site-header', array( $this, 'genesis_attr_site_header' ) );
+		add_filter( 'genesis_attr_site-header', array( $this, 'genesis_attr_site_header' ), 11 );
 
 		// Replace site title with logo.
 		add_filter( 'genesis_seo_title', array( $this, 'add_logo' ), 10, 3 );
@@ -1026,6 +1026,14 @@ class Genesis {
 	public function genesis_attr_site_header( $attributes ) {
 
 		$attributes['id'] = 'site-header';
+
+		if ( ! array_key_exists( 'itemscope', $attributes ) ) {
+			$attributes['itemscope'] = true;
+		}
+
+		if ( ! array_key_exists( 'itemtype', $attributes ) ) {
+			$attributes['itemtype'] = 'https://schema.org/WPHeader';
+		}
 
 		return $attributes;
 
