@@ -107,6 +107,7 @@ class Genesis {
 		add_action( 'genesis_header', array( $this, 'grid_container_padding_x_open' ), 6 );
 		add_action( 'genesis_header', array( $this, 'grid_container_padding_x_close' ), 11 );
 		add_action( 'genesis_header', array( $this, 'sticky_header_wrap_close' ), 13 );
+		add_filter( 'genesis_attr_site-header', array( $this, 'genesis_attr_site_header' ) );
 
 		// Replace site title with logo.
 		add_filter( 'genesis_seo_title', array( $this, 'add_logo' ), 10, 3 );
@@ -1011,6 +1012,22 @@ class Genesis {
 	public function sticky_header_wrap_close() {
 
 		echo wp_kses_post( '</div>' );
+
+	}
+
+	/**
+	 * Add attributes to site header.
+	 *
+	 * @since 1.15.1
+	 * @param array $attributes The site header attributes.
+	 *
+	 * @return array
+	 */
+	public function genesis_attr_site_header( $attributes ) {
+
+		$attributes['id'] = 'site-header';
+
+		return $attributes;
 
 	}
 
