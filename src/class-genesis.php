@@ -91,7 +91,7 @@ class Genesis {
 		add_filter( 'genesis_attr_sidebar-primary', array( $this, 'class_cell_sidebar' ) );
 		add_filter( 'genesis_structural_wrap-footer', array( $this, 'class_footer_wrap' ) );
 
-		// Sticky Header.
+		// Remove unneeded default header styles.
 		remove_action( 'wp_head', 'genesis_custom_header_style' );
 
 		// Add Read More excerpt link.
