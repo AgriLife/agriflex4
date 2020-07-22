@@ -70,7 +70,7 @@
 		flex-wrap: nowrap;
 
 		@include breakpoint(medium) {
-			justify-content: end;
+			justify-content: flex-end;
 		}
 	}
 
