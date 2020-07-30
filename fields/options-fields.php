@@ -42,7 +42,7 @@ if ( function_exists( 'acf_add_local_field' ) ) {
 	acf_add_local_field(
 		array(
 			'key'               => 'field_5e14d2dc822a8',
-			'label'             => 'Logos',
+			'label'             => 'Header Logos',
 			'name'              => 'logos',
 			'type'              => 'repeater',
 			'instructions'      => 'This is not used on the following sites: aglifesciences.tamu.edu, agrilife.tamu.edu',
