@@ -47,8 +47,6 @@ class AgriFlex {
 
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
 
-		add_action( 'acf/init', array( $this, 'af4_theme_options_page' ) );
-
 		add_filter( 'wp_kses_allowed_html', array( $this, 'post_allowed_tags' ), 11, 2 );
 
 		$this->require_classes();
@@ -122,33 +120,6 @@ class AgriFlex {
 	}
 
 	/**
-	 * Add options page for theme.
-	 *
-	 * @since 1.13.5
-	 * @return void
-	 */
-	public function af4_theme_options_page() {
-
-		if ( function_exists( 'acf_add_options_page' ) ) {
-
-			$settings = array(
-				'page_title'  => __( 'AgriFlex4 Options' ),
-				'menu_title'  => __( 'AgriFlex4 Options' ),
-				'menu_slug'   => 'agriflex4-options',
-				'capability'  => 'edit_themes',
-				'position'    => '',
-				'parent_slug' => 'options-general.php',
-			);
-
-			acf_add_options_page( $settings );
-
-			require_once AF_THEME_DIRPATH . '/fields/options-fields.php';
-
-		}
-
-	}
-
-	/**
 	 * Add theme support for wide page alignment
 	 *
 	 * @since 0.1.0
@@ -177,6 +148,7 @@ class AgriFlex {
 	private function require_classes() {
 
 		require_once AF_THEME_DIRPATH . '/src/class-assets.php';
+		require_once AF_THEME_DIRPATH . '/src/class-custom-fields.php';
 		require_once AF_THEME_DIRPATH . '/src/class-genesis.php';
 		require_once AF_THEME_DIRPATH . '/src/class-requireddom.php';
 		require_once AF_THEME_DIRPATH . '/src/class-navigation.php';
@@ -185,6 +157,10 @@ class AgriFlex {
 		// Get Genesis setup the way we want it.
 		global $af_genesis;
 		$af_genesis = new \AgriFlex\Genesis();
+
+		// Get Genesis setup the way we want it.
+		global $af_customfields;
+		$af_customfields = new \AgriFlex\Custom_Fields();
 
 		// Enqueue our assets.
 		$af_assets = new \AgriFlex\Assets();
