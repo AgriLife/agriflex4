@@ -115,7 +115,7 @@ class Assets {
 		wp_register_script(
 			'agriflex-public',
 			AF_THEME_DIRURL . '/js/public.min.js',
-			false,
+			array( 'foundation' ),
 			filemtime( AF_THEME_DIRPATH . '/js/public.min.js' ),
 			true
 		);
