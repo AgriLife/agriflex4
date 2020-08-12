@@ -326,3 +326,7 @@ p.intro-text,
 		margin-top: -$grid-padding-gutters;
 	}
 }
+
+figcaption {
+	font-size: rem-calc(12);
+}
