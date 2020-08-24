@@ -168,7 +168,22 @@ class Assets {
 	public function register_public_styles() {
 
 		global $wp_query;
-		$template_name = get_post_meta( $wp_query->post->ID, '_wp_page_template', true );
+
+		if ( ! empty( $wp_query->post ) ) {
+
+			$template_name = get_post_meta( $wp_query->post->ID, '_wp_page_template', true );
+
+			// If body class is page-template-default or post-template-default.
+			if ( is_singular( 'post' ) || ( is_singular( 'page' ) && ( ! $template_name || 'default' === $template_name ) ) ) {
+				wp_register_style(
+					'agriflex-default-template-styles',
+					AF_THEME_DIRURL . '/css/template-default.css',
+					array( 'agriflex-default-styles' ),
+					filemtime( AF_THEME_DIRPATH . '/css/template-default.css' ),
+					'screen'
+				);
+			}
+		}
 
 		wp_register_style(
 			'agriflex-default-styles',
@@ -177,17 +192,6 @@ class Assets {
 			filemtime( AF_THEME_DIRPATH . '/css/style.css' ),
 			'screen'
 		);
-
-		// If body class is page-template-default or post-template-default.
-		if ( is_singular( 'post' ) || ( is_singular( 'page' ) && ( ! $template_name || 'default' === $template_name ) ) ) {
-			wp_register_style(
-				'agriflex-default-template-styles',
-				AF_THEME_DIRURL . '/css/template-default.css',
-				array( 'agriflex-default-styles' ),
-				filemtime( AF_THEME_DIRPATH . '/css/template-default.css' ),
-				'screen'
-			);
-		}
 
 	}
 
@@ -201,14 +205,18 @@ class Assets {
 	public function enqueue_public_styles() {
 
 		global $wp_query;
-		$template_name = get_post_meta( $wp_query->post->ID, '_wp_page_template', true );
+
+		if ( ! empty( $wp_query->post ) ) {
+
+			$template_name = get_post_meta( $wp_query->post->ID, '_wp_page_template', true );
+
+			// If body class is page-template-default or post-template-default.
+			if ( is_singular( 'post' ) || ( is_singular( 'page' ) && ( ! $template_name || 'default' === $template_name ) ) ) {
+				wp_enqueue_style( 'agriflex-default-template-styles' );
+			}
+		}
 
 		wp_enqueue_style( 'agriflex-default-styles' );
-
-		// If body class is page-template-default or post-template-default.
-		if ( is_singular( 'post' ) || ( is_singular( 'page' ) && ( ! $template_name || 'default' === $template_name ) ) ) {
-			wp_enqueue_style( 'agriflex-default-template-styles' );
-		}
 
 	}
 
