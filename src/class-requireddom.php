@@ -82,7 +82,11 @@ class RequiredDOM {
 	 */
 	public function add_no_js_class_to_html_tag( $output, $doctype ) {
 
-		if ( 'html' !== $doctype ) {
+		if (
+			'html' !== $doctype ||
+			is_admin() ||
+			in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ), true )
+		) {
 			return $output;
 		}
 
