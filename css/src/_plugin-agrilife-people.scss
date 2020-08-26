@@ -42,3 +42,17 @@
 		}
 	}
 }
+
+.single-people {
+	.people-person-details {
+		margin-left: 0;
+
+		@include breakpoint(small only) {
+			padding: 0;
+		}
+	}
+
+	.people-single-image {
+		float: none;
+	}
+}
