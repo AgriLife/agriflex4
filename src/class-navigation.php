@@ -160,7 +160,7 @@ class Navigation {
 
 		$nav_markup_open = genesis_markup(
 			array(
-				'html5'   => sprintf( '<nav class="%s" role="navigation">', implode( ' ', $args['class'] ) ),
+				'html5'   => sprintf( '<nav class="%s">', implode( ' ', $args['class'] ) ),
 				'xhtml'   => '<div id="nav">',
 				'context' => 'nav-primary',
 				'echo'    => false,
