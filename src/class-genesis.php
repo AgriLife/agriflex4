@@ -295,10 +295,6 @@ class Genesis {
 
 		add_theme_support( 'genesis-accessibility', array( 'search-form', 'skip-links' ) );
 
-		// Move skip links.
-		remove_action( 'genesis_before_header', 'genesis_skip_links', 5 );
-		add_action( 'genesis_before', 'genesis_skip_links', 1 );
-
 	}
 
 	/**
