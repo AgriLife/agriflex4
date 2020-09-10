@@ -43,7 +43,7 @@
 		}
 	}
 
-	.grid-container {
+	.header-grid-container {
 		padding: $grid-padding-gutters / 2;
 		color: $site-title-color;
 	}
@@ -127,7 +127,7 @@
 		}
 
 		.is-stuck {
-			.grid-container {
+			.header-grid-container {
 				padding: {
 					top: rem-calc(10);
 					bottom: rem-calc(10);
@@ -159,7 +159,7 @@
 			max-height: 48px;
 		}
 
-		.grid-container {
+		.header-grid-container {
 			padding: {
 				top: 2 * $site-padding;
 				bottom: 2 * $site-padding;
@@ -219,7 +219,7 @@
 				width: 152px;
 			}
 
-			.grid-container {
+			.header-grid-container {
 				padding: {
 					top: $site-padding;
 					bottom: $site-padding;

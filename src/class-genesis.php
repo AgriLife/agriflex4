@@ -104,8 +104,8 @@ class Genesis {
 		// Sticky Header.
 		add_filter( 'genesis_structural_wrap-header', array( $this, 'sticky_header_container' ), 10, 2 );
 		add_action( 'genesis_header', array( $this, 'sticky_header_wrap_open' ), 6 );
-		add_action( 'genesis_header', array( $this, 'grid_container_padding_x_open' ), 6 );
-		add_action( 'genesis_header', array( $this, 'grid_container_padding_x_close' ), 11 );
+		add_action( 'genesis_header', array( $this, 'header_grid_container_open' ), 6 );
+		add_action( 'genesis_header', array( $this, 'header_grid_container_close' ), 11 );
 		add_action( 'genesis_header', array( $this, 'sticky_header_wrap_close' ), 13 );
 		add_filter( 'genesis_attr_site-header', array( $this, 'genesis_attr_site_header' ), 11 );
 
@@ -983,9 +983,9 @@ class Genesis {
 	 *
 	 * @return void
 	 */
-	public function grid_container_padding_x_open() {
+	public function header_grid_container_open() {
 
-		echo wp_kses_post( '<div class="grid-container"><div class="grid-x grid-padding-x">' );
+		echo wp_kses_post( '<div class="header-grid-container grid-container"><div class="grid-x grid-padding-x">' );
 
 	}
 
@@ -996,7 +996,7 @@ class Genesis {
 	 *
 	 * @return void
 	 */
-	public function grid_container_padding_x_close() {
+	public function header_grid_container_close() {
 
 		echo wp_kses_post( '</div></div>' );
 
