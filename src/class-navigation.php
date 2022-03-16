@@ -6,6 +6,8 @@
  * to provide a correctly formatted navigation menu for the Foundation framework
  * to interact with.
  *
+ * Updated 3/16/2022 to reflect new Foundation syntax for dropdown accordion menu toggle 
+ *
  * @link       https://github.com/AgriLife/agriflex4/blob/master/src/class-navigation.php
  * @since      0.1.0
  * @package    agriflex4
@@ -98,11 +100,11 @@ class Navigation {
 	 */
 	public function custom_nav_walker( $nav_output, $nav, $args ) {
 
-		$args['menu_class'] = $args['menu_class'] . ' dropdown';
+		$args['menu_class'] = $args['menu_class'] . 'vertical medium-horizontal menu';
 		$args['menu_id']    = 'genesis-nav-primary';
 		require_once AF_THEME_DIRPATH . '/src/class-customnavigationwalker.php';
 		$args['walker']     = new \AgriFlex\CustomNavigationWalker();
-		$args['items_wrap'] = '<ul id="%s" class="%s" data-responsive-menu="accordion medium-dropdown">%s</ul>';
+		$args['items_wrap'] = '<ul id="%s" class="%s" data-responsive-menu="accordion medium-dropdown" data-submenu-toggle="true">%s</ul>';
 		$args['class']      = apply_filters( 'af4_primary_nav_class', array( 'nav-primary', 'cell', 'small-12', 'medium-auto' ) );
 
 		$nav_menu = wp_nav_menu( $args );
