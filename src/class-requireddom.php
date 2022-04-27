@@ -189,7 +189,7 @@ class RequiredDOM {
 		$output .= '<li><a href="http://agrilife.tamu.edu/required-links/compact/">Compact with Texans</a></li>';
 		$output .= '<li><a href="http://agrilife.tamu.edu/required-links/privacy/">Privacy and Security</a></li>';
 		$output .= '<li><a href="http://itaccessibility.tamu.edu/" target="_blank">Accessibility Policy</a></li>';
-		$output .= '<li><a href="http://publishingext.dir.texas.gov/portal/internal/resources/DocumentLibrary/State%20Website%20Linking%20and%20Privacy%20Policy.pdf" target="_blank">State Link Policy</a></li>';
+		$output .= '<li><a href="https://dir.texas.gov/resource-library-item/state-website-linking-privacy-policy" target="_blank">State Link Policy</a></li>';
 		$output .= '<li><a href="http://www.tsl.state.tx.us/trail" target="_blank">Statewide Search</a></li>';
 		$output .= '<li><a href="http://veterans.tamu.edu/" target="_blank">Veterans Benefits</a></li>';
 		$output .= '<li><a href="https://fch.tamu.edu/programs/military-programs/" target="_blank">Military Families</a></li>';
