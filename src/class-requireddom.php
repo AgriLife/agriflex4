@@ -255,7 +255,7 @@ class RequiredDOM {
 	 */
 	public function add_search_toggle( $output = '' ) {
 
-		$output .= '<div class="title-bar title-bar-search" data-responsive-toggle="header-search"><button class="search-icon" type="button" data-toggle="header-search"></button><div class="title-bar-title">Search</div></div>';
+		$output .= '<div class="title-bar title-bar-search" data-responsive-toggle="header-search"><button class="search-icon" type="button" aria-label="Search" data-toggle="header-search" aria-expanded="true" aria-controls="header-search"><div class="title-bar-title">Search</div></div>';
 
 		return $output;
 
